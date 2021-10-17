@@ -15,4 +15,13 @@
 ### CSS
 - [x] Aula 1 - Inportando arquivo CSS style.css. Seletor por tag, class e id;
 - [x] Aula 2 - Cores heximadecial, função rgb() e hsl()
-- [x] Aula 3 - Configuraçãoes do background 
+- [x] Aula 3 - background 
+- [x] Aula 4 - border
+- [x] Aula 5 - margin
+- [x] Aula 6 - padding
+- [x] Aula 7 - box-shadow
+- [x] Aula 8 - font-Weight, letter-spacing
+- [x] Aula 9 - font-family e Google Fonts
+- [x] Aula 10 - Div e criação de container centralizado
+- [x] Aula 11 - Centralizando o header e colocando icones
+- [x] Aula 12 - Estilização de listas e criação do rodapé
