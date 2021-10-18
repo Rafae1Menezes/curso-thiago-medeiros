@@ -51,8 +51,8 @@
 - [x] Aula Projeto Menu.
 
 ### HTML Avançado
-- Aula 1: [x] Introdução as tags de formulário: form, button input (text, email, password, button);
-- Aula 2: [x] Tags: label, input (file, tel, color)
-- Aula 3: [x] Usabilidade e assecibilidade com tag label, input(radio,, checkbox)
-- Aula 4: [x] Tags: select, option, optgroup
-- Aula 5: [x] Tags: datalist, textarea, fieldset
+- [x] Aula 1: Introdução as tags de formulário: form, button input (text, email, password, button);
+- [x] Aula 2: Tags: label, input (file, tel, color)
+- [x] Aula 3: Usabilidade e assecibilidade com tag label, input(radio,, checkbox)
+- [x] Aula 4: Tags: select, option, optgroup
+- [x] Aula 5: Tags: datalist, textarea, fieldset
