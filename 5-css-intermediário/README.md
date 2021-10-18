@@ -8,7 +8,7 @@
 - [x] Aula 6: Pseudo classes: firt-child, last-child, nth-child
 - [x] Aula 7: Pseudo elementos: before, after, selection
 - [x] Aula 8: Position absolute e relative 
-- [x] Aula Projeto Menu
+- [x] Aula Projeto Menu: aplica todo conteúdo desse módulo
 
+![projeto-menu](https://user-images.githubusercontent.com/89926211/137808828-1d9c25b3-11f6-427b-9626-7b2e74c6064f.jpg) *Projeto Menu*
 
- 
