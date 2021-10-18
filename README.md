@@ -48,3 +48,4 @@
 - [x] Aula 6: Pseudo classes: firt-child, last-child, nth-child
 - [x] Aula 7: Pseudo elementos: before, after, selection
 - [x] Aula 8: Position absolute e relative 
+- [x] Aula Projeto Menu
