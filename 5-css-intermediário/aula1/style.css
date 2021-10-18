@@ -1,0 +1,21 @@
+h1, h2, h3{
+    color: green;
+}
+
+.exemplo{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+}
+
+.exemplo2 > p{ /* Filhos */
+    color: blue;
+}
+
+.exemplo3 + p{ /* primeir irmão */
+    color: orange;
+}
+
+.exemplo4 ~ p{ /* Todos os próximos irmãos */
+    color: plum;
+}

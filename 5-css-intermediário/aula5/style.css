@@ -1,0 +1,9 @@
+div{
+    width: 200px;
+    height: 200px;
+    background-color: yellow;
+    /* overflow: hidden; */
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow: auto; /* decide se precisa do hidden ou não */
+}

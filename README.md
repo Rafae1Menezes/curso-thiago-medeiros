@@ -3,7 +3,7 @@
 
  ## Conteúdo das pastas
 
- ### html
+ ### HTML Básico
 - [x] Aula 1 - Introdução sobre tags e atributos;
 - [x] Aula 2 - Tags: doctype, html, head, title, body;
 - [x] Aula 3 - Identação;
@@ -12,7 +12,7 @@
 - [x] Aula 6 - Tag a, img, ul, li;
 - [x] Aula 7 - Navegação entre páginas.
 
-### CSS
+### CSS Básico
 - [x] Aula 1 - Inportando arquivo CSS style.css. Seletor por tag, class e id;
 - [x] Aula 2 - Cores heximadecial, função rgb() e hsl()
 - [x] Aula 3 - background 
@@ -34,7 +34,17 @@
 - [x] Aula 5 - Estilizando a lista de links
 - [x] Aula 6 - Abrindo livesever no celular e link do whatsapp
 
-### Html Intermediário
+### HTML Intermediário
 - [x] Aula 1
   - [x] Navegação entre págnas e tags semânticas
   - [x] Tags: Header, Section, Nav, Article, Iframe
+
+### CSS Intermediário
+- [x] Aula 1: Combinadores: filhos, primeiro irmão, todos os irmãos;
+- [x] Aula 2: Propriedades de texto
+- [x] Aula 3: Tipos de display
+- [x] Aula 4: display none e visibility hidden
+- [x] Aula 5: Overflow
+- [x] Aula 6: Pseudo classes: firt-child, last-child, nth-child
+- [x] Aula 7: Pseudo elementos: before, after, selection
+- [x] Aula 8: Position absolute e relative 

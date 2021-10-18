@@ -1,0 +1,19 @@
+.conteudo{
+    height: 500px;
+    border: 1px solid black;
+    padding: 20px;
+    position: relative; /* faz com que todos elementos absolute que estejam dentro dele sejam relacionados a ele */
+}
+
+.quadrado{
+    position:absolute;  /* ele se torna absoluto ao primeiro pai relative (por padrão div não é relative) */
+    bottom: 50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
