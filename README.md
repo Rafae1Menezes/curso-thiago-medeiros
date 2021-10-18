@@ -33,3 +33,8 @@
 - [x] Aula 4 - Introdução ao flexbox
 - [x] Aula 5 - Estilizando a lista de links
 - [x] Aula 6 - Abrindo livesever no celular e link do whatsapp
+
+### Html Intermediário
+- [x] Aula 1
+  - [x] Navegação entre págnas e tags semânticas
+  - [x] Tags: Header, Section, Nav, Article, Iframe
