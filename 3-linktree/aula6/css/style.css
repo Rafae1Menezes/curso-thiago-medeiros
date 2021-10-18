@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: rgb(74, 47, 179);
+  background: linear-gradient(
+    180deg,
+    rgba(74, 47, 179, 1) 0%,
+    rgba(57, 19, 130, 1) 100%
+  );
+  background-attachment: fixed;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  padding-bottom: 20px;
+}
+
+.avatar {
+  width: 110px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 20px #1c074d;
+}
+
+h1 {
+  font-family: 'Architects Daughter', cursive;
+  font-weight: 100;
+  font-size: 26px;
+  margin-bottom: 2px;
+}
+
+h2 {
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 3px;
+}
+
+.profile {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.social {
+  display: flex;
+  justify-content: center; /* Só funciona se o display for flex */
+  list-style: none;
+  margin: 20px 0;
+}
+
+.social img {
+  width: 33px;
+  margin: 0 10px;;
+}
+
+.links-list{
+  list-style: none;
+}
+
+.links-list li a{
+  background-color: #ffffff;
+  margin: 17px;
+  padding: 15px 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 15px #1c074d;
+  display: block;
+  font-weight: bolder;
+  font-size: 14px;
+  color: #7308d8;
+  
+}
+
+.links-list li span{
+  display: block;
+  color: gray;
+  margin-top: 10px;
+  font-weight:normal;
+}
+
+.links-list li a{
+  text-decoration: none;
+}
