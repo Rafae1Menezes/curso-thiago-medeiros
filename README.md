@@ -56,3 +56,6 @@
 - [x] Aula 3: Usabilidade e assecibilidade com tag label, input(radio,, checkbox)
 - [x] Aula 4: Tags: select, option, optgroup
 - [x] Aula 5: Tags: datalist, textarea, fieldset
+
+### Desafio - Página de Captura
+- [x] Desenvolver o layout em html de acordo com o design proposto.
