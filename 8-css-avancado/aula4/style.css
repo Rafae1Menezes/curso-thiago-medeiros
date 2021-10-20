@@ -1,0 +1,26 @@
+body{
+    font-size: 15px;
+}
+
+.box{
+    font-size: 30px;
+}
+
+h1{
+    font-size: 2em;
+}
+
+h2{
+    font-size: 2rem;
+}
+
+.box1{
+    width: 100vw;
+    height: 100vh;
+    background-color: brown;
+}
+.box2{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(42, 165, 149);
+}

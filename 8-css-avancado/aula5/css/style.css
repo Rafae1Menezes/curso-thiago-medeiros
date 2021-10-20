@@ -1,0 +1,18 @@
+body{
+    margin: 100px;
+}
+
+.box{
+    width: 200px;
+    height: 100px;
+    background-color: brown;
+    transition-duration: 900ms;
+    /* transition-property: background-color; */
+    transition-timing-function: cubic-bezier(1, 0.07, 0.31, 0.96);
+    transition-delay: 100ms;
+}
+
+.box:hover{
+    background-color: chartreuse;
+    width: 900px;
+}

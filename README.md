@@ -60,3 +60,10 @@
 ### Desafio - Página de Captura
 - [x] Desenvolver o layout em html de acordo com o design proposto.
 - [x] Relacioinar o formulário com o Mailchimp
+
+### CSS Avabçado
+- [x] Aula 1: Criação de variáveis
+- [x] Aula 2: Centralizando as importações css
+- [x] AUla 3: Filter
+- [x] Aula 4: Medidas absolutas e relativas
+- [x] Aula 5: Transition
