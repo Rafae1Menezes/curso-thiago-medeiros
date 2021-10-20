@@ -59,3 +59,4 @@
 
 ### Desafio - Página de Captura
 - [x] Desenvolver o layout em html de acordo com o design proposto.
+- [x] Relacioinar o formulário com o Mailchimp
