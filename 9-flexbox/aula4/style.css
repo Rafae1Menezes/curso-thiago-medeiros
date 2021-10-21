@@ -1,0 +1,39 @@
+.container{
+    height: 600px;
+
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */ /* Horizontal */
+    flex-wrap: wrap;
+
+     /* align-items: center; */ /* certical Se nao couber na linha, ele divide o espaço em 2, criando assim 2 centros */
+    /* align-content: center; */ /* vertical */
+}
+
+.caixa{
+    width: 50px;
+    height: 50px;
+}
+
+.red{
+    flex-grow: 2;
+    align-self: center;
+    background-color: red;
+    order: 3;
+}
+.blue{
+    flex-grow: 2;
+    background-color: blue;
+    order: 1;
+}
+.yellow{
+    flex-grow: 1;
+    background-color:yellow;
+    order: 2;
+}
+.green{
+    flex-grow: 1;
+    background-color: green;
+    order:4;
+}

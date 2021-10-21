@@ -69,3 +69,7 @@
 - [x] Aula 5: Transition
 - [x] Aula 6: Transform
 - [x] Aula 7: Animation
+
+### Flexbox
+- [x] Aula1: Direction e wrap
+- [x] Aula2: Justify-content

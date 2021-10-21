@@ -1,0 +1,25 @@
+.container{
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* vai passano as caixas para baixo */
+    /*flex-flow: row wrap;  short hand para direction e wrap */
+}
+
+.caixa{
+    width: 300px;
+    height: 50px;
+}
+
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.yellow{
+    background-color:yellow;
+}
+.green{
+    background-color: green;
+}

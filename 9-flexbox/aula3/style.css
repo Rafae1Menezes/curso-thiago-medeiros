@@ -1,0 +1,30 @@
+.container{
+    height: 600px;
+
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */ /* Horizontal */
+    flex-wrap: wrap;
+
+     /* align-items: center; */ /* certical Se nao couber na linha, ele divide o espaço em 2, criando assim 2 centros */
+    align-content: center; /* vertical */
+}
+
+.caixa{
+    width: 50px;
+    height: 50px;
+}
+
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.yellow{
+    background-color:yellow;
+}
+.green{
+    background-color: green;
+}
