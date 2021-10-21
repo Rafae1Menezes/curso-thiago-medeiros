@@ -1,0 +1,45 @@
+body{
+    margin: 100px;
+}
+
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(134, 167, 44);
+
+    animation: rafael;
+    animation-duration: 1000ms;
+    animation-iteration-count:infinite;
+    animation-delay: 1000ms;
+    animation-timing-function: ease-out;
+    animation-direction: reverse;
+
+}
+
+/* @keyframes rafael {
+    from { 
+        background-color: rgb(134, 167, 44);
+    }
+
+    to{ 
+        background-color: rgb(167, 103, 44);
+        transform: rotate(180deg);
+    }
+}
+ */
+
+ @keyframes rafael {
+    0% { 
+        background-color: rgb(134, 167, 44);
+    }
+
+    50%{
+        border: 20px solid red;
+    }
+
+    100%{ 
+        border: 0px solid red;
+        background-color: rgb(167, 103, 44);
+        transform: rotate(180deg);
+    }
+}
