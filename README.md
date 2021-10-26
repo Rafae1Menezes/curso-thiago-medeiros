@@ -75,3 +75,6 @@
 - [x] Aula 2: Justify-content
 - [x] Aula 3: Align-item, align-content
 - [x] AUla 4: Order, align-self, flex-grow
+
+### Projeto Barber Shop
+- Site de uma barber shop utilizando o conceito de One Page. Reunindo todo o conteúdo das aulas anteriores.
