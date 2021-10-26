@@ -1,0 +1,94 @@
+:root{
+    --color-primary: #917758;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{    
+    background-color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* =================================== HOME ======================================== */
+
+.home{
+    position: relative;
+    background-size: cover;
+    background-image: url('../images/bg-home.jpg');
+    height: 100vh;
+}
+
+.home .header{
+    padding: 30px 0;
+}
+
+.home .header .nav{
+    display: flex;
+    justify-content: center;
+}
+
+.home .header .nav ul{
+    display: flex;
+    list-style: none;
+}
+
+.home .header .nav ul li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+}
+
+.home .header .nav ul li a{
+    color: #FFF;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 20px;
+}
+
+.home .header .nav ul li a:hover{
+    border-bottom: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.home .header .nav ul li .logo{
+    margin: 0 30px;
+}
+
+/* =============================== HOME - BANNER ======================================== */
+.home .banner{
+    text-align: center;
+    color: #FFF;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 260px;
+    width: 760px;
+    margin-top: -95px;
+    margin-left: -380px;
+}
+
+.home .banner span{
+    display: block;
+}
+
+.home .banner .slogan1{
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 14px;
+}
+
+.home .banner h1{
+    font-size: 120px;
+}
+
+.home .banner .slogan2{
+    margin-bottom: 15px;
+}
