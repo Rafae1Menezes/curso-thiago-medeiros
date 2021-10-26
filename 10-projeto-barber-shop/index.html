@@ -16,34 +16,32 @@
       <link rel="stylesheet" href="css/style.css" />
    </head>
    <body>
-      <section class="home">
+      <section id="home" class="home">
          <header class="header">
             <nav class="nav">
                <ul>
                   <li>
-                     <a href="#">Home</a>
+                     <a href="#home">Home</a>
                   </li>
                   <li>
-                     <a href="#">Sobre</a>
+                     <a href="#about">Sobre</a>
                   </li>
                   <li>
-                     <a href="#">Serviços</a>
+                     <a href="#services">Serviços</a>
                   </li>
                   <li>
-                     <img
-                        src="images/logo.png"
-                        alt="Barber Shop"
-                        class="logo"
-                     />
+                     <a href="#home" class="logo">
+                        <img src="images/logo.png" alt="Barber Shop" />
+                     </a>
                   </li>
                   <li>
-                     <a href="#">Galeria</a>
+                     <a href="#gallery">Galeria</a>
                   </li>
                   <li>
-                     <a href="#">Agendamento</a>
+                     <a href="#appointment">Agendamento</a>
                   </li>
                   <li>
-                     <a href="#">Localização</a>
+                     <a href="#location">Localização</a>
                   </li>
                </ul>
             </nav>
@@ -59,7 +57,7 @@
          </div>
       </section>
 
-      <section class="about">
+      <section id="about" class="about">
          <div class="container">
             <div class="timing">
                <div class="overlay">
@@ -126,7 +124,7 @@
          </div>
       </section>
 
-      <section class="services">
+      <section id="services" class="services">
          <div class="container">
             <h2>Nossos Serviços</h2>
             <img src="images/heading-ic.png" alt="Nossos Serviços" />
@@ -134,60 +132,78 @@
                <div class="box">
                   <img src="images/classic-cut.png" alt="Classic cut" />
                   <h4>Lores Ipsum</h4>
-                  <img src="images/head-line-ic.png" alt="">
+                  <img src="images/head-line-ic.png" alt="" />
                   <p>
                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
                      Fugiat, harum magni odio odit consequuntur provident
-                     repellendus pariatur alias, veritatis quidem suscipit qui est,
-                     assumenda necessitatibus doloribus iusto optio ea corrupti.
+                     repellendus pariatur alias, veritatis quidem suscipit qui
+                     est, assumenda necessitatibus doloribus iusto optio ea
+                     corrupti.
                   </p>
                </div>
 
                <div class="box">
                   <img src="images/clipper-cut.png" alt="Cliper cut" />
                   <h4>Lores Ipsum</h4>
-                  <img src="images/head-line-ic.png" alt="">
+                  <img src="images/head-line-ic.png" alt="" />
                   <p>
                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
                      Fugiat, harum magni odio odit consequuntur provident
-                     repellendus pariatur alias, veritatis quidem suscipit qui est,
-                     assumenda necessitatibus doloribus iusto optio ea corrupti.
+                     repellendus pariatur alias, veritatis quidem suscipit qui
+                     est, assumenda necessitatibus doloribus iusto optio ea
+                     corrupti.
                   </p>
                </div>
 
                <div class="box">
                   <img src="images/razoe-shaver.png" alt="Razoe shaver" />
                   <h4>Losres Ipsum</h4>
-                  <img src="images/head-line-ic.png" alt="">
+                  <img src="images/head-line-ic.png" alt="" />
                   <p>
                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
                      Fugiat, harum magni odio odit consequuntur provident
-                     repellendus pariatur alias, veritatis quidem suscipit qui est,
-                     assumenda necessitatibus doloribus iusto optio ea corrupti.
+                     repellendus pariatur alias, veritatis quidem suscipit qui
+                     est, assumenda necessitatibus doloribus iusto optio ea
+                     corrupti.
                   </p>
                </div>
             </div>
          </div>
       </section>
 
-      <section class="appointment">
+      <section id="appointment" class="appointment">
          <div class="container">
             <h2>Faço um Agendamento</h2>
-            <img src="images/heading-ic-white.png" alt="Faça um Agendamento">
+            <img src="images/heading-ic-white.png" alt="Faça um Agendamento" />
 
             <form action="">
                <div class="personal-data">
                   <div class="input-wrapper">
                      <label for="nome">Nome</label>
-                     <input type="text" name="nome" id="nome" value="Digite o seu nome">
+                     <input
+                        type="text"
+                        name="nome"
+                        id="nome"
+                        value="Digite o seu nome"
+                     />
                   </div>
                   <div class="input-wrapper">
                      <label for="email">E-mail</label>
-                     <input type="text" name="email" id="email" value="Digite o seu e-ail">
+                     <input
+                        type="text"
+                        name="email"
+                        id="email"
+                        value="Digite o seu e-ail"
+                     />
                   </div>
                   <div class="input-wrapper">
                      <label for="telefone">Telefone</label>
-                     <input type="text" name="telefone" id="telefone" value="Digite o seu telefone">
+                     <input
+                        type="text"
+                        name="telefone"
+                        id="telefone"
+                        value="Digite o seu telefone"
+                     />
                   </div>
                   <div class="input-wrapper">
                      <label for="servicos">Tipo de serviço</label>
@@ -208,36 +224,85 @@
          </div>
       </section>
 
-      <section class="gallery">
+      <section id="gallery" class="gallery">
          <div class="container">
             <h2>Galeria de Fotos</h2>
-            <img src="images/heading-ic.png" alt="Galeria de Fotos">
+            <img src="images/heading-ic.png" alt="Galeria de Fotos" />
 
             <div class="gallery-wrapper">
                <div>
-                  <img src="images/gallery-img1.png" alt="Galeria">
+                  <img src="images/gallery-img1.png" alt="Galeria" />
                </div>
                <div>
-                  <img src="images/gallery-img2.png" alt="Galeria">
+                  <img src="images/gallery-img2.png" alt="Galeria" />
                </div>
                <div>
-                  <img src="images/gallery-img3.png" alt="Galeria">
+                  <img src="images/gallery-img3.png" alt="Galeria" />
                </div>
                <div>
-                  <img src="images/gallery-img4.png" alt="Galeria">
+                  <img src="images/gallery-img4.png" alt="Galeria" />
                </div>
                <div>
-                  <img src="images/gallery-img5.png" alt="Galeria">
+                  <img src="images/gallery-img5.png" alt="Galeria" />
                </div>
                <div>
-                  <img src="images/gallery-img6.png" alt="Galeria">
+                  <img src="images/gallery-img6.png" alt="Galeria" />
                </div>
                <div>
-                  <img src="images/gallery-img7.png" alt="Galeria">
+                  <img src="images/gallery-img7.png" alt="Galeria" />
                </div>
             </div>
          </div>
       </section>
 
+      <section id="location" class="location">
+         <div class="container">
+            <div class="head">
+               <div class="info">
+                  <div class="icon">
+                     <img src="images/map-img1.png" alt="" />
+                  </div>
+                  <div class="text">
+                     <span>Localização</span>
+                     <span>Rua da Matrix, 33</span>
+                  </div>
+               </div>
+               <div class="info">
+                  <div class="icon">
+                     <img src="images/map-img2.png" alt="" />
+                  </div>
+                  <div class="text">
+                     <span>Telefone</span>
+                     <span>(11) 99999-9999)</span>
+                  </div>
+               </div>
+               <div class="info">
+                  <div class="icon">
+                     <img src="images/map-img3.png" alt="" />
+                  </div>
+                  <div class="text">
+                     <span>E-mail</span>
+                     <span>contato@barbershop.com</span>
+                  </div>
+               </div>
+               <div class="info">
+                  <div class="icon">
+                     <img src="images/map-img4.png" alt="" />
+                  </div>
+                  <div class="text">
+                     <span>Horário</span>
+                     <span>Seg. à Sex.: 9AM às 17PM</span>
+                  </div>
+               </div>
+            </div>
+            <div class="map">
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2162.242869139756!2d-42.03400831327366!3d-20.258814509121787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbae36680486cff%3A0x39071c8458d7b528!2sSupermercado%20Coelho%20Diniz%20-%20Centro%20Manhua%C3%A7u!5e0!3m2!1spt-BR!2sbr!4v1635274440526!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+         </div>
+      </section>
+
+      <footer class="footer">
+         &#169; 2021 Barber Shop - todos os direitos reservados
+      </footer>
    </body>
 </html>
