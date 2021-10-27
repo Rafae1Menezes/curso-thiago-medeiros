@@ -77,4 +77,9 @@
 - [x] AUla 4: Order, align-self, flex-grow
 
 ### Projeto Barber Shop
-- Site de uma barber shop utilizando o conceito de One Page. Reunindo todo o conteúdo das aulas anteriores.
+- [x] Site de uma barber shop utilizando o conceito de One Page. Reunindo todo o conteúdo das aulas anteriores.
+
+### Design Responivo
+- [x] Aula 1: viewport
+- [x] Aula 2: Media Queries
+- [x] Aula 3: Mudando a visibilidade do menu e mudando o flex-direction
