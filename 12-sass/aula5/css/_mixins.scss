@@ -1,0 +1,6 @@
+@mixin resetar-lista($color) {
+    
+    list-style: none;
+    color: $color;
+    background-color: purple;
+}

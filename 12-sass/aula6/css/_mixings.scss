@@ -1,0 +1,21 @@
+@mixin resetar-lista($color) {
+    
+    list-style: none;
+    color: $color;
+    background-color: purple;
+}
+
+@mixin bg-effect($effect) {
+    @if $effect == success{
+        background-color: chartreuse;
+    }
+    @else if $effect == danger{
+        background-color: rgb(255, 72, 0);
+    }
+    @else if $effect == warning{
+        background-color: rgb(255, 238, 0);
+    }
+    @else{
+        background-color: rgb(100, 100, 100);
+    }
+}

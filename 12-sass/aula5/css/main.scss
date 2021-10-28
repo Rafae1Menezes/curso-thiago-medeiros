@@ -1,0 +1,59 @@
+
+@import 'variables';
+@import 'base';
+@import 'mixins';
+
+
+.container{
+    display: flex;
+    justify-content: space-around;
+
+    .box{
+        background: white;
+        color: black;
+        border-radius: 8px;
+        width: 30%;
+        padding: 20px;
+
+        &.active{
+            background: $color-primary;
+        }
+
+        h2{
+            font{
+                size: 22px;
+            }
+
+            margin{
+                top:10px;
+                left: 20px;
+                right: 30px;
+                bottom: 40px;
+            }
+        }
+
+        p{            
+            font-size: 18px;
+
+            &.hidden{
+                display: none;
+            }
+        }
+
+        ul{
+            @include resetar-lista(orange);
+        }
+
+        a{
+            color: green;
+
+            &:hover{
+                color: yellow;
+
+                & + p.hidden{
+                    display: block;
+                }
+            }
+        }
+    }
+}
