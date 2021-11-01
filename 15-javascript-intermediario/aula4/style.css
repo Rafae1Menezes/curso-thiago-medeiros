@@ -1,0 +1,29 @@
+body{
+    font-family: sans-serif;
+}
+
+.menuMobile{
+    position: absolute;
+    top: 0;
+    left: -150px;
+    width: 150px;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    transition: all .6s cubic-bezier(0.15, 0.87, 0.71, 0.96);
+}
+
+.menuMobile.aberto{
+    left: 0;
+}
+
+.botaoMenu{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.botaoMenu:hover{
+    font-weight: bold;
+    cursor: pointer;
+}

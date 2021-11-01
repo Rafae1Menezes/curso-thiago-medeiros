@@ -109,3 +109,14 @@
 - [x] Aula 14: While
 - [x] Aula 15: Function
 - [x] Aula 16: Return
+
+### Exercícios de Javascript Básico
+- [x] Exercício 1: 
+- [x] Exercício 2: 
+- [x] Exercício 3: 
+- [x] Exercício 4: 
+- [x] Exercício 5: 
+- [x] Exercício 6: 
+
+### Javascript Intermediário
+- [x] Aula 1:
