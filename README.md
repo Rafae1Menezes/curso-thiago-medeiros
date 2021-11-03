@@ -120,3 +120,25 @@
 
 ### Javascript Intermediário
 - [x] Aula 1:
+
+### Exercícios de Javascript Intermediário
+- [x] Exercício 1: 
+- [x] Exercício 2: 
+- [x] Exercício 3: 
+
+### Projeto To Do List
+- [x]
+
+
+### Javascript Avançado
+- [x] Aula 1: Scope, variáveis locais e globais
+- [x] Aula 2: Hoisting
+- [x] Aula 3: Arrow functions
+- [x] Aula 4: Map
+- [x] Aula 5: Filter
+- [x] Aula 6: Reduce
+- [x] Aula 7: JSON
+- [x] Aula 8: 
+- [x] Aula 9: 
+- [x] Aula 10:
+
