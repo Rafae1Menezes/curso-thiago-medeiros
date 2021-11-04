@@ -12,7 +12,7 @@ ROTAS (Em inglês END POINTs)
 const xhttp = new XMLHttpRequest()
 
 
-//quando o servidor terminar de fazer as duas requisições seguintes que pedi
+//quando o servidor terminar de fazer o send GET
 xhttp.onreadystatechange = function () {
     //O código 4 é para quando estiver finalizada a execução
     //200 é o status da operação

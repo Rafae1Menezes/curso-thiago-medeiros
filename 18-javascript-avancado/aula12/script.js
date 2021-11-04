@@ -1,9 +1,6 @@
 /* 
 
 PROMISE
-ela executa uma função e me promete me chamar de volta quando 
-terminar a função dela
-é utilizado principalmente para códigos assíncronos 
 
 */
 
@@ -15,8 +12,8 @@ function exibirNaTela(fotos){
     document.querySelector('#container').innerHTML = html
 }
 
-function exibirErro(){
-    document.querySelector('#container').innerHTML = 'Ops, deu erro.'
+function exibirErro(fotos){
+    document.querySelector('#container').innerHTML = 'Ops, aconteceu um erro'
 }
 
 
@@ -27,9 +24,10 @@ botaoCarregar.onclick = () =>
         .catch(exibirErro)
 
 
-
 function carregarFotos(){
-    return new Promise((resolve, reject)=>{
+
+    //================PROMISE================//
+    return new Promise ((resolve, reject)=>{
         const xhttp = new XMLHttpRequest()
 
         //quando o servidor terminar de fazer as duas requisições seguintes que pedi
@@ -40,10 +38,9 @@ function carregarFotos(){
                 const response = JSON.parse(this.responseText) 
                 
                 resolve(response)
-            } 
-            else if(this.status == 404){
+            }else if(this.status == 404){
                 reject()
-            } 
+            }   
         }
 
         //conectar com o servidor (true para assincrono, false para sincrono)

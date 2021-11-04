@@ -143,4 +143,7 @@
 - [x] Aula 10: Ajax
 - [x] Aula 11: Callbacks
 - [x] Aula 12: Promise
+- [x] Aula 12: Fetch API
+- [x] Aula 12: Async / Await
+- [x] Aula 12: Desestructuring Assignment
 
