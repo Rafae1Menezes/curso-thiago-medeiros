@@ -138,7 +138,9 @@
 - [x] Aula 5: Filter
 - [x] Aula 6: Reduce
 - [x] Aula 7: JSON
-- [x] Aula 8: 
-- [x] Aula 9: 
-- [x] Aula 10:
+- [x] Aula 8: Local Storege
+- [x] Aula 9: Sincrono vs Assíncrono
+- [x] Aula 10: Ajax
+- [x] Aula 11: Callbacks
+- [x] Aula 12: Promise
 
