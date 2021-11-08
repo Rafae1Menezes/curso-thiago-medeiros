@@ -163,10 +163,15 @@
 - [x] Exercício 5: Uma função que retorna um promise que demora 10s para responder no console
 - [x] Exercício 6: Uma promise de um formulário que demora 10 segundos para ser enviado, mostrando um gif de loading.
 
-### 19 - Node.JS
+### 19 - Node.JS Básico
 - [x] Aula 1: Exercutando um arquivo javascript no termnal Bash;
 - [x] Aula 2: Inicializando npm, instalando e desinstalando módulos;
 - [x] Aula 3: Criando e importando módulos;
 - [x] Aula 4: Trabalhando com módulo nativo, fs (file system);
 - [x] Aula 5: Criando um servidor com o módulo http, respondendo com uma página html.
+
+### 19 - Node.JS Intermediário
+- [x] Iniciando o servidor pelo express
+- [x] Criando rotas com express
+- [x] Configurando o servidor para servir arquivos estáticos e públicos
 
