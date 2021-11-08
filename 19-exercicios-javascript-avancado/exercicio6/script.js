@@ -11,7 +11,6 @@ function envia(){
     content.innerHTML = msgInput.value
 }
 
-
 function missao(){
     return new Promise((resove, reject)=>{
         carrega()
@@ -19,7 +18,4 @@ function missao(){
     })
 }
 
-button.onclick = () => {
-    const promessa = missao()
-    promessa.then(envia)
-}
+button.onclick = () => { missao().then(envia) }

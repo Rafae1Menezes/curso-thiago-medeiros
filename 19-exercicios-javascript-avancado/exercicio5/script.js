@@ -1,14 +1,7 @@
 function missao(){
     return new Promise((resove, reject)=>{
-        setTimeout(resove,10000)
+        setTimeout(()=>resove('ok, missão concluída'),10000)
     })
 }
 
-const promessa = missao()
-
-function imprime(){
-    console.log('oi')
-}
-
-
-promessa.then(imprime)
+missao().then(msg => console.log(msg))
