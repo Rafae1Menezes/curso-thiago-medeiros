@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs')   %> 
+</head>
+<body>
+    <%- include('partials/header.ejs') %> 
+
+    <section class="container">
+        <%- include('partials/navbar.ejs') %>
+
+        <article class="content">
+            <h1>Produtos</h1>
+
+                <% if (cadastrado) { %>
+                 Cadasrado com Sucesso!
+                <% } %>
+
+                <form action="/salvar-produto" method="post">
+                    Url Imagem: <br>
+                    <input type="text" placeholder="images/produto1.jpg" name="url"> <br>
+                    Estrelas: <br>
+                    <input type="number" name="stars" placeholder="5"> <br> <br>
+                    <button type="submit">Cadastrar</button>
+                </form>
+
+            </div>
+
+
+            
+            
+
+        </article>
+    </section>
+
+    <%- include('partials/footer.ejs') %>
+    <%- include('partials/foot.ejs') %> 
+
+    
+</body>
+</html>
