@@ -35,7 +35,6 @@
 - [x] Aula 6 - Abrindo livesever no celular e link do whatsapp.
 
 ### 4 - HTML Intermediário
-- [x] Aula 1
   - [x] Navegação entre págnas e tags semânticas;
   - [x] Tags: Header, Section, Nav, Article, Iframe.
 
@@ -163,15 +162,26 @@
 - [x] Exercício 5: Uma função que retorna um promise que demora 10s para responder no console
 - [x] Exercício 6: Uma promise de um formulário que demora 10 segundos para ser enviado, mostrando um gif de loading.
 
-### 19 - Node.JS Básico
+### 20 - Node.JS Básico
 - [x] Aula 1: Exercutando um arquivo javascript no termnal Bash;
 - [x] Aula 2: Inicializando npm, instalando e desinstalando módulos;
 - [x] Aula 3: Criando e importando módulos;
 - [x] Aula 4: Trabalhando com módulo nativo, fs (file system);
 - [x] Aula 5: Criando um servidor com o módulo http, respondendo com uma página html.
 
-### 19 - Node.JS Intermediário
+### 21 - Node.JS - Express.js
 - [x] Iniciando o servidor pelo express
 - [x] Criando rotas com express
 - [x] Configurando o servidor para servir arquivos estáticos e públicos
+- [x] Definindo o template engine EJS
+- [x] Criação de Partials
+- [x] Loops e condicionais em EJS
+- [x] Requisição POST por fomulários
 
+### 22 - Node.JS - MongoDB - MVC
+- [x] Criação de banco, collection e dados pelo MongoDB Compass
+- [x] Instalando as bibliotecas express e mongoose
+- [x] Oraganização da estrutura inicial do projeto
+- [x] Conectando com o MongoDB
+- [x] Difinindo a estrutura das Rotas
+- [x] Schema da colletion
