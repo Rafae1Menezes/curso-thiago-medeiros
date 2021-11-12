@@ -39,11 +39,18 @@ async function add(req, res) {
 }
 
 async function list(req, res){
+    const { d } = req.query;
+    let message = ''
+
+    if(d==1) message = "Usuário excluido com sucesso!"
+    else menssage = "Erro ao deletar"
+
     const users = await CustomersModel.find()
 
     res.render('list', {
         title: 'Listagem de usuário',
-        users
+        users,
+        message
     })
 }
 
@@ -84,10 +91,23 @@ async function edit (req, res) {
     res.redirect('/edit?e=1&id='+id)
 }
 
+async function remove (req, res) {
+    const { id } = req.params
+
+    const remove = await CustomersModel.deleteOne({ _id: id})  
+
+    if(remove.deletedCount) {
+        res.redirect('/list?d=1')
+    }else{
+        res.redirect('/list?d=0')
+    }
+}
+
 module.exports = {
     index,
     add,
     list,
     formEdit,
-    edit   
+    edit,
+    remove   
 }
