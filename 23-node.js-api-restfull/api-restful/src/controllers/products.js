@@ -17,8 +17,6 @@ async function post(req, res){
         price,
     } = req.body
 
-    console.log(req.body)
-
     const product = new ProductsModel({
         name,
         brand,
@@ -52,7 +50,7 @@ async function del(req, res){
 
     const product = await ProductsModel.findOneAndDelete({ _id: id})
 
-    const message = product ? "sucesse" : "error"
+    const message = product ? "success" : "error"
 
     res.send({
         message
