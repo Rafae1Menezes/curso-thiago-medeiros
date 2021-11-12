@@ -185,3 +185,8 @@
 - [x] Conectando com o MongoDB
 - [x] Difinindo a estrutura das Rotas
 - [x] Schema da colletion
+- [x] Criação de controllers
+- [x] Criptografando a senha bcrypt
+- [x] Listar, editar e excluir.
+
+### 23 - Node.JS - API RESTFul
