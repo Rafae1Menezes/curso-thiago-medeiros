@@ -197,3 +197,15 @@
 - [x] Criação dos GET, POST, PUT e DELETE
 - [x] Autorizando o CORS
 - [x] Criação do frontend separado do backend
+
+### 24 - React.JS - Básico
+- [x] hello-world-react
+  - [x] Instando react e inicializando uma aplicação
+  - [x] Criando componentes com propriedades
+  - [x] Adicionando css aos componetes
+  - [x] Propriedade children
+  - [x] Reutilização de componetes
+- [x] react-counter
+  - [x] useState
+  - [x] useEffect
+  

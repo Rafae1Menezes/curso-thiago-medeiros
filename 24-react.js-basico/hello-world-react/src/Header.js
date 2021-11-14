@@ -1,10 +1,11 @@
 import React from 'react'
+import './Header.css'
 
 //INTERPOLAÇÃO
 
 function Header({ titulo, subtitulo }) {
     return (
-        <header>
+        <header className="header">
             <h1>{titulo}</h1>
             <h2>{subtitulo}</h2>           
         </header>

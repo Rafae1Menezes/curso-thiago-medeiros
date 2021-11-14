@@ -1,5 +1,13 @@
 import React from 'react'
+
 import Header from './Header'
+import Content from './Content'
+import Card from './Card'
+import Cards from './Cards'
+
+import reactImg from './images/react.jpg'
+import nodeImg from './images/node.jpg'
+import threeImg from './images/three.jpg'
 
 /* 
 COMPONETES - Criando e Usando
@@ -18,7 +26,26 @@ COMPONETES - Criando e Usando
 function App() {
    return (
       <>
-         <Header titulo="HELLO WORLD" subtitulo="outro texto" />
+         <Header titulo="HELLO WORLD" subtitulo="Subtítulo" />
+         <Content titulo="Bem-vindo">
+            <Cards>
+               <Card 
+                  imagem={reactImg}
+                  titulo="React.JS"
+                  texto="Ao contrário da crença popular, o Lorem Ipsum não. Ao contrário da crença popular, o Lorem Ipsum não"
+               />
+               <Card 
+                  imagem={nodeImg}
+                  titulo="Node.JS"
+                  texto="Ao contrário da crença popular, o Lorem Ipsum não. Ao contrário da crença popular, o Lorem Ipsum não"
+               />
+               <Card 
+                  imagem={threeImg}
+                  titulo="Three.JS"
+                  texto="Ao contrário da crença popular, o Lorem Ipsum não. Ao contrário da crença popular, o Lorem Ipsum não"
+               />
+            </Cards>            
+         </Content>
       </>
    )
 }
