@@ -17,11 +17,14 @@ const Counter = () => {
     }
 
     return (
-        <div className="counter">
-            <span>{contador}</span>
-            <button onClick={() => handleOnClick('-')}>-</button>
-            <button onClick={() => handleOnClick('+')}>+</button>
-        </div>
+        <>            
+            <div className="counter">
+                <span>{contador}</span>
+                <button onClick={() => handleOnClick('-')}>-</button>
+                <button onClick={() => handleOnClick('+')}>+</button>
+            </div>
+        </>
+        
     )
 }
 

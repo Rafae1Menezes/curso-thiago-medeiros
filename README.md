@@ -208,4 +208,8 @@
 - [x] react-counter
   - [x] useState
   - [x] useEffect
+  - [x] Navegação de simples
+  - [x] Consumindo dados de uma API
+  - [x] Abstração de componentes
+  - [x] Organização de pastas
   
