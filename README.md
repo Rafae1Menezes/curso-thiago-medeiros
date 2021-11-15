@@ -212,4 +212,8 @@
   - [x] Consumindo dados de uma API
   - [x] Abstração de componentes
   - [x] Organização de pastas
+
+  ### 25 - React.JS - Intermediário
+- [x] react-router: Criação de routeas com a biblioteca Router
+- [x] react-material: Instação e experimentação de componetes
   
