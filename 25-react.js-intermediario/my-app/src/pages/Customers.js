@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/styles'
 
 import CustomerCard from '../components/CustomerCard'
 
+
 const useStyles = makeStyles(theme => ({
    root: {
       flexGrouw: 1,
@@ -20,6 +21,7 @@ const Customers = () => {
    const classes = useStyles()
 
    const [cutomers, setCustomers] = useState([])
+  
 
    useEffect(() => {
       axios.get('https://reqres.in/api/users').then(response => {
@@ -30,8 +32,6 @@ const Customers = () => {
 
    return (
       <>
-         
-
          <Grid container>
             {cutomers.map(item => (
                <Grid item xs={12} md={4} key={item.id}>
@@ -45,7 +45,7 @@ const Customers = () => {
                   />
                </Grid>
             ))}
-         </Grid>
+         </Grid>         
       </>
    )
 }
