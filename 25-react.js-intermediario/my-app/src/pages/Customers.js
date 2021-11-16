@@ -3,7 +3,7 @@ import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 
 import { makeStyles } from '@material-ui/styles'
-import Typography from '@material-ui/core/Typography';
+
 
 import CustomerCard from '../components/CustomerCard'
 
@@ -30,9 +30,7 @@ const Customers = () => {
 
    return (
       <>
-         <Typography variant="h4" component="div">
-            Clientes
-         </Typography>
+         
 
          <Grid container>
             {cutomers.map(item => (
