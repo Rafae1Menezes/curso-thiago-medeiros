@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/styles'
 
 
-import CustomerCard from '../components/CustomerCard'
+import CustomerCard from '../../components/CustomerCard'
 
 
 const useStyles = makeStyles(theme => ({
@@ -17,31 +17,43 @@ const useStyles = makeStyles(theme => ({
    },
 }))
 
-const Customers = () => {
+const List = () => {
    const classes = useStyles()
 
-   const [cutomers, setCustomers] = useState([])
+   const [customers, setCustomers] = useState([])
   
 
    useEffect(() => {
-      axios.get('https://reqres.in/api/users').then(response => {
-         const { data } = response.data
-         setCustomers(data)
-      })
+      axios.get('https://reqres.in/api/users')
+         .then(response => {
+            const { data } = response.data
+            setCustomers(data)
+         })
    }, [])
+
+
+   const handleRemoveCustomer = (id) => {
+		axios.delete(`https://reqres.in/api/users/${id}`)
+         .then( response => {
+            const newCustomersState = customers.filter(customer => customer.id !== id)
+            setCustomers(newCustomersState)
+         })
+
+	}
 
    return (
       <>
          <Grid container>
-            {cutomers.map(item => (
+            {customers.map(item => (
                <Grid item xs={12} md={4} key={item.id}>
                   <CustomerCard
-                     key={item.id}
+                     id={item.id}
                      name={item.first_name}
                      lastName={item.last_name}
                      email={item.email}
                      avatar={item.avatar}
                      className={classes.card}
+                     onRemoveCustomer={handleRemoveCustomer}
                   />
                </Grid>
             ))}
@@ -50,4 +62,4 @@ const Customers = () => {
    )
 }
 
-export default Customers
+export default List
