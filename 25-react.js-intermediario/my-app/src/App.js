@@ -9,15 +9,16 @@ import Customers from './pages/Customers'
 const App = () => {
    return (
       <>	
-         <TemplateDefault>
-            <Router>
+       <Router>
+         <TemplateDefault>            
                
                <Routes>
                   <Route path="/" element={<TemplatePage title="Página Inicial" Component={Home} />} />
                   <Route path="/customers" element={<TemplatePage title="Clientes" Component={Customers} />} />
                </Routes>
-            </Router>
-         </TemplateDefault>         
+            
+         </TemplateDefault> 
+         </Router>       
       </>
    )
 }

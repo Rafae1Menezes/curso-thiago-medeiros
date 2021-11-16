@@ -2,7 +2,6 @@ import React from 'react'
 
 import {
   Card,
-  CardContent,
   CardHeader,
   CardActions,
   Avatar,
@@ -18,7 +17,7 @@ import classNames from 'classnames'
 
 const useStyles = makeStyles( theme => ({
   root: {
-    maxWidth: 345
+    maxWidth: 345,
   }
 }))
 
@@ -27,10 +26,9 @@ const CustomerCard = ({ name, lastName, email, avatar, className}) => {
 
   return (
     <Card  className={classNames(className, classes.root)} >
-      <CardContent>
         <CardHeader 
           avatar={
-            <Avatar aria-label="recipe" src={avatar} />
+            <Avatar aria-label="recipe" src={avatar} sx={{ width: 56, height: 56 }} />
           }        
           title={`${name} ${lastName}`}
           subheader={email}
@@ -45,7 +43,6 @@ const CustomerCard = ({ name, lastName, email, avatar, className}) => {
           </IconButton>
           
         </CardActions>
-      </CardContent>
     </Card>
   );
 }
