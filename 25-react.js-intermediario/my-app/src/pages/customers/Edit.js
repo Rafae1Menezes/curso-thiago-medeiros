@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/styles'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 import { TextField,	Button } from '@material-ui/core'
@@ -12,8 +13,9 @@ const useStyles = makeStyles(theme => ({
 	}
 }))
 
-const Register = () => {
+const Edit = () => {
 	const classes = useStyles()
+	const { id } = useParams()
 
 	const [form, setForm] = useState({
 		name: {
@@ -23,11 +25,32 @@ const Register = () => {
 		job: {
 			value: '',
 			error: false,
-		},
+		},					
 	})
 
 	const [openToasty, setOpenToasty] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+
+	useEffect(() => {
+		axios.get(`https://reqres.in/api/users/${id}`)
+		   .then(response => {
+			  	const { data } = response.data
+				setForm({
+					name: {
+						value: data.first_name,
+						error: false,
+					},
+					job: {
+						value: data.job,
+						error: false,
+					},					
+				})
+			})
+	 },[id])
+
+	
+
+	
 
 	const handleInputChange = e => {
 		const {name, value} = e.target
@@ -69,22 +92,12 @@ const Register = () => {
 			return setForm(newFormState)
 		}
 		
-		axios.post('https://reqres.in/api/users', {
+		axios.put(`https://reqres.in/api/users/${id}`, {
 			name: form.name.value,
 			job: form.job.value
 		}).then((response)=>{
 			setIsLoading(false)
-			setOpenToasty(true)
-			setForm({
-				name: {
-					value: '',
-					error: false,
-				},
-				job: {
-					value: '',
-					error: false,
-				},
-			})
+			setOpenToasty(true)			
 		})
          
 	}
@@ -119,13 +132,13 @@ const Register = () => {
 					onClick={handleRegisterButton}
 					disabled={isLoading}
 				>
-						{ isLoading ? "Aguarde..." : "Cadastrar"}
+						{ isLoading ? "Aguarde..." : "Salvar Alterações"}
 				</Button>
 			</div>
 			<Toasty 
 				open={openToasty} 
 				severity="success" 
-				text="Cadastro rezalizado com sucesso."
+				text="Registro atualizado com sucesso."
 				onClose={()=> setOpenToasty(false)}
 			/>
 			
@@ -133,4 +146,4 @@ const Register = () => {
    )
 }
 
-export default Register
+export default Edit
