@@ -32,11 +32,13 @@ const List = () => {
    }, [])
 
 
-   const handleRemoveCustomer = (id) => {
+   const handleRemoveCustomer = (id, setIsLoading) => {
+      setIsLoading(true)
 		axios.delete(`https://reqres.in/api/users/${id}`)
          .then( response => {
             const newCustomersState = customers.filter(customer => customer.id !== id)
             setCustomers(newCustomersState)
+            setIsLoading(false)
          })
 
 	}

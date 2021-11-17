@@ -6,6 +6,7 @@ import {
    CardActions,
    Avatar,
    IconButton,
+   CircularProgress,
 } from '@material-ui/core'
 
 import EditIcon from '@material-ui/icons/Edit'
@@ -22,56 +23,83 @@ const useStyles = makeStyles(theme => ({
    },
 }))
 
-const CustomerCard = ({ id, name, lastName, email, avatar, className, onRemoveCustomer }) => {
+const CustomerCard = ({
+   id,
+   name,
+   lastName,
+   email,
+   avatar,
+   className,
+   onRemoveCustomer,
+}) => {
    const classes = useStyles()
 
-	const [openModal, setOpenModal] = useState(false)
+   const [openModal, setOpenModal] = useState(false)
+   const [isLoading, setIsLoading] = useState(false)
 
    const handleToggleOpenModal = () => {
       setOpenModal(!openModal)
    }
 
-   const handleConfirmModal = (id) => {
-      onRemoveCustomer(id)
-		handleToggleOpenModal()
+   const handleConfirmModal = id => {
+	
+      onRemoveCustomer(id, setIsLoading)
+
+      handleToggleOpenModal()
    }
 
-	const handleRemoveCustomer = () => {
-		handleToggleOpenModal()
-	}
+   const handleRemoveCustomer = () => {
+      handleToggleOpenModal()
+   }
 
    return (
-		<>
-			<Card className={classNames(className, classes.root)}>
-				<CardHeader
-					avatar={
-						<Avatar
-							aria-label="recipe"
-							src={avatar}
-							sx={{ width: 56, height: 56 }}
-						/>
-					}
-					title={`${name} ${lastName}`}
-					subheader={email}
-				/>
-				<CardActions disableSpacing>
-					<IconButton aria-label="editar cadastro">
-						<EditIcon />
-					</IconButton>
-					<IconButton aria-label="remover cadastro" onClick={handleRemoveCustomer}>
-						<DeleteIcon />
-					</IconButton>
-				</CardActions>
-			</Card>
+      <>
+         <Card className={classNames(className, classes.root)}>
+            <CardHeader
+               avatar={
+                  <Avatar
+                     aria-label="recipe"
+                     src={avatar}
+                     sx={{ width: 56, height: 56 }}
+                  />
+               }
+               title={`${name} ${lastName}`}
+               subheader={email}
+            />
+            <CardActions disableSpacing>
+               <IconButton aria-label="editar cadastro">
+                  <EditIcon />
+               </IconButton>
+               <IconButton
+                  aria-label="remover cadastro"
+                  onClick={handleRemoveCustomer}
+               >
+                  <DeleteIcon />
+                  {isLoading && (
+                     <CircularProgress
+                        size={30}
+                        sx={{
+                           color: 'green',
+                           position: 'absolute',
+                           top: '50%',
+                           left: '50%',
+                           marginTop: '-15px',
+                           marginLeft: '-15px',
+                        }}
+                     />
+                  )}
+               </IconButton>
+            </CardActions>
+         </Card>
 
-			<ModalConfirm
+         <ModalConfirm
             open={openModal}
             onClose={handleToggleOpenModal}
-            onConfirm={()=>handleConfirmModal(id)}
+            onConfirm={() => handleConfirmModal(id)}
             title="Tem certeza que deseja excluir esse cadastro?"
             message="Ao confirmar não será possível reverter essa operação."
          />
-		</>
+      </>
    )
 }
 
