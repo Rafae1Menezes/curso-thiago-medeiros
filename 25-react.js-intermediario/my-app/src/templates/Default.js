@@ -5,7 +5,7 @@ import Header from '../partials/Header/Header'
 
 const useStyles = makeStyles(() => ({
     container: {
-       padding: '15px 0'
+       padding: '30px 0'
     }
  }))
 

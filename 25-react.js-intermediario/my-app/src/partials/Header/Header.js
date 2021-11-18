@@ -60,7 +60,7 @@ const Header = () => {
                   My App
                </Typography>
 
-               <Button color="inherit">Login</Button>
+               <Button color="inherit" onClick={()=>handleMenuClick('/customers')}>Login</Button>
 
             </Toolbar>
          </AppBar>

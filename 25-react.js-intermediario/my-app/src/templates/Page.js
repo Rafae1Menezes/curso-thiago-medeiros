@@ -1,6 +1,6 @@
 import Typography from '@material-ui/core/Typography'
 
-const Page = ({ title, Component}) => {
+const Page = ({ title, Component }) => {
     
     return (
         <>
