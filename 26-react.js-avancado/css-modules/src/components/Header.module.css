@@ -1,0 +1,11 @@
+.header{
+   width: 100%;
+   padding: 10px;
+   background-color: black;
+   color: white;
+}
+
+.btn{
+   background-color: red;
+   color: white;
+}
