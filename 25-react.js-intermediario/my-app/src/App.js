@@ -11,9 +11,10 @@ import Login from './pages/Login'
 import NotFoundPage from './pages/NotFoundPage'
 
 
+
 const App = () => {
    return (
-      <>	
+      
          <Router>
                <Routes>
                   <Route path="/" element={<TemplateDefault> <TemplatePage title="Página Inicial" Component={Home} /> </TemplateDefault>} />
@@ -25,7 +26,7 @@ const App = () => {
                   <Route path="/login" element={<TemplateClean title="Acesso Restrito" Component={Login} /> } />
                </Routes>            
          </Router>       
-      </>
+
    )
 }
 

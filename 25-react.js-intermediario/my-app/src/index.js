@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
- import { createTheme} from '@material-ui/core'
- import { ThemeProvider } from '@material-ui/styles'
-
-
+import { createTheme} from '@material-ui/core'
+import { ThemeProvider } from '@material-ui/styles'
 import { lightBlue, orange } from '@material-ui/core/colors';
+
+import { AuthProvider } from './state/auth'
 
 import App from './App';
 import './index.css'
@@ -29,7 +29,9 @@ const theme = createTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <AuthProvider>	
+         <App />
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

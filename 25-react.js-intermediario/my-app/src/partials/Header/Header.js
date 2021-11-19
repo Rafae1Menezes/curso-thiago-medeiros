@@ -20,13 +20,13 @@ import HomeIcon from '@material-ui/icons/Home'
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt'
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
-
-
 import useStyles from './Header.style'
 
 
 
-const Header = () => {
+
+const Header = ({ user }) => {
+
    const [menuOpen, setMenuOpen] = useState(false)
    const classes = useStyles()
    const navigate = useNavigate();
@@ -59,8 +59,12 @@ const Header = () => {
                <Typography variant="h6" component="div" className={classes.title} >
                   My App
                </Typography>
-
-               <Button color="inherit" onClick={()=>handleMenuClick('/customers')}>Login</Button>
+               {
+                  user.logged
+                  ? <Typography component="h6">{user.email}</Typography>
+                  : <Button color="inherit">Login</Button>
+               }
+               
 
             </Toolbar>
          </AppBar>
