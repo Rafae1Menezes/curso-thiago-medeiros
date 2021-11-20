@@ -7,6 +7,7 @@ const Index = () => {
          <Link href="/about" >
              <a>Página Sobre</a>
          </Link>
+         <br />
          <Link href="/category/products" >
              <a>Página de produtos</a>
          </Link>
