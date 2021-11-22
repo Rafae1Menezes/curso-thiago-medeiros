@@ -22,7 +22,7 @@ const useStyles = makeStyles( theme => ({
    mask: {},
    mainImage: {},
    container: {
-      padding: theme.spacing(8, 0, 6),
+      paddingBottom: theme.spacing(3)
    },
    boxContainer: {
       paddingBottom: theme.spacing(3)
