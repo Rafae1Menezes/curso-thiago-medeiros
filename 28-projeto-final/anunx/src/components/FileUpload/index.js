@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone'
 import useStyles from './style'
 
 const FileUpload = ({ files, errors, touched, setFieldValue }) => {
+
    const classes = useStyles()
 
    const { getRootProps, getInputProps } = useDropzone({

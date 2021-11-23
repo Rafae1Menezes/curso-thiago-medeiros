@@ -140,7 +140,7 @@ const Publish = () => {
                         <Box className={classes.box}>
                            <FileUpload
                               files={values.files}
-                              erros={errors.files}
+                              errors={errors.files}
                               touched={touched.files}
                               setFieldValue={setFieldValue}
                            />
