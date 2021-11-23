@@ -1,12 +1,12 @@
 import { makeStyles } from '@material-ui/styles'
 
-const useStyles = makeStyles( theme => ({
+const useStyles = makeStyles(theme => ({
    mask: {},
-   mainImage: {},   
+   mainImage: {},
    thumbsContainer: {
       display: 'flex',
       flexWrap: 'wrap',
-      marginTop: 15
+      marginTop: 15,
    },
    dropzone: {
       display: 'flex',
@@ -17,7 +17,7 @@ const useStyles = makeStyles( theme => ({
       height: 150,
       margin: '0 15px 15px 0',
       backgroundColor: theme.palette.background.default,
-      border: '2px dashed gray'
+      border: '2px dashed gray',
    },
    thumb: {
       position: 'relative',
@@ -36,7 +36,7 @@ const useStyles = makeStyles( theme => ({
       },
 
       '&:hover $mask': {
-         display: 'flex'
+         display: 'flex',
       },
 
       '& $mask': {
@@ -45,9 +45,9 @@ const useStyles = makeStyles( theme => ({
          justifyContent: 'center',
          backgroundColor: 'rgba(0, 0, 0, 0.7)',
          width: '100%',
-         height: '100%'
-      }
-   }
+         height: '100%',
+      },
+   },
 }))
 
 export default useStyles

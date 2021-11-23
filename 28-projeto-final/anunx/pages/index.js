@@ -3,7 +3,6 @@ import {
    Grid,
    IconButton,
    InputBase,
-   makeStyles,
    Paper,
    Typography
 } from '@material-ui/core'

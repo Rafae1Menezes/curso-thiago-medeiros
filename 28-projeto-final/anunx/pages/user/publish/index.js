@@ -11,7 +11,8 @@ import {
    InputLabel,
    MenuItem,
    Select,
-   Typography } from '@material-ui/core'
+   Typography,
+} from '@material-ui/core'
 
 import TemplateDefault from '../../../src/templates/Default'
 import { initialValues, validationSchema } from './formValues'
@@ -19,31 +20,19 @@ import { initialValues, validationSchema } from './formValues'
 import useStyles from './styles'
 import FileUpload from '../../../src/components/FileUpload'
 
-
-
-
-
-
-
 const Publish = () => {
    const classes = useStyles()
 
-
-
-
-
    return (
-      <TemplateDefault> 
-
+      <TemplateDefault>
          <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
+            onSubmit={values => {
                console.log('ok, enviou o form', values)
             }}
          >
-         {
-            ({
+            {({
                touched,
                values,
                errors,
@@ -51,65 +40,98 @@ const Publish = () => {
                handleSubmit,
                setFieldValue,
             }) => {
-               
-
-               
-
-
-
-
-
-
                return (
                   <form onSubmit={handleSubmit}>
                      <Container maxWidth="sm" className={classes.container}>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary">
+                        <Typography
+                           component="h1"
+                           variant="h2"
+                           align="center"
+                           color="textPrimary"
+                        >
                            Publicar Anúncio
                         </Typography>
-                        <Typography component="h5" variant="h5" align="center" color="textPrimary">
+                        <Typography
+                           component="h5"
+                           variant="h5"
+                           align="center"
+                           color="textPrimary"
+                        >
                            Quanto mais detalhado, melhor!
                         </Typography>
                      </Container>
 
                      <Container maxWidth="md" className={classes.boxContainer}>
                         <Box className={classes.box}>
-                           <FormControl error={errors.title && touched.title} fullWidth>
-                              <InputLabel className={classes.inputLabel}>Título do Anúncio</InputLabel>
+                           <FormControl
+                              error={errors.title && touched.title}
+                              fullWidth
+                           >
+                              <InputLabel className={classes.inputLabel}>
+                                 Título do Anúncio
+                              </InputLabel>
                               <Input
                                  name="title"
                                  value={values.title}
                                  onChange={handleChange}
                               />
-                              <FormHelperText>{errors.title && touched.title ? errors.title : null}</FormHelperText>
-                           </FormControl>                           
-                           <br /><br />
+                              <FormHelperText>
+                                 {errors.title && touched.title
+                                    ? errors.title
+                                    : null}
+                              </FormHelperText>
+                           </FormControl>
+                           <br />
+                           <br />
 
-                           <FormControl error={errors.category && touched.category} fullWidth>
-                              <InputLabel className={classes.inputLabel}>Categoria</InputLabel>
+                           <FormControl
+                              error={errors.category && touched.category}
+                              fullWidth
+                           >
+                              <InputLabel className={classes.inputLabel}>
+                                 Categoria
+                              </InputLabel>
                               <Select
                                  name="category"
                                  value={values.category}
                                  fullWidth
                                  onChange={handleChange}
-                                 
-                              > 
-                                 <MenuItem value="Bebê e Criança">Bebê e Criança</MenuItem>
-                                 <MenuItem value="Agricultura">Agricultura</MenuItem>
+                              >
+                                 <MenuItem value="Bebê e Criança">
+                                    Bebê e Criança
+                                 </MenuItem>
+                                 <MenuItem value="Agricultura">
+                                    Agricultura
+                                 </MenuItem>
                                  <MenuItem value="Moda">Moda</MenuItem>
-                                 <MenuItem value="Carros, Motos e Barcos">Carros, Motos e Barcos</MenuItem>
+                                 <MenuItem value="Carros, Motos e Barcos">
+                                    Carros, Motos e Barcos
+                                 </MenuItem>
                                  <MenuItem value="Serviços">Serviços</MenuItem>
                                  <MenuItem value="Lazer">Lazer</MenuItem>
                                  <MenuItem value="Animais">Animais</MenuItem>
-                                 <MenuItem value="Moveis, Casa e Jardim">Moveis, Casa e Jardim</MenuItem>
+                                 <MenuItem value="Moveis, Casa e Jardim">
+                                    Moveis, Casa e Jardim
+                                 </MenuItem>
                                  <MenuItem value="Imóveis">Imóveis</MenuItem>
-                                 <MenuItem value="Equipamntos e Ferramentas">Equipamntos e Ferramentas</MenuItem>
-                                 <MenuItem value="Celulares e Tablets">Celulares e Tablets</MenuItem>
+                                 <MenuItem value="Equipamntos e Ferramentas">
+                                    Equipamntos e Ferramentas
+                                 </MenuItem>
+                                 <MenuItem value="Celulares e Tablets">
+                                    Celulares e Tablets
+                                 </MenuItem>
                                  <MenuItem value="Esporte">Esporte</MenuItem>
-                                 <MenuItem value="Tecnologia">Tecnologia</MenuItem>
+                                 <MenuItem value="Tecnologia">
+                                    Tecnologia
+                                 </MenuItem>
                                  <MenuItem value="Emprego">Emprego</MenuItem>
                                  <MenuItem value="Outros">Outros</MenuItem>
                               </Select>
-                              <FormHelperText>{errors.category && touched.category ? errors.category : null}</FormHelperText>
+                              <FormHelperText>
+                                 {errors.category && touched.category
+                                    ? errors.category
+                                    : null}
+                              </FormHelperText>
                            </FormControl>
                         </Box>
                      </Container>
@@ -127,90 +149,147 @@ const Publish = () => {
 
                      <Container maxWidth="md" className={classes.boxContainer}>
                         <Box className={classes.box}>
-                           <FormControl error={errors.description && touched.description} fullWidth>
-                           <InputLabel className={classes.inputLabel}>Escreve os detalhes do que está vendendo</InputLabel>
-                           <Input
-                              name="description"
-                              multiline
-                              rows={6}
-                              variant="outlined"
-                              onChange={handleChange}
-                           />
-                           <FormHelperText>{errors.description && touched.description ? errors.description : null}</FormHelperText>
+                           <FormControl
+                              error={errors.description && touched.description}
+                              fullWidth
+                           >
+                              <InputLabel className={classes.inputLabel}>
+                                 Escreve os detalhes do que está vendendo
+                              </InputLabel>
+                              <Input
+                                 name="description"
+                                 multiline
+                                 rows={6}
+                                 variant="outlined"
+                                 onChange={handleChange}
+                              />
+                              <FormHelperText>
+                                 {errors.description && touched.description
+                                    ? errors.description
+                                    : null}
+                              </FormHelperText>
                            </FormControl>
                         </Box>
                      </Container>
 
                      <Container maxWidth="md" className={classes.boxContainer}>
                         <Box className={classes.box}>
-                           <FormControl error={errors.price && touched.price} fullWidth>
-                              <InputLabel className={classes.inputLabel}>Preço de venda</InputLabel>
+                           <FormControl
+                              error={errors.price && touched.price}
+                              fullWidth
+                           >
+                              <InputLabel className={classes.inputLabel}>
+                                 Preço de venda
+                              </InputLabel>
                               <Input
                                  name="price"
                                  value={values.price}
                                  onChange={handleChange}
-                                 startAdornment={<InputAdornment position="start">R$</InputAdornment>}
+                                 startAdornment={
+                                    <InputAdornment position="start">
+                                       R$
+                                    </InputAdornment>
+                                 }
                               />
-                              <FormHelperText>{errors.price && touched.price ? errors.price : null}</FormHelperText>
-                           </FormControl>                            
+                              <FormHelperText>
+                                 {errors.price && touched.price
+                                    ? errors.price
+                                    : null}
+                              </FormHelperText>
+                           </FormControl>
                         </Box>
                      </Container>
 
                      <Container maxWidth="md" className={classes.boxContainer}>
                         <Box className={classes.box}>
-                           <Typography component="h6" variant="h6" color="textPrimary" gutterBottom>
+                           <Typography
+                              component="h6"
+                              variant="h6"
+                              color="textPrimary"
+                              gutterBottom
+                           >
                               Dados de Contato
                            </Typography>
-                           <FormControl error={errors.name && touched.name} fullWidth>
-                              <InputLabel className={classes.inputLabel}>Nome</InputLabel>
+                           <FormControl
+                              error={errors.name && touched.name}
+                              fullWidth
+                           >
+                              <InputLabel className={classes.inputLabel}>
+                                 Nome
+                              </InputLabel>
                               <Input
                                  name="name"
                                  value={values.name}
                                  onChange={handleChange}
                               />
-                              <FormHelperText>{errors.name && touched.name ? errors.name : null}</FormHelperText>
-                           </FormControl>  
-                           <br /><br />
+                              <FormHelperText>
+                                 {errors.name && touched.name
+                                    ? errors.name
+                                    : null}
+                              </FormHelperText>
+                           </FormControl>
+                           <br />
+                           <br />
 
-                           <FormControl error={errors.email && touched.email} fullWidth>
-                              <InputLabel className={classes.inputLabel}>E-mail</InputLabel>
+                           <FormControl
+                              error={errors.email && touched.email}
+                              fullWidth
+                           >
+                              <InputLabel className={classes.inputLabel}>
+                                 E-mail
+                              </InputLabel>
                               <Input
                                  name="email"
                                  value={values.email}
                                  onChange={handleChange}
                               />
-                              <FormHelperText>{errors.email && touched.email ? errors.email : null}</FormHelperText>
-                           </FormControl>  
-                           <br /><br />
+                              <FormHelperText>
+                                 {errors.email && touched.email
+                                    ? errors.email
+                                    : null}
+                              </FormHelperText>
+                           </FormControl>
+                           <br />
+                           <br />
 
-                           <FormControl error={errors.phone && touched.phone} fullWidth>
-                              <InputLabel className={classes.inputLabel}>Telefone</InputLabel>
+                           <FormControl
+                              error={errors.phone && touched.phone}
+                              fullWidth
+                           >
+                              <InputLabel className={classes.inputLabel}>
+                                 Telefone
+                              </InputLabel>
                               <Input
                                  name="phone"
                                  value={values.phone}
                                  onChange={handleChange}
                               />
-                              <FormHelperText>{errors.phone && touched.phone ? errors.phone : null}</FormHelperText>
-                           </FormControl>  
-                           <br /><br />
+                              <FormHelperText>
+                                 {errors.phone && touched.phone
+                                    ? errors.phone
+                                    : null}
+                              </FormHelperText>
+                           </FormControl>
+                           <br />
+                           <br />
                         </Box>
                      </Container>
 
                      <Container maxWidth="md" className={classes.boxContainer}>
                         <Box textAlign="right">
-                           <Button variant="contained" color="primary" type="submit">
+                           <Button
+                              variant="contained"
+                              color="primary"
+                              type="submit"
+                           >
                               Publicar Anúncio
                            </Button>
                         </Box>
                      </Container>
                   </form>
                )
-            }
-         }
+            }}
          </Formik>
-
-         
-
       </TemplateDefault>
    )
 }
