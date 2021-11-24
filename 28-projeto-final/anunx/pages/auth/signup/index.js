@@ -1,6 +1,7 @@
 
 import { Formik } from 'formik'
-
+import axios from 'axios'
+import { useRouter } from 'next/router'
 import {
    Container,
    Box,
@@ -10,19 +11,37 @@ import {
    FormHelperText,
    InputLabel,
    Button,
+   CircularProgress,
 } from '@material-ui/core'
 
 import TemplateDefault from '../../../src/templates/Default'
-import useStyles from './styles'
-
 import { initialValues, validationSchema } from './formValues'
+import useToasty from '../../../src/contexts/Toasty'
 
+import useStyles from './styles'
 
 
 
 
 const SingUp = () => {
    const classes = useStyles()
+   const router = useRouter()
+   const { setToasty } = useToasty()
+
+
+   const handleFormSubmit = async values => {
+      const response = await axios.post('/api/users', values)
+
+      if ((await response).data.success){
+         setToasty({
+            open: true,
+            severity: 'success',
+            text: 'Cadastro realizado com sucesso!'
+         })
+         router.push('/auth/signin')
+      }
+   }
+
 
    return (
       <TemplateDefault>
@@ -49,9 +68,7 @@ const SingUp = () => {
             <Formik
                initialValues={initialValues}
                validationSchema={validationSchema}
-               onSubmit={values => {
-                  console.log('ok, enviou o form', values)
-               }}
+               onSubmit={values => handleFormSubmit(values)}
             >
                {({
                   touched,
@@ -59,6 +76,7 @@ const SingUp = () => {
                   errors,
                   handleChange,
                   handleSubmit,
+                  isSubmitting,
                }) => {
                   return (
                      <form onSubmit={handleSubmit}>
@@ -152,19 +170,27 @@ const SingUp = () => {
                            <br />
                            <br />
 
-                           <Box fullWidth>
-                              <Button
-                                 fullWidth
-                                 variant="contained"
-                                 color="primary"
-                                 type="submit"
-                              >
-                                 Publicar Anúncio
-                              </Button>
-                           </Box>
+                           {
+                              isSubmitting
+                              ? (
+                                 <CircularProgress className={classes.loading} />
+                              ) : (
+                                 <Button
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    type="submit"
+                                 >
+                                    Publicar Anúncio
+                                 </Button>
+                                 )
+                           }
+                           
+                           
+                           <br />
                            <br />
 
-                           <Typography component="div" variant="body2">
+                           <Typography component="div" variant="body2" align="left">
                               Ja tem uma conta? Entre aqui.
                            </Typography>
                         </Box>

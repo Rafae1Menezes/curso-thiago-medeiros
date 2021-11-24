@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/styles'
 import { CssBaseline } from '@material-ui/core'
 import PropTypes from 'prop-types'
+import { ToastyProvider }  from '../src/contexts/Toasty'
 import theme from '../src/theme'
 
 export default function MyApp(props) {
@@ -26,8 +27,10 @@ export default function MyApp(props) {
             />
          </Head>
          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
+            <ToastyProvider>
+               <CssBaseline />
+               <Component {...pageProps} />
+            </ToastyProvider>
          </ThemeProvider>
       </>
    )

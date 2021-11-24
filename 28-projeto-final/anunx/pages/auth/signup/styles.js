@@ -15,6 +15,10 @@ const useStyles = makeStyles(theme => ({
       fontWeight: 400,
       color: theme.palette.primary.main,
    },
+   loading: {
+      display: 'block',
+      margin: '0 auto',
+   }
 }))
 
 export default useStyles
