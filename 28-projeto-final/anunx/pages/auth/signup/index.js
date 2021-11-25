@@ -23,7 +23,7 @@ import useStyles from './styles'
 
 
 
-const SingUp = () => {
+const SignUp = () => {
    const classes = useStyles()
    const router = useRouter()
    const { setToasty } = useToasty()
@@ -181,7 +181,7 @@ const SingUp = () => {
                                     color="primary"
                                     type="submit"
                                  >
-                                    Publicar Anúncio
+                                    Criar Conta
                                  </Button>
                                  )
                            }
@@ -203,4 +203,4 @@ const SingUp = () => {
    )
 }
 
-export default SingUp
+export default SignUp
