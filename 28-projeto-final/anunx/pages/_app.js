@@ -3,6 +3,8 @@ import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/styles'
 import { CssBaseline } from '@material-ui/core'
 import PropTypes from 'prop-types'
+import { Provider } from "next-auth/client"
+
 import { ToastyProvider }  from '../src/contexts/Toasty'
 import theme from '../src/theme'
 
@@ -26,12 +28,14 @@ export default function MyApp(props) {
                content="minimum-scale=1, initial-scale=1, width=device-width"
             />
          </Head>
-         <ThemeProvider theme={theme}>
-            <ToastyProvider>
-               <CssBaseline />
-               <Component {...pageProps} />
-            </ToastyProvider>
-         </ThemeProvider>
+         <Provider session={pageProps.session}>
+            <ThemeProvider theme={theme}>
+               <ToastyProvider>
+                  <CssBaseline />
+                  <Component {...pageProps} />
+               </ToastyProvider>
+            </ThemeProvider>
+         </Provider>
       </>
    )
 }

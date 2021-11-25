@@ -131,7 +131,7 @@ const SignIn = () => {
                            <br />
 
                            <Typography component="div" variant="body2" align="left">
-                              Esqueceu sua senha? Entre aqui.
+                              Não tem conta? clique aqui para criar uma.
                            </Typography>
                         </Box>
                      </form>
