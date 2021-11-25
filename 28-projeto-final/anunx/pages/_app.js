@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/styles'
 import { CssBaseline } from '@material-ui/core'

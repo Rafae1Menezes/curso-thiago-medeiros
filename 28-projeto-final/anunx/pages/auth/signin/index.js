@@ -1,7 +1,7 @@
-
 import { Formik } from 'formik'
-import axios from 'axios'
 import { useRouter } from 'next/router'
+import { signIn } from 'next-auth/client'
+
 import {
    Container,
    Box,
@@ -19,20 +19,20 @@ import { initialValues, validationSchema } from './formValues'
 import useToasty from '../../../src/contexts/Toasty'
 
 import useStyles from './styles'
-
-
-
+import { Alert } from '@material-ui/lab'
 
 const SignIn = () => {
    const classes = useStyles()
    const router = useRouter()
    const { setToasty } = useToasty()
 
-
    const handleFormSubmit = async values => {
-
+      signIn('credentials', {
+         email: values.email,
+         password: values.password,
+         callbackUrl: 'http://localhost:3000/user/dashboard',
+      })
    }
-
 
    return (
       <TemplateDefault>
@@ -64,7 +64,11 @@ const SignIn = () => {
                   return (
                      <form onSubmit={handleSubmit}>
                         <Box className={classes.box}>
-
+                           {router.query.i === '1' ? (
+                              <Alert severity="error">
+                                 Usuário ou senha inválidos
+                              </Alert>
+                           ) : null}
                            <FormControl
                               error={errors.email && touched.email}
                               fullWidth
@@ -110,27 +114,27 @@ const SignIn = () => {
                            <br />
                            <br />
 
-                           {
-                              isSubmitting
-                              ? (
-                                 <CircularProgress className={classes.loading} />
-                              ) : (
-                                 <Button
-                                    fullWidth
-                                    variant="contained"
-                                    color="primary"
-                                    type="submit"
-                                 >
-                                    Entrar
-                                 </Button>
-                                 )
-                           }
-                           
-                           
+                           {isSubmitting ? (
+                              <CircularProgress className={classes.loading} />
+                           ) : (
+                              <Button
+                                 fullWidth
+                                 variant="contained"
+                                 color="primary"
+                                 type="submit"
+                              >
+                                 Entrar
+                              </Button>
+                           )}
+
                            <br />
                            <br />
 
-                           <Typography component="div" variant="body2" align="left">
+                           <Typography
+                              component="div"
+                              variant="body2"
+                              align="left"
+                           >
                               Não tem conta? clique aqui para criar uma.
                            </Typography>
                         </Box>

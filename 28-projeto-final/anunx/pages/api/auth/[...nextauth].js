@@ -1,25 +1,19 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+import axios from 'axios'
 
 export default NextAuth({
    providers: [
       Providers.Credentials({
          name: 'Credentials',
          async authorize(credentials) {
-            const res = axios.post('api/auth/signin', {
-               method: 'POST',
-               body: JSON.stringify(credentials),
-               headers: { 'Content-Type': 'application/json' }
-            })
-
-            const user = res.data
-
-            if(user){
+            try{
+               const res = await axios.post('http://localhost:3000/api/auth/signin', credentials) 
+               const user = res.data
                return user
-            } else {
-               return null
+            } catch {
+               throw '/auth/signin?i=1'
             }
-
          },
       })
    ],
