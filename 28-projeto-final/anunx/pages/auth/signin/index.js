@@ -1,6 +1,7 @@
 import { Formik } from 'formik'
 import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/client'
+import Image from 'next/image'
 
 import {
    Container,
@@ -16,15 +17,17 @@ import {
 
 import TemplateDefault from '../../../src/templates/Default'
 import { initialValues, validationSchema } from './formValues'
-import useToasty from '../../../src/contexts/Toasty'
 
 import useStyles from './styles'
 import { Alert } from '@material-ui/lab'
 
+const handleGoogleLogin = () => {
+   signIn('google', { callbackUrl: 'http://localhost:3000/user/dashboard' })
+}
+
 const SignIn = () => {
    const classes = useStyles()
    const router = useRouter()
-   const { setToasty } = useToasty()
 
    const handleFormSubmit = async values => {
       signIn('credentials', {
@@ -48,22 +51,44 @@ const SignIn = () => {
          </Container>
 
          <Container maxWidth="md" className={classes.boxContainer}>
-            <Formik
-               initialValues={initialValues}
-               validationSchema={validationSchema}
-               onSubmit={values => handleFormSubmit(values)}
-            >
-               {({
-                  touched,
-                  values,
-                  errors,
-                  handleChange,
-                  handleSubmit,
-                  isSubmitting,
-               }) => {
-                  return (
-                     <form onSubmit={handleSubmit}>
-                        <Box className={classes.box}>
+            <Box className={classes.box}>
+               <Box display="flex" justifyContent="center">
+                  <Button
+                     variant="contained"
+                     color="primary"
+                     startIcon={
+                        <Image
+                           src="/images/logo_google.svg"
+                           width={20}
+                           height={20}
+                           alt="Login com Google"
+                        />
+                     }
+                     onClick={handleGoogleLogin}
+                  >
+                     Entrar com Google
+                  </Button>
+               </Box>
+
+               <Box className={classes.orSeparator}>
+                  <span>ou</span>
+               </Box>
+
+               <Formik
+                  initialValues={initialValues}
+                  validationSchema={validationSchema}
+                  onSubmit={values => handleFormSubmit(values)}
+               >
+                  {({
+                     touched,
+                     values,
+                     errors,
+                     handleChange,
+                     handleSubmit,
+                     isSubmitting,
+                  }) => {
+                     return (
+                        <form onSubmit={handleSubmit}>
                            {router.query.i === '1' ? (
                               <Alert severity="error">
                                  Usuário ou senha inválidos
@@ -137,11 +162,11 @@ const SignIn = () => {
                            >
                               Não tem conta? clique aqui para criar uma.
                            </Typography>
-                        </Box>
-                     </form>
-                  )
-               }}
-            </Formik>
+                        </form>
+                     )
+                  }}
+               </Formik>
+            </Box>
          </Container>
       </TemplateDefault>
    )
