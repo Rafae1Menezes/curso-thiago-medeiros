@@ -37,8 +37,10 @@ export default NextAuth({
 
    callbacks: {
       async jwt (token, user) {
-         if (user) {
-            token.uid = user.id
+
+         if(user){
+            user.id && (token.uid = user.id)
+            user._id && (token.uid = user._id)
          }
 
          return Promise.resolve(token)

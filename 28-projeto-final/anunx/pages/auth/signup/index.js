@@ -12,6 +12,7 @@ import {
    InputLabel,
    Button,
    CircularProgress,
+   Link,
 } from '@material-ui/core'
 
 import TemplateDefault from '../../../src/templates/Default'
@@ -189,10 +190,12 @@ const SignUp = () => {
                            
                            <br />
                            <br />
-
-                           <Typography component="div" variant="body2" align="left">
-                              Ja tem uma conta? Entre aqui.
-                           </Typography>
+                           
+                           <Link href="/auth/signin">
+                              <Typography component="div" variant="body2" align="left">
+                                 Ja tem uma conta? Entre aqui.
+                              </Typography>
+                           </Link>
                         </Box>
                      </form>
                   )

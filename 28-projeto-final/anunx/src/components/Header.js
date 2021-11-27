@@ -24,6 +24,10 @@ const useStyles = makeStyles(theme => ({
    },
    title: {
       flexGrow: 1,
+
+      '&:hover': {
+         cursor: "pointer",
+      },
    },
    userName: {
       marginLeft: 8,
@@ -70,7 +74,7 @@ export default function ButtonAppBar() {
                         ? (
                            <IconButton color="secondary" onClick={(e) => { setAnchorUserMenu(e.currentTarget)}}>
                               {
-                                 session.user.image
+                                 session.user?.image
                                  ? <Avatar src={session.user.image} />
                                  : <AccountCircle />
                               }
@@ -103,7 +107,7 @@ export default function ButtonAppBar() {
                         </Link>
                         <Divider className={classes.devider} />
                         <Link href="/user/dashboard" passHref className={classes.menu}>
-                           <MenuItem onClick={()=> signOut('/')}>Sair</MenuItem>
+                           <MenuItem onClick={()=> signOut({ callbackUrl: '/'})}>Sair</MenuItem>
                         </Link>
                      </div>
                   </Menu>

@@ -11,6 +11,10 @@ import SearchIcon from '@material-ui/icons/search'
 
 import TemplateDefault from '../src/templates/Default'
 import Card from '../src/components/Card'
+import { getSession } from 'next-auth/client'
+import dbConnect from '../src/utils/dbConnect'
+import ProductsModel from '../src/models/products'
+import { formatCurrency } from '../src/utils/currency'
 
 const useStyles = makeStyles( theme => ({
    searchBox: {
@@ -25,7 +29,7 @@ const useStyles = makeStyles( theme => ({
 }))
 
 
-const Home = () => {
+const Home = ({ products }) => {
    const classes = useStyles()
 
    return (
@@ -51,36 +55,18 @@ const Home = () => {
             </Typography>
             <br />
             <Grid container spacing={4}>
-
-               <Grid item xs={12} sm={6} md={4}>                  
-                  <Card 
-                     image="https://source.unsplash.com/random?a=1"
-                     title="Produto X"
-                     subtitle="R$ 60,00"
-                  />
-               </Grid>
+               {
+                  products.map(product => (
+                     <Grid key={product._id} item xs={12} sm={6} md={4}>                  
+                        <Card 
+                           image={`/uploads/${product.files[0].name}`}
+                           title={product.title}
+                           subtitle={formatCurrency(product.price)}
+                        />
+                     </Grid>
+                  ))
+               }
                
-               <Grid item xs={12} sm={6} md={4}>                  
-                  <Card 
-                     image="https://source.unsplash.com/random?a=2"
-                     title="Produto X"
-                     subtitle="R$ 60,00"
-                  />
-               </Grid>
-               <Grid item xs={12} sm={6} md={4}>                  
-                  <Card 
-                     image="https://source.unsplash.com/random?a=3"
-                     title="Produto X"
-                     subtitle="R$ 60,00"
-                  />
-               </Grid>
-               <Grid item xs={12} sm={6} md={4}>                  
-                  <Card 
-                     image="https://source.unsplash.com/random?a=4"
-                     title="Produto X"
-                     subtitle="R$ 60,00"
-                  />
-               </Grid>
 
             </Grid>
          </Container>
@@ -89,3 +75,16 @@ const Home = () => {
 }
 
 export default Home
+
+export async function getServerSideProps({ req }) {
+   const session = await getSession({ req })
+   await dbConnect()
+
+   const products = await ProductsModel.find()
+   
+   return {
+      props: {
+         products: JSON.parse(JSON.stringify(products))
+      }
+   }
+}

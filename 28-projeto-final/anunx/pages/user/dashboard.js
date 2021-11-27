@@ -2,6 +2,7 @@ import {
    Button,
    Container,
    Grid,
+   Link,
    Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import TemplateDefault from '../../src/templates/Default'
@@ -9,6 +10,8 @@ import Card from '../../src/components/Card'
 import { getSession } from 'next-auth/client'
 import ProductsModel from '../../src/models/products'
 import dbConnect from '../../src/utils/dbConnect'
+import { formatCurrency } from '../../src/utils/currency'
+
 
 const useStyles = makeStyles(theme => ({
    buttonAdd: {
@@ -20,17 +23,17 @@ const useStyles = makeStyles(theme => ({
 const  Dashboard = ({ products }) => {
    const classes = useStyles()
 
-   console.log(products)
-
    return (
       <TemplateDefault>
          <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center">
                Meus Anúncios
-            </Typography>
-            <Button variant="contained" color="primary" className={classes.buttonAdd}>
-               Públicar novo anúncio
-            </Button>
+            </Typography> 
+            <Link href="/user/publish" >
+               <Button variant="contained" color="primary" className={classes.buttonAdd}>
+                  Públicar novo anúncio
+               </Button>
+            </Link>
          </Container>
          <Container maxWidth="lg">
             <Grid container spacing={4}>
@@ -40,7 +43,7 @@ const  Dashboard = ({ products }) => {
                         <Card 
                            image={`/uploads/${product.files[0].name}`}
                            title={product.title}
-                           subtitle={product.price}
+                           subtitle={formatCurrency(product.price)}
                            actions={
                               <>
                                  <Button size="small" color="primary">
@@ -71,7 +74,7 @@ export async function getServerSideProps({ req }) {
    const session = await getSession({ req })
    await dbConnect()
 
-   const products = await ProductsModel.find({ 'user.id': session.userId})
+   const products = await ProductsModel.find({ 'user.id': session?.userId})
    
    return {
       props: {
