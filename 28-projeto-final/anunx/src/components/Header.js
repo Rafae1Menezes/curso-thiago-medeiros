@@ -103,7 +103,7 @@ export default function ButtonAppBar() {
                         </Link>
                         <Divider className={classes.devider} />
                         <Link href="/user/dashboard" passHref className={classes.menu}>
-                           <MenuItem onClick={()=> signOut({ callbackUrl: '/'})}>Sair</MenuItem>
+                           <MenuItem onClick={()=> signOut('/')}>Sair</MenuItem>
                         </Link>
                      </div>
                   </Menu>

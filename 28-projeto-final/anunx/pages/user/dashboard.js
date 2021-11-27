@@ -6,6 +6,7 @@ import {
 import { makeStyles } from '@material-ui/styles'
 import TemplateDefault from '../../src/templates/Default'
 import Card from '../../src/components/Card'
+import { Home } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
    buttonAdd: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles(theme => ({
    }
 }))
 
-export default function Dashboard() {
+const  Dashboard = () => {
    const classes = useStyles()
 
    return (
@@ -108,3 +109,7 @@ export default function Dashboard() {
       </TemplateDefault>
    )
 }
+
+Dashboard.requireAuth = true
+
+export default Dashboard
