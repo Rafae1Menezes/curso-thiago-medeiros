@@ -1,8 +1,11 @@
 import { Formik } from 'formik'
+import { useRouter } from 'next/router'
+import axios from 'axios'
 
 import {
    Box,
    Button,
+   CircularProgress,
    Container,
    FormControl,
    FormHelperText,
@@ -19,18 +22,65 @@ import { initialValues, validationSchema } from './formValues'
 
 import useStyles from './styles'
 import FileUpload from '../../../src/components/FileUpload'
+import useToasty from '../../../src/contexts/Toasty'
+import { Axios } from 'axios'
+import { getSession } from 'next-auth/client'
 
-const Publish = () => {
+const Publish = ({ userId, image }) => {
    const classes = useStyles()
+   const { setToasty } = useToasty()
+   const router = useRouter()
+
+   const formValues = {
+      ...initialValues,
+   }
+
+   formValues.userId = userId
+   formValues.image = image
+
+   const handleSuccess = () => {
+      setToasty({
+         open: true,
+         text: 'Anúncio cadastrado com sucesso!',
+         severity: 'success',
+      })
+
+      router.push('/user/dashboard')
+   }
+
+   const handleError = () => {
+      setToasty({
+         open: true,
+         text: 'Ops, ocorreu um erro, tente novamente.',
+         severity: 'error',
+      })
+   }
+
+   const handleFormSubmit = values => {
+      const formData = new FormData()
+
+      for (const field in values) {
+         if (field === 'files') {
+            values.files.forEach(file => {
+               formData.append('files', file)
+            })
+         } else {
+            formData.append(field, values[field])
+         }
+      }
+
+      axios
+         .post('/api/products', formData)
+         .then(handleSuccess)
+         .catch(handleError)
+   }
 
    return (
       <TemplateDefault>
          <Formik
-            initialValues={initialValues}
+            initialValues={formValues}
             validationSchema={validationSchema}
-            onSubmit={values => {
-               console.log('ok, enviou o form', values)
-            }}
+            onSubmit={handleFormSubmit}
          >
             {({
                touched,
@@ -39,9 +89,14 @@ const Publish = () => {
                handleChange,
                handleSubmit,
                setFieldValue,
+               isSubmitting,
             }) => {
+
                return (
                   <form onSubmit={handleSubmit}>
+                     <Input type="hidden" name="userId" value={values.userId} />
+                     <Input type="hidden" name="image" value={values.image} />
+
                      <Container maxWidth="sm" className={classes.container}>
                         <Typography
                            component="h1"
@@ -277,13 +332,19 @@ const Publish = () => {
 
                      <Container maxWidth="md" className={classes.boxContainer}>
                         <Box textAlign="right">
-                           <Button
-                              variant="contained"
-                              color="primary"
-                              type="submit"
-                           >
-                              Publicar Anúncio
-                           </Button>
+                           {
+                              isSubmitting ? (
+                              <CircularProgress className={classes.loading} />
+                              ) : (
+                                 <Button                                    
+                                    variant="contained"
+                                    color="primary"
+                                    type="submit"
+                                 >
+                                    Públicar Anúncio
+                                 </Button>
+                              )
+                           }
                         </Box>
                      </Container>
                   </form>
@@ -297,3 +358,16 @@ const Publish = () => {
 Publish.requireAuth = true
 
 export default Publish
+
+export const getServerSideProps = async ({ req }) => {
+   const { userId, user } = await getSession({ req })
+
+   console.log(userId)
+
+   return {
+      props: {
+         userId,
+         image: user.image,
+      },
+   }
+}
