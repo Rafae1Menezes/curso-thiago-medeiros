@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { signOut, useSession } from 'next-auth/client'
+
 import {
    makeStyles,
    AppBar,
@@ -13,7 +15,6 @@ import {
    Divider,
 } from '@material-ui/core'
 
-import MenuIcon from '@material-ui/icons/Menu'
 import { AccountCircle } from '@material-ui/icons'
 import { useState } from 'react'
 
@@ -25,15 +26,25 @@ const useStyles = makeStyles(theme => ({
       flexGrow: 1,
    },
    userName: {
-      marginLeft: 6
+      marginLeft: 8,
    },
    devider: {
-      margin: '8px 0'
+      margin: '8px 0',
    },
+   menu: {
+      display: 'contents',
+   },
+   headButton: {
+      marginRight: '10px',
+   }
 }))
 
-export default function ButtonAppBar() {   
+
+export default function ButtonAppBar() {  
+   const [session] = useSession()
    const classes = useStyles()
+   
+
    const [anchorUserMenu, setAnchorUserMenu] = useState(false)
 
    const openUserMenu = Boolean(anchorUserMenu) 
@@ -48,22 +59,29 @@ export default function ButtonAppBar() {
                         AnuX
                      </Typography>
                   </Link>
-                  <Link href="/user/publish" passHref>
+                  <Link href={session ? "/user/publish" : "/auth/signin"} className={classes.headButton} passHref>
                      <Button color="inherit" variant="outlined">
                         Anunciar e Vender
                      </Button>
                   </Link>
-                  <IconButton color="secondary" onClick={(e) => { setAnchorUserMenu(e.currentTarget)}}>
-                     {
-                        true === true
-                        ? <Avatar src="" />
-                        : <AccountCircle />
-                     }
+                  
+                  {
+                     session
+                        ? (
+                           <IconButton color="secondary" onClick={(e) => { setAnchorUserMenu(e.currentTarget)}}>
+                              {
+                                 session.user.image
+                                 ? <Avatar src={session.user.image} />
+                                 : <AccountCircle />
+                              }
 
-                     <Typography variant="subtitle2" color="secondary" className={classes.userName}>
-                        Rafael Menezes
-                     </Typography>
-                  </IconButton>
+                              <Typography variant="subtitle2" color="secondary" className={classes.userName}>
+                                 {session.user.name}
+                              </Typography>
+                           </IconButton>
+                        ) : null
+                  }
+                  
 
                   <Menu 
                      anchorEl={anchorUserMenu}
@@ -73,17 +91,21 @@ export default function ButtonAppBar() {
                         vertical: 'bottom',
                         horizontal: 'left',
                      }}
+                     getContentAnchorEl={null}
+                     
                   >
-                     <Link href="/user/dashboard" passHref>
-                        <MenuItem>Meus anúncios</MenuItem>
-                     </Link>
-                     <Link href="/user/publish" passHref>
-                        <MenuItem>Pùblicar novo anúncio</MenuItem>
-                     </Link>
-                     <Divider className={classes.devider} />
-                     <Link href="/user/dashboard" passHref>
-                        <MenuItem>Sair</MenuItem>
-                     </Link>
+                     <div>
+                        <Link href="/user/dashboard" passHref className={classes.menu}>
+                           <MenuItem>Meus anúncios</MenuItem>
+                        </Link>
+                        <Link href="/user/publish" passHref className={classes.menu}>
+                           <MenuItem>Pùblicar novo anúncio</MenuItem>
+                        </Link>
+                        <Divider className={classes.devider} />
+                        <Link href="/user/dashboard" passHref className={classes.menu}>
+                           <MenuItem onClick={()=> signOut({ callbackUrl: '/'})}>Sair</MenuItem>
+                        </Link>
+                     </div>
                   </Menu>
 
                </Toolbar>
