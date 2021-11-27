@@ -21,11 +21,7 @@ import { initialValues, validationSchema } from './formValues'
 import useStyles from './styles'
 import { Alert } from '@material-ui/lab'
 
-const handleGoogleLogin = () => {
-   signIn('google', { callbackUrl: 'http://localhost:3000/user/dashboard' })
-}
-
-const SignIn = () => {
+const SignIn = ({ APP_URL }) => {
    const classes = useStyles()
    const router = useRouter()
 
@@ -33,8 +29,12 @@ const SignIn = () => {
       signIn('credentials', {
          email: values.email,
          password: values.password,
-         callbackUrl: 'http://localhost:3000/user/dashboard',
+         callbackUrl: `${APP_URL}/user/dashboard`,
       })
+   }
+
+   const handleGoogleLogin = () => {
+      signIn('google', { callbackUrl: `${APP_URL}/user/dashboard` })
    }
 
    return (
@@ -170,6 +170,12 @@ const SignIn = () => {
          </Container>
       </TemplateDefault>
    )
+}
+
+signIn.getServerSideProps = async function () {
+   return {
+      APP_URL: process.env.APP_URL
+   }
 }
 
 export default SignIn
