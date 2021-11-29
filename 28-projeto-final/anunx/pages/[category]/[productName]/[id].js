@@ -41,8 +41,6 @@ const useStyle = makeStyles(theme => ({
 const Product = ({ product }) => {
    const classes = useStyle()
 
-   console.log(product)
-
    return (
       <TemplateDefault>
          <Container maxWidth="lg">
@@ -139,8 +137,9 @@ export default Product
 
 export async function getServerSideProps({ query }) {
    const { id } = query
-   dbConnect()
-   const product = await ProductModel.findOne({ _id: id })
+
+   await dbConnect()
+   const product = await ProductModel.findById(id)
 
    return {
       props: {

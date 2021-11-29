@@ -20,6 +20,7 @@ import { formatCurrency } from '../../src/utils/currency'
 import { useState } from 'react'
 import axios from 'axios'
 import useToasty from '../../src/contexts/Toasty'
+import slugify from 'slugify'
 
 const useStyles = makeStyles(theme => ({
    buttonAdd: {
@@ -98,10 +99,12 @@ const Dashboard = ({ products }) => {
             <Grid container spacing={4}>
                {products.map(product => {
                   if(removedProducts.includes(product._id)) return null
+                  const category = slugify(product.category).toLowerCase()
+                  const title = slugify(product.title).toLowerCase()
 
                   return (
                   <Grid key={product._id} item xs={12} sm={6} md={4}>
-                     <Link href={`/${product.category}/${product.title}/${product._id}`} >  
+                     <Link href={`/${category}/${title}/${product._id}`} >  
                      <Card
                         image={`/uploads/${product.files[0].name}`}
                         title={product.title}

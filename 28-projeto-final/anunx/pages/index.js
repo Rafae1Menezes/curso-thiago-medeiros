@@ -8,22 +8,20 @@ import {
    Paper,
    Typography
 } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/search'
+
 
 import TemplateDefault from '../src/templates/Default'
 import Card from '../src/components/Card'
+import SearchField from '../src/components/SearchField'
 import { getSession } from 'next-auth/client'
 import dbConnect from '../src/utils/dbConnect'
 import ProductsModel from '../src/models/products'
 import { formatCurrency } from '../src/utils/currency'
+import slugify from 'slugify'
+
+
 
 const useStyles = makeStyles( theme => ({
-   searchBox: {
-      display: 'flex',
-      justifyContent: 'center',
-      padding: theme.spacing(0, 2,),
-      margin: theme.spacing(3, 0, 6),
-   },
    cardMedia: {
       paddingTop: '56%'
    },
@@ -31,7 +29,9 @@ const useStyles = makeStyles( theme => ({
 
 
 const Home = ({ products }) => {
+
    const classes = useStyles()
+   
 
    return (
       <TemplateDefault>
@@ -39,15 +39,9 @@ const Home = ({ products }) => {
             <Typography component="h1" variant="h3" align="center" color="textPrimary">
                O que deseja encontrar?
             </Typography>
-            <Paper className={classes.searchBox}>
-               <InputBase 
-                  placeholder="Ex.: iPhone 12 com garantia"
-                  fullWidth
-               />
-               <IconButton>
-                  <SearchIcon />
-               </IconButton>
-            </Paper>
+            
+            <SearchField />
+
          </Container>
 
          <Container maxWidth="lg" className={classes.cardGrid}>
@@ -57,9 +51,13 @@ const Home = ({ products }) => {
             <br />
             <Grid container spacing={4}>
                {
-                  products.map(product => (
+                  products.map(product => {
+                     const category = slugify(product.category).toLowerCase()
+                     const title = slugify(product.title).toLowerCase()
+                     
+                     return (
                      <Grid key={product._id} item xs={12} sm={6} md={4}>     
-                        <Link href={`/${product.category}/${product.title}/${product._id}`} >             
+                        <Link href={`/${category}/${title}/${product._id}`} >             
                            <Card 
                               image={`/uploads/${product.files[0].name}`}
                               title={product.title}
@@ -67,7 +65,8 @@ const Home = ({ products }) => {
                            />
                            </Link>
                      </Grid>
-                  ))
+                     )
+                  })
                }
                
 

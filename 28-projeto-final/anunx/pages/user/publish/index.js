@@ -362,8 +362,6 @@ export default Publish
 export const getServerSideProps = async ({ req }) => {
    const { userId, user } = await getSession({ req })
 
-   console.log(userId)
-
    return {
       props: {
          userId,
