@@ -3,6 +3,7 @@ import {
    Grid,
    IconButton,
    InputBase,
+   Link,
    makeStyles,
    Paper,
    Typography
@@ -57,12 +58,14 @@ const Home = ({ products }) => {
             <Grid container spacing={4}>
                {
                   products.map(product => (
-                     <Grid key={product._id} item xs={12} sm={6} md={4}>                  
-                        <Card 
-                           image={`/uploads/${product.files[0].name}`}
-                           title={product.title}
-                           subtitle={formatCurrency(product.price)}
-                        />
+                     <Grid key={product._id} item xs={12} sm={6} md={4}>     
+                        <Link href={`/${product.category}/${product.title}/${product._id}`} >             
+                           <Card 
+                              image={`/uploads/${product.files[0].name}`}
+                              title={product.title}
+                              subtitle={formatCurrency(product.price)}
+                           />
+                           </Link>
                      </Grid>
                   ))
                }
