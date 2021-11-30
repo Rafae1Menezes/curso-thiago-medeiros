@@ -7,7 +7,6 @@ import {
    DialogTitle,
    Container,
    Grid,
-   Link,
    Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
@@ -20,7 +19,9 @@ import { formatCurrency } from '../../src/utils/currency'
 import { useState } from 'react'
 import axios from 'axios'
 import useToasty from '../../src/contexts/Toasty'
-import slugify from 'slugify'
+
+import MyLink from '../../src/components/MyLink'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles(theme => ({
    buttonAdd: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Dashboard = ({ products }) => {
+   const route = useRouter()
    const [productId, setProductId] = useState()
    const [openConfimModal, setOpenConfimModal] = useState(false)
    const [removedProducts, setRemovedProducts] = useState([])
@@ -73,13 +75,17 @@ const Dashboard = ({ products }) => {
       })
    }
 
+   const handleEdit = (id) => {
+      route.push(`/user/edit/${id}`)
+   }
+
    return (
       <TemplateDefault>
          <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center">
                Meus Anúncios
             </Typography>
-            <Link href="/user/publish">
+            <MyLink href="/user/publish">
                <Button
                   variant="contained"
                   color="primary"
@@ -87,46 +93,52 @@ const Dashboard = ({ products }) => {
                >
                   Públicar novo anúncio
                </Button>
-            </Link>
+            </MyLink>
          </Container>
          <Container maxWidth="lg">
-            {
-               products.length === removedProducts.length &&
-                  <Typography component="div" variant="body1" align="center" color="textPrimary" gutterBottom>
-                     Nenhum anúncio púlicado
-                  </Typography>
-            }
+            {products.length === removedProducts.length && (
+               <Typography
+                  component="div"
+                  variant="body1"
+                  align="center"
+                  color="textPrimary"
+                  gutterBottom
+               >
+                  Nenhum anúncio púlicado
+               </Typography>
+            )}
             <Grid container spacing={4}>
                {products.map(product => {
-                  if(removedProducts.includes(product._id)) return null
-                  const category = slugify(product.category).toLowerCase()
-                  const title = slugify(product.title).toLowerCase()
+                  if (removedProducts.includes(product._id)) return null
+                  
 
                   return (
-                  <Grid key={product._id} item xs={12} sm={6} md={4}>
-                     <Link href={`/${category}/${title}/${product._id}`} >  
-                     <Card
-                        image={`/uploads/${product.files[0].name}`}
-                        title={product.title}
-                        subtitle={formatCurrency(product.price)}
-                        actions={
-                           <>
-                              <Button size="small" color="primary">
-                                 Editar
-                              </Button>
-                              <Button
-                                 size="small"
-                                 color="primary"
-                                 onClick={() => handleOpenModal(product._id)}
-                              >
-                                 Remover {openConfimModal}
-                              </Button>
-                           </>
-                        }
-                     />
-                     </Link>
-                  </Grid>
-               )})}
+                     <Grid key={product._id} item xs={12} sm={6} md={4}>
+                        <Card
+                           id={product._id}
+                           category={product.category}
+                           image={`/uploads/${product.files[0].name}`}
+                           title={product.title}
+                           subtitle={formatCurrency(product.price)}
+                           actions={
+                              <>
+                                 <Button size="small" color="primary" onClick={() => handleEdit(product._id)}>
+                                    Editar
+                                 </Button>
+                                 <Button
+                                    size="small"
+                                    color="primary"
+                                    onClick={() => handleOpenModal(product._id)}
+                                 >
+                                    Remover
+                                 </Button>
+                              </>
+                           }
+                        />
+
+                     </Grid>
+                  )
+               })}
             </Grid>
          </Container>
 

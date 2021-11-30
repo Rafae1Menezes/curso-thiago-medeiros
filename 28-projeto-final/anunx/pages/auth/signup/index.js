@@ -12,9 +12,9 @@ import {
    InputLabel,
    Button,
    CircularProgress,
-   Link,
 } from '@material-ui/core'
 
+import MyLink from '../../../src/components/MyLink'
 import TemplateDefault from '../../../src/templates/Default'
 import { initialValues, validationSchema } from './formValues'
 import useToasty from '../../../src/contexts/Toasty'
@@ -191,11 +191,11 @@ const SignUp = () => {
                            <br />
                            <br />
                            
-                           <Link href="/auth/signin">
+                           <MyLink href="/auth/signin">
                               <Typography component="div" variant="body2" align="left">
                                  Ja tem uma conta? Entre aqui.
                               </Typography>
-                           </Link>
+                           </MyLink>
                         </Box>
                      </form>
                   )

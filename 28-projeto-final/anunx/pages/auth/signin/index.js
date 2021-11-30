@@ -13,9 +13,9 @@ import {
    InputLabel,
    Button,
    CircularProgress,
-   Link,
 } from '@material-ui/core'
 
+import MyLink from '../../../src/components/MyLink'
 import TemplateDefault from '../../../src/templates/Default'
 import { initialValues, validationSchema } from './formValues'
 
@@ -156,7 +156,7 @@ const SignIn = ({ APP_URL }) => {
                            <br />
                            <br />
 
-                           <Link href="/auth/signup">
+                           <MyLink href="/auth/signup">
                               <Typography
                                  component="div"
                                  variant="body2"
@@ -164,7 +164,7 @@ const SignIn = ({ APP_URL }) => {
                               >
                                  Não tem conta? clique aqui para criar uma.
                               </Typography>
-                           </Link>
+                           </MyLink>
                         </form>
                      )
                   }}

@@ -2,10 +2,6 @@ import {
    Box,
    Container,
    Grid,
-   IconButton,
-   InputBase,
-   Link,
-   Paper,
    Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
@@ -14,6 +10,7 @@ import SearchIcon from '@material-ui/icons/search'
 import TemplateDefault from '../../src/templates/Default'
 import Card from '../../src/components/Card'
 import slugify from 'slugify'
+import MyLink from '../../src/components/MyLink'
 
 import ProductModel from '../../src/models/products'
 import dbConnect from '../../src/utils/dbConnect'
@@ -70,13 +67,13 @@ const List = ({ products, termo }) => {
 
                      return (
                         <Grid key={product._id} item xs={12} sm={6} md={4}>
-                           <Link href={`/${category}/${title}/${product._id}`}>
+                           <MyLink href={`/${category}/${title}/${product._id}`}>
                               <Card
                                  image={`/uploads/${product.files[0].name}`}
                                  title={product.title}
                                  subtitle={formatCurrency(product.price)}
                               />
-                           </Link>
+                           </MyLink>
                         </Grid>
                      )
                   })}

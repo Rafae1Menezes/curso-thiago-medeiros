@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import MyLink from './MyLink'
 import { Box, Container, Grid, Typography } from "@material-ui/core"
 import { makeStyles, ThemeProvider } from "@material-ui/styles"
 
@@ -22,38 +22,38 @@ const Footer = () => {
          <Grid container spacing={3}>
             <Grid item xs={6} sm={3}>
                <Box textAlign="center">
-                  <Link href="#" passHref>
+                  <MyLink href="#" passHref>
                      <Typography color="textSecondary" variant="subtitle1">
                         Ajuda e Contato
                      </Typography>
-                  </Link>
+                  </MyLink>
                </Box>
             </Grid>
             <Grid item xs={6} sm={3}>
                <Box textAlign="center">
-                  <Link href="#" passHref>
+                  <MyLink href="#" passHref>
                      <Typography color="textSecondary" variant="subtitle1">
                         Dicas de Segurança
                      </Typography>
-                  </Link>
+                  </MyLink>
                </Box>
             </Grid>
             <Grid item xs={6} sm={3}>
                <Box textAlign="center">
-                  <Link href="#" passHref>
+                  <MyLink href="#" passHref>
                      <Typography color="textSecondary" variant="subtitle1">
                         Anunciar e Vender
                      </Typography>
-                  </Link>
+                  </MyLink>
                </Box>
             </Grid>
             <Grid item xs={6} sm={3}>
                <Box textAlign="center">
-                  <Link href="#" passHref>
+                  <MyLink href="#" passHref>
                      <Typography color="textSecondary" variant="subtitle1">
                         Plano profissional
                      </Typography>
-                  </Link>
+                  </MyLink>
                </Box>
             </Grid>
          </Grid>
