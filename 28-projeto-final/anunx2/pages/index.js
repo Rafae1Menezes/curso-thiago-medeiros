@@ -4,12 +4,7 @@ import Card from '../src/components/Card'
 import { styled } from '@mui/material/styles'
 import CategoryBar from '../src/components/CategoryBar'
 
-const Item = styled(Paper)(({ theme }) => ({
-   ...theme.typography.body2,
-   padding: theme.spacing(1),
-   textAlign: 'center',
-   color: theme.palette.text.secondary,
-}))
+
 
 export default function Index() {
    return (

@@ -12,7 +12,7 @@ import Upload from '../../src/components/Upload'
 import { useState } from 'react'
 import { FormControl } from '@mui/material'
 import Paper from '../../src/components/Paper'
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
+
 
 const Add = () => {
    const [category, setCategory] = useState('')

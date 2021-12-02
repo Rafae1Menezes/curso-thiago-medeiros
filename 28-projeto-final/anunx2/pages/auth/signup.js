@@ -25,7 +25,7 @@ const Divider = styled(Box)(({ theme }) => ({
    backgroundColor: '#e8e8e8',
    width: '100%',
    height: 1,
-   margin: theme.spacing(4, 0, 4),
+   margin: theme.spacing(2, 0, 2),
 
    '& span': {
       backgroundColor: 'white',
@@ -36,6 +36,9 @@ const Divider = styled(Box)(({ theme }) => ({
 const Signup = () => {
    const [values, setValues] = useState({
       name: '',
+      city: '',
+      phone: '',
+      email: '',
       password: '',
       passwordConfirm: '',
       showPassword: false,
@@ -60,12 +63,12 @@ const Signup = () => {
    return (
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
          <Paper sx={{ width: '500px' }}>
-            <Stack alignItems="center">
+            <Stack alignItems="center" gap={2}>
                <Typography
                   component="h5"
                   variant="h5"
                   align="center"
-                  sx={{ marginBottom: '20px' }}
+                  sx={{ marginBottom: '10px' }}
                >
                   Criar uma conta
                </Typography>
@@ -94,9 +97,37 @@ const Signup = () => {
                   required
                   id="name"
                   name="name"
+                  label="Nome"
+                  fullWidth
+                  variant="standard"
+                  value={values.name}
+               />
+               <TextField
+                  required
+                  id="city"
+                  name="city"
+                  label="Cidade"
+                  fullWidth
+                  variant="standard"
+                  value={values.city}
+               />
+               <TextField
+                  required
+                  id="phone"
+                  name="phone"
+                  label="Telefone"
+                  fullWidth
+                  variant="standard"
+                  value={values.phone}
+               />
+               <TextField
+                  required
+                  id="email"
+                  name="email"
                   label="E-mail"
                   fullWidth
                   variant="standard"
+                  value={values.email}
                />
                <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
                   <InputLabel htmlFor="outlined-adornment-password">
@@ -155,7 +186,7 @@ const Signup = () => {
                   />
                </FormControl>
                
-               <br />
+               
                <Button variant="contained" color="primary" fullWidth>
                   Cadastrar
                </Button>
@@ -163,9 +194,9 @@ const Signup = () => {
                   component="h5"
                   variant="body2"
                   align="center"
-                  sx={{ marginTop: '10px' }}
+                  
                >
-                  Não tem uma conta? Click aqui para criar uma.
+                  Já tem uma conta? Click aqui para criar entrar.
                </Typography>
             </Stack>
          </Paper>

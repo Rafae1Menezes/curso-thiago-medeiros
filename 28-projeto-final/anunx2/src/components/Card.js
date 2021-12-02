@@ -25,7 +25,7 @@ const Price = styled(Typography)(({ theme }) => ({
 
 
 const Card = ({ image, title, price }) => {
-   const auth = false
+   const auth = true
    const height = auth ? 320 : 300
 
    return (
