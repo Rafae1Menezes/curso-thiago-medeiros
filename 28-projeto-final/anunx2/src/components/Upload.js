@@ -1,15 +1,28 @@
-import { Grid } from '@mui/material'
+import { Grid, styled } from '@mui/material'
 import { Box } from '@mui/material'
 import Image from 'next/image'
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
+const Action = styled(Box)({
+   display: 'flex',
+   justifyContent: 'center',
+   alignItems: 'center',
+   backgroundColor: '#d9d9d9',
+   border: '2px dashed #999999',
+   width: '100%',
+   height: '100%',
+   flexDirection: 'column',
+   color: '#8d8d8d',
+   '&:hover': {
+      cursor: 'pointer'
+    }
 
+})
 
 const Gallery = () => {
-
-
    return (
-      <>   
-         <Grid container spacing="3" sx={{ flexGrow: 1, marginTop: "1px" }}>
+      <>
+         <Grid container spacing="3" sx={{ flexGrow: 1, marginTop: '1px' }}>
             <Grid item md={4} sm={4} xs={6}>
                <Box>
                   <Image
@@ -19,8 +32,7 @@ const Gallery = () => {
                      height="50"
                      alt=""
                      layout="responsive"
-                       
-                     priority                   
+                     priority
                   />
                </Box>
             </Grid>
@@ -34,7 +46,6 @@ const Gallery = () => {
                      height="50"
                      alt=""
                      layout="responsive"
-                                          
                   />
                </Box>
             </Grid>
@@ -48,7 +59,6 @@ const Gallery = () => {
                      height="50"
                      alt=""
                      layout="responsive"
-                                          
                   />
                </Box>
             </Grid>
@@ -62,7 +72,6 @@ const Gallery = () => {
                      height="50"
                      alt=""
                      layout="responsive"
-                                          
                   />
                </Box>
             </Grid>
@@ -76,11 +85,16 @@ const Gallery = () => {
                      height="50"
                      alt=""
                      layout="responsive"
-                                          
                   />
                </Box>
             </Grid>
-            
+
+            <Grid item md={4} sm={4} xs={6}>
+               <Action>
+                  <PhotoCamera />
+                  Adicionar Foto
+               </Action>
+            </Grid>
          </Grid>
       </>
    )

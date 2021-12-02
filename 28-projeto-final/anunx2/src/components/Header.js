@@ -8,7 +8,7 @@ import Link from './Link'
 import SearchField from './SearchField'
 
 const Header = () => {
-   const auth = false
+   const auth = true
 
    return (
       <>

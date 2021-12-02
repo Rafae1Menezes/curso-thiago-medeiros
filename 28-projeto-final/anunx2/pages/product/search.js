@@ -3,7 +3,6 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Card from '../../src/components/Card'
 import { styled } from '@mui/material/styles'
-import CategoryBar from '../../src/components/CategoryBar'
 
 const Item = styled(Paper)(({ theme }) => ({
    ...theme.typography.body2,

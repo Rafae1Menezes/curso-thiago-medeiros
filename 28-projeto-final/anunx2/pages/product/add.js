@@ -86,10 +86,7 @@ const Add = () => {
                      Fotos *
                   </Typography>
                   <Upload />
-                  <br />
-                  <Button variant="contained" startIcon={<PhotoCamera />} fullWidth>
-                  Adicionar Fotos
-               </Button>
+                  
 
                </Grid>
             </Grid>
