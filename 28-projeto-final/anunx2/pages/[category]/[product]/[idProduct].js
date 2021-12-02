@@ -64,9 +64,7 @@ const ProductPage = ({ idProduct }) => {
       <Grid container spacing={2}>
          <Grid item md={8} xs={12}>
             <Paper spaceBottom>
-
                <Gallery />
-
             </Paper>
 
             <Paper spaceBottom>
@@ -99,7 +97,7 @@ const ProductPage = ({ idProduct }) => {
                   <Box><Link href="#"  noLinkStyle>Ver mais formas de entrega</Link></Box>
                </Flex>
 
-               <Button variant="contained" startIcon={<LocalGroceryStoreIcon />}  sx={{ width: '100%', marginTop: '15px' }}>Colocar no Carrinho</Button>
+               <Button variant="contained" startIcon={<LocalGroceryStoreIcon />}  fullWidth>Colocar no Carrinho</Button>
             </Paper>
             <Paper>
                <TitlePaper>Informações sobre o vendedor</TitlePaper>

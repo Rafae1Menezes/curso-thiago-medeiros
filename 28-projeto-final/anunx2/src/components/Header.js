@@ -7,9 +7,9 @@ import Link from './Link'
 
 const Header = () => {
    return (
-      <AppBar position="static">
+      <AppBar position="static"spacing="3">
          <Container maxWidth="lg">
-            <Toolbar sx={{ paddingLeft: 0 }}>
+            <Toolbar >
                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                   <Link href="/" noLinkStyle>
                      AnunX
@@ -18,6 +18,11 @@ const Header = () => {
                <Link href="/product/add" noLinkStyle>
                   <Button color="inherit" variant="outlined">
                      Anunciar e Vender
+                  </Button>
+               </Link>
+               <Link href="/auth/signin" noLinkStyle>
+                  <Button color="inherit" variant="outlined">
+                     Entrar
                   </Button>
                </Link>
             </Toolbar>
