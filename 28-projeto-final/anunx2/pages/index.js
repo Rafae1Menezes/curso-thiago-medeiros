@@ -7,6 +7,7 @@ import CategoryBar from '../src/components/CategoryBar'
 
 
 export default function Index() {
+
    return (
       <>
 

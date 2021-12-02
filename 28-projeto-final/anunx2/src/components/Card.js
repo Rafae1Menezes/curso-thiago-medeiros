@@ -24,9 +24,8 @@ const Price = styled(Typography)(({ theme }) => ({
 }))
 
 
-const Card = ({ image, title, price }) => {
-   const auth = true
-   const height = auth ? 320 : 300
+const Card = ({  image, title, price, actions = false, handleClickOpenModal }) => {
+   const height = actions ? 320 : 300
 
    return (
       <CardMui sx={{ width: '100%', height: height, position: 'relative' }}>
@@ -42,12 +41,12 @@ const Card = ({ image, title, price }) => {
                <Price>R$ {price}</Price>
             </CardContent>
          </Link>
-         {auth ? (
+         {actions ? (
             <CardActions
                sx={{ paddingTop: 0, bottom: 0, position: 'absolute' }}
             >
                <Button size="small" color="secondary">Editar</Button>
-               <Button size="small" color="secondary">Deletar</Button>
+               <Button size="small" color="secondary" onClick={handleClickOpenModal}>Deletar</Button>
             </CardActions>
          ) : null}
       </CardMui>
