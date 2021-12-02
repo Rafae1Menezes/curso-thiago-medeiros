@@ -11,6 +11,7 @@ const Header = () => {
    const auth = true
 
    return (
+      <>
       <AppBar position="static" spacing="3">
          <Container maxWidth="lg">
             <Toolbar>
@@ -38,8 +39,14 @@ const Header = () => {
                   </Link>
                )}
             </Toolbar>
-         </Container>
+         </Container>         
       </AppBar>
+      <Container maxWidth="lg" >
+      <Box display={{ xs: "block", sm: "block", md: "none" }} sx={{ flexGrow: 1, marginTop: '20px' }}>
+                  <SearchField />
+               </Box>
+         </Container>
+      </>
    )
 }
 
