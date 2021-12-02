@@ -15,24 +15,28 @@ export default function MyApp(props) {
    const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 
    return (
-            <StyledEngineProvider injectFirst>
-      <CacheProvider value={emotionCache}>
-         <Head>
-            <title>My page</title>
-            <meta
-               name="viewport"
-               content="initial-scale=1, width=device-width"
-            />
-         </Head>
-         <ThemeProvider theme={theme}>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
-            <Template>
-               <Component {...pageProps} />
-            </Template>
-         </ThemeProvider>
-      </CacheProvider>
-            </StyledEngineProvider>
+      <StyledEngineProvider injectFirst>
+         <CacheProvider value={emotionCache}>
+            <Head>
+               <title>My page</title>
+               <meta
+                  name="viewport"
+                  content="initial-scale=1, width=device-width"
+               />
+               <meta
+                  name="description"
+                  content="Site de vendas. Estudo de Next."
+               ></meta>
+            </Head>
+            <ThemeProvider theme={theme}>
+               {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+               <CssBaseline />
+               <Template>
+                  <Component {...pageProps} />
+               </Template>
+            </ThemeProvider>
+         </CacheProvider>
+      </StyledEngineProvider>
    )
 }
 

@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles'
 
 const MyContainer = styled(Container)({
    paddingTop: '30px',
-   paddingBottom: '30px',
+   paddingBottom: '40px',
 })
 
 const Content = ({ children }) => {

@@ -8,7 +8,7 @@ import { styled } from '@mui/material/styles';
 
 // Add support for the sx prop for consistency with the other branches.
 const Anchor = styled('a')({
-   color: '#110000',
+   color: 'inherit',
    textDecoration: 'none'
 });
 
