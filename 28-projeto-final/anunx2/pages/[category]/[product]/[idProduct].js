@@ -15,6 +15,7 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 
 import Link from '../../../src/components/Link'
+import Gallery from '../../../src/components/Gallery'
 
 const TitlePaper = styled(Typography)(({ theme }) => ({
    ...theme.typography.body2,
@@ -63,7 +64,9 @@ const ProductPage = ({ idProduct }) => {
       <Grid container spacing={2}>
          <Grid item md={8} xs={12}>
             <Paper spaceBottom>
-               <img src="https://picsum.photos/400/200" width="100%" />
+
+               <Gallery />
+
             </Paper>
 
             <Paper spaceBottom>

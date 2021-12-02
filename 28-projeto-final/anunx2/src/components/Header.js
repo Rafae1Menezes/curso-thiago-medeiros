@@ -15,9 +15,11 @@ const Header = () => {
                      AnunX
                   </Link>
                </Typography>
-               <Button color="inherit" variant="outlined">
-                  Anunciar e Vender
-               </Button>
+               <Link href="/product/add" noLinkStyle>
+                  <Button color="inherit" variant="outlined">
+                     Anunciar e Vender
+                  </Button>
+               </Link>
             </Toolbar>
          </Container>
       </AppBar>
