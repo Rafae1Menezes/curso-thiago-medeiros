@@ -34,7 +34,7 @@ const TitleProduct = styled(Typography)(({ theme }) => ({
 
 const Price = styled(Typography)(({ theme }) => ({
    ...theme.typography.body1,
-   color: theme.palette.primary.main,
+   color: theme.palette.secondary.main,
    marginBottom: '10px',
    fontWeight: 'bold',
    fontSize: '25px',
@@ -55,8 +55,6 @@ const Flex = styled(Box)(({ theme }) => ({
    gap: '8px',
    alignItems: 'center'
 }))
-
-
 
 const ProductPage = ({ idProduct }) => {
    const [value, setValue] = useState(3)
@@ -93,16 +91,10 @@ const ProductPage = ({ idProduct }) => {
                <TitleProduct>Ford Ka 2018. Completo. Ótimio estado de conservação.</TitleProduct>
                <Price>R$ 30.000,00</Price>
                
-                  
-               
-                  <Flex>                     
-                     <Box><LocalShippingIcon /></Box>
-                     <Box><Link href="#"  noLinkStyle>Ver mais formas de entrega</Link></Box>
-                  </Flex>
-                     
-                  
-                  
-               
+               <Flex>                     
+                  <Box><LocalShippingIcon /></Box>
+                  <Box><Link href="#"  noLinkStyle>Ver mais formas de entrega</Link></Box>
+               </Flex>
 
                <Button variant="contained" startIcon={<LocalGroceryStoreIcon />}  sx={{ width: '100%', marginTop: '15px' }}>Colocar no Carrinho</Button>
             </Paper>

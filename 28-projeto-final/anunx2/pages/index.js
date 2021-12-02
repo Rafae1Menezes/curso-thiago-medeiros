@@ -18,7 +18,6 @@ export default function Index() {
                image="https://i.picsum.photos/id/603/200/200.jpg?hmac=0BCtNqTfCvRnGEYZ9CJPnBJ8RjT9g0wRO3iDtLHWcnY"
                title="Ford Ka 2018. Completo. Ótimio estado de conservação."
                price="300,00"
-               description="Seminovo, maravilhoso. Sem detalhes. 30mil km rodados a penas. Não perca essa oportunidade incrível."
             />
          </Grid>
          <Grid item lg={3} md={4} sm={6} xs={12}>
@@ -26,7 +25,6 @@ export default function Index() {
                image="https://i.picsum.photos/id/603/200/200.jpg?hmac=0BCtNqTfCvRnGEYZ9CJPnBJ8RjT9g0wRO3iDtLHWcnY"
                title="Ford Ka 2018. Completo. Ótimio estado de conservação."
                price="300,00"
-               description="Seminovo, maravilhoso. Sem detalhes. 30mil km rodados a penas. Não perca essa oportunidade incrível."
             />
          </Grid>
          <Grid item lg={3} md={4} sm={6} xs={12}>
@@ -34,7 +32,6 @@ export default function Index() {
                image="https://i.picsum.photos/id/603/200/200.jpg?hmac=0BCtNqTfCvRnGEYZ9CJPnBJ8RjT9g0wRO3iDtLHWcnY"
                title="Ford Ka 2018. Completo. Ótimio estado de conservação."
                price="300,00"
-               description="Seminovo, maravilhoso. Sem detalhes. 30mil km rodados a penas. Não perca essa oportunidade incrível."
             />
          </Grid>
          <Grid item lg={3} md={4} sm={6} xs={12}>
@@ -42,7 +39,6 @@ export default function Index() {
                image="https://i.picsum.photos/id/603/200/200.jpg?hmac=0BCtNqTfCvRnGEYZ9CJPnBJ8RjT9g0wRO3iDtLHWcnY"
                title="Ford Ka 2018. Completo. Ótimio estado de conservação."
                price="300,00"
-               description="Seminovo, maravilhoso. Sem detalhes. 30mil km rodados a penas. Não perca essa oportunidade incrível."
             />
          </Grid>
       </Grid>

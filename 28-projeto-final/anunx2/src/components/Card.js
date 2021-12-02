@@ -23,17 +23,10 @@ const Price = styled(Typography)(({ theme }) => ({
    fontWeight: 'bold',
 }))
 
-const Description = styled(Typography)(({ theme }) => ({
-   ...theme.typography.body2,
-   color: theme.palette.text.secondary,
-   lineHeight: '22px',
-   maxHeight: '60px',
-   overflow: 'hidden',
-}))
 
-const Card = ({ image, title, price, description }) => {
+const Card = ({ image, title, price }) => {
    const auth = false
-   const height = auth ? 400 : 370
+   const height = auth ? 320 : 300
 
    return (
       <CardMui sx={{ width: '100%', height: height, position: 'relative' }}>
@@ -47,15 +40,14 @@ const Card = ({ image, title, price, description }) => {
             <CardContent>
                <Title>{title}</Title>
                <Price>R$ {price}</Price>
-               <Description>{description}</Description>
             </CardContent>
          </Link>
          {auth ? (
             <CardActions
                sx={{ paddingTop: 0, bottom: 0, position: 'absolute' }}
             >
-               <Button size="small">Editar</Button>
-               <Button size="small">Deletar</Button>
+               <Button size="small" color="secondary">Editar</Button>
+               <Button size="small" color="secondary">Deletar</Button>
             </CardActions>
          ) : null}
       </CardMui>
