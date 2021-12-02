@@ -6,9 +6,10 @@ const MyPaper = styled(PaperMui)(({ theme }) => ({
    padding: '18px',
 }))
 
-const Paper = ({ children, spaceBottom }) => {
+const Paper = ({ children, spaceBottom, sx }) => {
+
    return (
-      <MyPaper sx={!spaceBottom && {marginBottom: '0'}} elevation={1}>
+      <MyPaper sx={sx}  elevation={1}>
          { children }
       </MyPaper>
    )
