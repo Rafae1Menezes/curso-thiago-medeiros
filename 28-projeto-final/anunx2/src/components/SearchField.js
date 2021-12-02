@@ -8,8 +8,9 @@ const Paper= styled(PaperMui)(({ theme }) => ({
 
       display: 'flex',
       justifyContent: 'center',
-      padding: theme.spacing(0, 2),
+      padding: theme.spacing(0, 1),
       marginRight: theme.spacing(2),
+      height: '35px'
 
 }))
 

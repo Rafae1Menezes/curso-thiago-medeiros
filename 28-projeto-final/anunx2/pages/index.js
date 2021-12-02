@@ -2,6 +2,7 @@ import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Card from '../src/components/Card'
 import { styled } from '@mui/material/styles'
+import CategoryBar from '../src/components/CategoryBar'
 
 const Item = styled(Paper)(({ theme }) => ({
    ...theme.typography.body2,
@@ -12,6 +13,10 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Index() {
    return (
+      <>
+
+      <CategoryBar />
+      <br />
       <Grid container spacing={3} sx={{ flexGrow: 1 }}>
          <Grid item lg={3} md={4} sm={6} xs={12}>
             <Card
@@ -42,5 +47,6 @@ export default function Index() {
             />
          </Grid>
       </Grid>
+      </>
    )
 }
