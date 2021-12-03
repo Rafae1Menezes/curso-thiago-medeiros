@@ -10,10 +10,12 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "latest",
     "clsx": "latest",
+    "formik": "^2.2.9",
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "dev": "next",

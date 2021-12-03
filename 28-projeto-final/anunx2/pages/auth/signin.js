@@ -1,4 +1,3 @@
-import Paper from '../../src/components/Paper'
 import {
    Box,
    Button,
@@ -11,12 +10,17 @@ import {
    Input,
    InputAdornment,
    IconButton,
+   FormHelperText,
 } from '@mui/material'
 import Image from 'next/image'
 import { useState } from 'react'
 
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
+
+import { Formik } from 'formik'
+import { initialValues, validationSchema } from './signinFormValues'
+import Paper from '../../src/components/Paper'
 
 const Divider = styled(Box)(({ theme }) => ({
    display: 'flex',
@@ -34,112 +38,143 @@ const Divider = styled(Box)(({ theme }) => ({
 }))
 
 const Signin = () => {
-   const [values, setValues] = useState({
-      name: '',
-      password: '',
-      showPassword: false,
-   })
+   const [showPasswords, setShowPassword] = useState(false)
+   const [teste, setTest] = useState("csa")
+   const handleClickShowPassword = () => setShowPassword(!showPasswords) 
+   const handleMouseDownPassword = event =>  event.preventDefault()
 
-
-   const handleChange = (prop) => (event) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
-
-   const handleClickShowPassword = () => {
-      setValues({
-         ...values,
-         showPassword: !values.showPassword,
-      })
-   }
-
-   const handleMouseDownPassword = event => {
-      event.preventDefault()
+   const handleFormSubmit = values => {
+      console.log(values)
    }
 
    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-         <Paper sx={{ width: '500px' }}>
-            <Stack alignItems="center">
-               <Typography
-                  component="h5"
-                  variant="h5"
-                  align="center"
-                  sx={{ marginBottom: '20px' }}
-               >
-                  Entrar
-               </Typography>
-               <Button
-                  variant="contained"
-                  color="background"
-                  sx={{ width: 250 }}
-                  startIcon={
-                     <Image
-                        src="/images/logo_google.svg"
-                        width={20}
-                        height={20}
-                        alt="Login com Google"
-                     />
-                  }
-               >
-                  Entrar com Google
-               </Button>
-               <Divider>
-                  <span>ou</span>
-               </Divider>
-               <Typography component="h5" variant="body1" align="center">
-                  Entre com sua conta
-               </Typography>
-               <TextField
-                  required
-                  id="name"
-                  name="name"
-                  label="E-mail"
-                  fullWidth
-                  variant="standard"
-               />
-               <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-                  <InputLabel htmlFor="outlined-adornment-password">
-                     Senha
-                  </InputLabel>
-                  <Input
-                     id="outlined-adornment-password"
-                     type={values.showPassword ? 'text' : 'password'}
-                     value={values.password}
-                     onChange={handleChange('password')}
-                     endAdornment={
-                        <InputAdornment position="end">
-                           <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={handleClickShowPassword}
-                              onMouseDown={handleMouseDownPassword}
-                              edge="end"
+      <Formik
+         initialValues={initialValues}
+         validationSchema={validationSchema}
+         onSubmit={values => handleFormSubmit(values)}
+      >
+         {({
+            values,
+            errors,
+            touched,
+            isSubmitting,
+            handleChange,
+            handleSubmit
+         }) => {
+            return (
+               <form onSubmit={handleSubmit}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                     <Paper sx={{ width: '500px' }}>
+                        <Stack alignItems="center">
+                           <Typography
+                              component="h5"
+                              variant="h5"
+                              align="center"
+                              sx={{ marginBottom: '20px' }}
                            >
-                              {values.showPassword ? (
-                                 <VisibilityOff />
-                              ) : (
-                                 <Visibility />
-                              )}
-                           </IconButton>
-                        </InputAdornment>
-                     }
-                     label="Password"
-                  />
-               </FormControl>
-               <br />
-               <Button variant="contained" color="primary" fullWidth>
-                  Entrar
-               </Button>
-               <Typography
-                  component="h5"
-                  variant="body2"
-                  align="center"
-                  sx={{ marginTop: '10px' }}
-               >
-                  Não tem uma conta? Click aqui para criar uma.
-               </Typography>
-            </Stack>
-         </Paper>
-      </Box>
+                              Entrar
+                           </Typography>
+                           <Button
+                              variant="contained"
+                              color="background"
+                              sx={{ width: 250 }}
+                              startIcon={
+                                 <Image
+                                    src="/images/logo_google.svg"
+                                    width={20}
+                                    height={20}
+                                    alt="Login com Google"
+                                 />
+                              }
+                           >
+                              Entrar com Google
+                           </Button>
+                           <Divider>
+                              <span>ou</span>
+                           </Divider>
+                           <Typography
+                              component="h5"
+                              variant="body1"
+                              align="center"
+                           >
+                              Entre com sua conta
+                           </Typography>
+
+                           
+                           <TextField
+                              id="email"
+                              name="email"
+                              label="E-mail"
+                              variant="standard"
+                              fullWidth
+                              value={values.email}
+                              onChange={handleChange}
+                              helperText={(errors.email && touched.email) && errors.email}                              
+                              error={errors.email&& touched.email}
+                           />
+                           
+
+                           <FormControl
+                              fullWidth
+                              sx={{ m: 2, width: '100%' }}
+                              variant="standard"
+                              error={errors.password && touched.password}
+                           >
+                              <InputLabel htmlFor="password"  >
+                                 Senha
+                              </InputLabel>
+                              <Input
+                                 id="password"
+                                 name="password"           
+                                 type={showPasswords ? 'text' : 'password'}
+                                 value={values.password}
+                                 onChange={handleChange}
+                                 endAdornment={
+                                    <InputAdornment position="end">
+                                       <IconButton
+                                          aria-label="toggle password visibility"
+                                          onClick={handleClickShowPassword}
+                                          onMouseDown={handleMouseDownPassword}
+                                          edge="end"
+                                       >
+                                          {showPasswords ? (
+                                             <VisibilityOff />
+                                          ) : (
+                                             <Visibility />
+                                          )}
+                                       </IconButton>
+                                    </InputAdornment>
+                                 }
+                                 label="Password"
+                              />
+                              <FormHelperText>
+                                    {(errors.password && touched.password) && errors.password} 
+                              </FormHelperText>
+                           </FormControl>
+                           <br />
+                           <Button
+                              variant="contained"
+                              color="primary"
+                              type="submit"
+                              fullWidth
+                           >
+                              Entrar
+                           </Button>
+                           <Typography
+                              component="h5"
+                              variant="body2"
+                              align="center"
+                              sx={{ marginTop: '10px' }}
+                           >
+                              Não tem uma conta? Click aqui para criar uma.
+                           </Typography>
+                        </Stack>
+                     </Paper>
+                  </Box>
+               </form>
+            )
+         }}
+      </Formik>
    )
 }
 

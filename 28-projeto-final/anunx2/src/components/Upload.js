@@ -1,4 +1,4 @@
-import { Grid, styled } from '@mui/material'
+import { Grid, styled, Typography } from '@mui/material'
 import { Box } from '@mui/material'
 import Image from 'next/image'
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
@@ -92,7 +92,7 @@ const Gallery = () => {
             <Grid item md={4} sm={4} xs={6}>
                <Action>
                   <PhotoCamera />
-                  Adicionar Foto
+                  <Typography component="div" variant="body2">Adicionar Foto</Typography>
                </Action>
             </Grid>
          </Grid>

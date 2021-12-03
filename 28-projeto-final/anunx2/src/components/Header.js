@@ -13,7 +13,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import PersonIcon from '@mui/icons-material/Person'
 
 const Header = () => {
-   const auth = true
+   const auth = false
    const [anchorEl, setAnchorEl] = useState(null)
    const open = Boolean(anchorEl)
    const handleClick = event => {
