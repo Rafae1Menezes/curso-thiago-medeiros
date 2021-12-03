@@ -9,7 +9,7 @@ import {
    Button,
    FormHelperText,
 } from '@mui/material'
-import Upload from '../../src/components/Upload'
+import Uploads from '../../src/components/Uploads'
 import { useState } from 'react'
 import { FormControl } from '@mui/material'
 import Paper from '../../src/components/Paper'
@@ -131,7 +131,7 @@ const Add = () => {
                            >
                               Fotos
                            </Typography>
-                           <Upload />
+                           <Uploads />
                         </Grid>
                      </Grid>
                      <br />
