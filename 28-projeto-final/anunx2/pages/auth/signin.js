@@ -11,6 +11,7 @@ import {
    InputAdornment,
    IconButton,
    FormHelperText,
+   CircularProgress,
 } from '@mui/material'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -39,9 +40,8 @@ const Divider = styled(Box)(({ theme }) => ({
 
 const Signin = () => {
    const [showPasswords, setShowPassword] = useState(false)
-   const [teste, setTest] = useState("csa")
-   const handleClickShowPassword = () => setShowPassword(!showPasswords) 
-   const handleMouseDownPassword = event =>  event.preventDefault()
+   const handleClickShowPassword = () => setShowPassword(!showPasswords)
+   const handleMouseDownPassword = event => event.preventDefault()
 
    const handleFormSubmit = values => {
       console.log(values)
@@ -59,7 +59,7 @@ const Signin = () => {
             touched,
             isSubmitting,
             handleChange,
-            handleSubmit
+            handleSubmit,
          }) => {
             return (
                <form onSubmit={handleSubmit}>
@@ -100,7 +100,6 @@ const Signin = () => {
                               Entre com sua conta
                            </Typography>
 
-                           
                            <TextField
                               id="email"
                               name="email"
@@ -109,10 +108,11 @@ const Signin = () => {
                               fullWidth
                               value={values.email}
                               onChange={handleChange}
-                              helperText={(errors.email && touched.email) && errors.email}                              
-                              error={errors.email&& touched.email}
+                              helperText={
+                                 errors.email && touched.email && errors.email
+                              }
+                              error={errors.email && touched.email}
                            />
-                           
 
                            <FormControl
                               fullWidth
@@ -120,12 +120,10 @@ const Signin = () => {
                               variant="standard"
                               error={errors.password && touched.password}
                            >
-                              <InputLabel htmlFor="password"  >
-                                 Senha
-                              </InputLabel>
+                              <InputLabel htmlFor="password">Senha</InputLabel>
                               <Input
                                  id="password"
-                                 name="password"           
+                                 name="password"
                                  type={showPasswords ? 'text' : 'password'}
                                  value={values.password}
                                  onChange={handleChange}
@@ -148,18 +146,24 @@ const Signin = () => {
                                  label="Password"
                               />
                               <FormHelperText>
-                                    {(errors.password && touched.password) && errors.password} 
+                                 {errors.password &&
+                                    touched.password &&
+                                    errors.password}
                               </FormHelperText>
                            </FormControl>
                            <br />
-                           <Button
-                              variant="contained"
-                              color="primary"
-                              type="submit"
-                              fullWidth
-                           >
-                              Entrar
-                           </Button>
+                           {isSubmitting ? (
+                              <CircularProgress size="30px" />
+                           ) : (
+                              <Button
+                                 fullWidth
+                                 variant="contained"
+                                 color="primary"
+                                 type="submit"
+                              >
+                                 Entrar
+                              </Button>
+                           )}
                            <Typography
                               component="h5"
                               variant="body2"
