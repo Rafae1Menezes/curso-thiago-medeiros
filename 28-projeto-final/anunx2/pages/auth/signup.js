@@ -47,7 +47,6 @@ const Signup = () => {
       console.log(values)
    }
 
-   const handleChange2 = e => console.log(e.target.value)
 
    return (
       <Formik

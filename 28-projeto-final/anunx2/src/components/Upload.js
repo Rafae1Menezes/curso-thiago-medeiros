@@ -3,21 +3,21 @@ import { Box } from '@mui/material'
 import Image from 'next/image'
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
-const Action = styled(Box)({
+const Action = styled(Box)(({theme}) => ({
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',
-   backgroundColor: '#d9d9d9',
-   border: '2px dashed #999999',
+   backgroundColor: '#f5f5f5',
    width: '100%',
    height: '100%',
    flexDirection: 'column',
    color: '#8d8d8d',
    '&:hover': {
-      cursor: 'pointer'
+      cursor: 'pointer',
+      backgroundColor: '#dfdfdf',
     }
 
-})
+}))
 
 const Gallery = () => {
    return (
