@@ -1,115 +1,98 @@
 import { Grid } from '@mui/material'
 import { Box, styled } from '@mui/material'
 import Image from 'next/image'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import Button from '@mui/material/Button'
+import { useState } from 'react'
+import { typography } from '@mui/system'
 
-import Uploader from './Uploader'
-
-const Foto = styled('div')({
+const Foto = styled('div')(({ theme }) => ({
    position: 'relative',
 
    '&:hover div': {
       cursor: 'pointer',
-      display: 'flex'
-   },   
+      display: 'flex',
+   },
 
    div: {
       display: 'none',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      backgroundColor: theme.palette.primary.main + "bb",
       width: '100%',
       height: '100%',
       position: 'absolute',
       top: 0,
       left: 0,
-      color: 'white'
-      }
+      color: 'white',
+   },
+}))
+
+const Input = styled('input')({
+   display: 'none',
 })
 
+
+
 const Uploads = () => {
+   const [files, setFiles] = useState([])
+
+   const handleAddFile = fileList => {
+      const newFiles = []
+
+      for (const file of fileList) {
+         newFiles.push(
+            Object.assign(file, { preview: URL.createObjectURL(file) })
+         )
+      }
+
+      setFiles([...files, ...newFiles])
+   }
+
+   const handleDeletePreview = (fileName) => {
+      
+      const newfiles = files.filter(file => fileName !== file.name)
+      //console.log(newfiles)
+      setFiles(newfiles)
+   }
+
    return (
-      <>  
-         <Grid container spacing="3" sx={{ flexGrow: 1, marginTop: '1px' }}>
-            <Grid item md={4} sm={6} xs={6}>
-               <Foto>
-                  <Image
-                     name="capitao-america-painel-em-lona-1-50x1m-temas-infantil.jpg"
-                     src="/upload/capitao-america-painel-em-lona-1-50x1m-temas-infantil.jpg"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                     objectFit="cover"
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
+      <>
+         <Grid container spacing="3" sx={{ flexGrow: 1, marginBottom: '10px' }}>
+            {files.map((file, index) => (
+               <Grid item md={4} sm={4} xs={6} key={index}>
+                  <Foto>
+                     <Image
+                        name={file.name}
+                        src={file.preview}
+                        width="4"
+                        height="2"
+                        alt=""
+                        layout="responsive"
+                        objectFit="cover"
+                     />
+                     <div onClick={() => handleDeletePreview(file.name)}>
+                        <DeleteForeverIcon /> 
+                     </div>
+                  </Foto>
+               </Grid>
+            ))}
 
-            <Grid item md={4} sm={6} xs={6}>
-               <Foto>
-                  <Image
-                     name="64e2b391-d717-4e18-97cc-1647bf23e8fd.jfif"
-                     src="/upload/64e2b391-d717-4e18-97cc-1647bf23e8fd.jfif"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
-            <Grid item md={4} sm={6} xs={6}>
-               <Foto>
-                  <Image
-                     name="1280x800-captain-america-mjolnir-artwork_1568053956.jpg"
-                     src="/upload/1280x800-captain-america-mjolnir-artwork_1568053956.jpg"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
-            <Grid item md={4} sm={6} xs={6}>
-               <Foto>
-                  <Image
-                     name="55573.jpg"
-                     src="/upload/55573.jpg"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
-            <Grid item md={4} sm={6} xs={6}>
-               <Foto>
-                  <Image
-                     name="bfdf9551-566b-4688-91aa-cc2a903b18ec.jfif"
-                     src="/upload/bfdf9551-566b-4688-91aa-cc2a903b18ec.jfif"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
-
-            <Grid item md={4} sm={6} xs={6}>
-               
-                  <Uploader />
-               
-            </Grid>
+            
          </Grid>
+         <label htmlFor="contained-button-file">
+            <Input
+               name="files"
+               accept="image/*"
+               id="contained-button-file"
+               multiple
+               type="file"
+               onChange={e => handleAddFile(e.target.files)}
+            />
+            <Button variant="outlined" component="span">
+               Adicionar foto
+            </Button>
+         </label>
       </>
    )
 }

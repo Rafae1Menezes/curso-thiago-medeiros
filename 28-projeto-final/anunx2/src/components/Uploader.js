@@ -58,7 +58,7 @@ const Uploader = () => {
    const handleClickOpen = () => setOpen(true)
    const handleClose = () => setOpen(false)
 
-   const handleChange = fileList => {
+   const handleAddFile = fileList => {
       const newFiles = []
 
       for (const file of fileList) {
@@ -69,7 +69,7 @@ const Uploader = () => {
 
       setFiles([...files, ...newFiles])
    }
-
+   
    return (
       <>
          <Action onClick={handleClickOpen}>
@@ -90,7 +90,7 @@ const Uploader = () => {
                      id="contained-button-file"
                      multiple
                      type="file"
-                     onChange={e => handleChange(e.target.files)}
+                     onChange={e => handleAddFile(e.target.files)}
                   />
                   <Button variant="outlined" component="span">
                      Adicionar foto
@@ -115,7 +115,7 @@ const Uploader = () => {
                               layout="responsive"
                               objectFit="cover"
                            />
-                           <div>
+                           <div onClick={handleDeletePreview}>
                               <DeleteForeverIcon />
                            </div>
                         </Foto>
