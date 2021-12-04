@@ -25,6 +25,7 @@ const Gallery = () => {
             height="50"
             alt=""
             layout="responsive"
+            objectFit="cover"
             priority
 
          />

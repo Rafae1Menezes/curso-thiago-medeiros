@@ -1,5 +1,5 @@
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { useState } from 'react'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
@@ -9,16 +9,15 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import { styled, Box, Typography } from '@mui/material'
 import { Grid } from '@mui/material'
-import Image  from 'next/image'
-
+import Image from 'next/image'
 
 const Foto = styled('div')({
    position: 'relative',
 
    '&:hover div': {
       cursor: 'pointer',
-      display: 'flex'
-   },   
+      display: 'flex',
+   },
 
    div: {
       display: 'none',
@@ -30,11 +29,9 @@ const Foto = styled('div')({
       position: 'absolute',
       top: 0,
       left: 0,
-      color: 'white'
-      }
+      color: 'white',
+   },
 })
-
-
 
 const Action = styled(Box)(({ theme }) => ({
    display: 'flex',
@@ -51,11 +48,27 @@ const Action = styled(Box)(({ theme }) => ({
    },
 }))
 
+const Input = styled('input')({
+   display: 'none',
+ });
 
 const Uploader = () => {
+   const [files, setFiles] = useState([])
    const [open, setOpen] = useState(false)
    const handleClickOpen = () => setOpen(true)
    const handleClose = () => setOpen(false)
+
+   const handleChange = fileList => {
+      const newFiles = []
+
+      for (const file of fileList) {
+         newFiles.push(
+            Object.assign(file, { preview: URL.createObjectURL(file) })
+         )
+      }
+
+      setFiles([...files, ...newFiles])
+   }
 
    return (
       <>
@@ -66,98 +79,57 @@ const Uploader = () => {
             </Typography>
          </Action>
 
-         <Dialog
-            open={open}
-            onClose={handleClose}
-            maxWidth="mds"
-         >
+         <Dialog open={open} onClose={handleClose} maxWidth="mds">
             <DialogTitle id="alert-dialog-title">
-               <Button onClick={handleClose} startIcon={<PhotoCamera />}>Adicionar Fotos</Button>
+              
+
+               <label htmlFor="contained-button-file">
+                  <Input
+                     name="files"
+                     accept="image/*"
+                     id="contained-button-file"
+                     multiple
+                     type="file"
+                     onChange={e => handleChange(e.target.files)}
+                  />
+                  <Button variant="outlined" component="span">
+                     Adicionar foto
+                  </Button>
+               </label>
             </DialogTitle>
             <DialogContent>
-
-
-            <Grid container spacing="3" sx={{ flexGrow: 1, marginTop: '1px', width:"700px" }}>
-            <Grid item md={4} sm={4} xs={6}>
-               <Foto>
-                  <Image
-                     name="capitao-america-painel-em-lona-1-50x1m-temas-infantil.jpg"
-                     src="/upload/capitao-america-painel-em-lona-1-50x1m-temas-infantil.jpg"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
-
-            <Grid item md={4} sm={4} xs={6}>
-               <Foto>
-                  <Image
-                     name="64e2b391-d717-4e18-97cc-1647bf23e8fd.jfif"
-                     src="/upload/64e2b391-d717-4e18-97cc-1647bf23e8fd.jfif"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
-            <Grid item md={4} sm={4} xs={6}>
-               <Foto>
-                  <Image
-                     name="1280x800-captain-america-mjolnir-artwork_1568053956.jpg"
-                     src="/upload/1280x800-captain-america-mjolnir-artwork_1568053956.jpg"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
-            <Grid item md={4} sm={4} xs={6}>
-               <Foto>
-                  <Image
-                     name="55573.jpg"
-                     src="/upload/55573.jpg"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
-            <Grid item md={4} sm={4} xs={6}>
-               <Foto>
-                  <Image
-                     name="bfdf9551-566b-4688-91aa-cc2a903b18ec.jfif"
-                     src="/upload/bfdf9551-566b-4688-91aa-cc2a903b18ec.jfif"
-                     width="100"
-                     height="50"
-                     alt=""
-                     layout="responsive"
-                     priority
-                  />
-                   <div><DeleteForeverIcon /></div>
-               </Foto>
-            </Grid>
-         </Grid>
-
-
-
-               
+               <Grid
+                  container
+                  spacing="3"
+                  sx={{ flexGrow: 1, marginTop: '1px', width: '700px' }}
+               >
+                  {files.map((file, index) => (
+                     <Grid item md={4} sm={4} xs={6} key={index}>
+                        <Foto>
+                           <Image
+                              name={file.name}
+                              src={file.preview}
+                              width="100"
+                              height="50"
+                              alt=""
+                              layout="responsive"
+                              objectFit="cover"
+                           />
+                           <div>
+                              <DeleteForeverIcon />
+                           </div>
+                        </Foto>
+                     </Grid>
+                  ))}
+               </Grid>
             </DialogContent>
             <DialogActions>
-               <Button onClick={handleClose} variant="contained">Cancelar</Button>
-               <Button onClick={handleClose} variant="contained">Salvar</Button>
+               <Button onClick={handleClose} variant="contained">
+                  Cancelar
+               </Button>
+               <Button onClick={handleClose} variant="contained">
+                  Salvar
+               </Button>
             </DialogActions>
          </Dialog>
       </>

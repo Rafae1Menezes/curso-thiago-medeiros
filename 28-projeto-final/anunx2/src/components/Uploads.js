@@ -31,7 +31,7 @@ const Uploads = () => {
    return (
       <>  
          <Grid container spacing="3" sx={{ flexGrow: 1, marginTop: '1px' }}>
-            <Grid item md={4} sm={4} xs={6}>
+            <Grid item md={4} sm={6} xs={6}>
                <Foto>
                   <Image
                      name="capitao-america-painel-em-lona-1-50x1m-temas-infantil.jpg"
@@ -41,12 +41,13 @@ const Uploads = () => {
                      alt=""
                      layout="responsive"
                      priority
+                     objectFit="cover"
                   />
                    <div><DeleteForeverIcon /></div>
                </Foto>
             </Grid>
 
-            <Grid item md={4} sm={4} xs={6}>
+            <Grid item md={4} sm={6} xs={6}>
                <Foto>
                   <Image
                      name="64e2b391-d717-4e18-97cc-1647bf23e8fd.jfif"
@@ -60,7 +61,7 @@ const Uploads = () => {
                    <div><DeleteForeverIcon /></div>
                </Foto>
             </Grid>
-            <Grid item md={4} sm={4} xs={6}>
+            <Grid item md={4} sm={6} xs={6}>
                <Foto>
                   <Image
                      name="1280x800-captain-america-mjolnir-artwork_1568053956.jpg"
@@ -74,7 +75,7 @@ const Uploads = () => {
                    <div><DeleteForeverIcon /></div>
                </Foto>
             </Grid>
-            <Grid item md={4} sm={4} xs={6}>
+            <Grid item md={4} sm={6} xs={6}>
                <Foto>
                   <Image
                      name="55573.jpg"
@@ -88,7 +89,7 @@ const Uploads = () => {
                    <div><DeleteForeverIcon /></div>
                </Foto>
             </Grid>
-            <Grid item md={4} sm={4} xs={6}>
+            <Grid item md={4} sm={6} xs={6}>
                <Foto>
                   <Image
                      name="bfdf9551-566b-4688-91aa-cc2a903b18ec.jfif"
@@ -99,11 +100,11 @@ const Uploads = () => {
                      layout="responsive"
                      priority
                   />
-                   <div><DeleteForeverIcon sx={{width:'100%'}} /></div>
+                   <div><DeleteForeverIcon /></div>
                </Foto>
             </Grid>
 
-            <Grid item md={4} sm={4} xs={6}>
+            <Grid item md={4} sm={6} xs={6}>
                
                   <Uploader />
                
