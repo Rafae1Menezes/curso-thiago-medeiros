@@ -20,12 +20,12 @@ import ProductsModel from '../../src/models/products'
 import { useState } from 'react'
 
 
-const Add = ({ product }) => {
+const Edit = ({ product }) => {
    const [ errorFile, setErrorFile ] = useState(false)
 
    const handleFormSubmit = values => {
       
-      if(!values.filesOld.length || !values.filesOld.length){
+      if(!values.filesOld.length && !values.filesOld.length){
          setErrorFile(true)
       }      
       
@@ -34,10 +34,16 @@ const Add = ({ product }) => {
       for (const field in values) {
          if (field === 'filesOld') {
             formData.append('filesOld', JSON.stringify(values.filesOld))
-         } else {
+         } else if (field === 'filesNew') {
+            values.filesNew.forEach(file => {
+               formData.append('filesNew', file)
+            })
+         }else {
             formData.append(field, values[field])
          }
       }      
+
+      console.log(values.filesNew)
 
       formData.append('userId', "123abc")
 
@@ -181,6 +187,7 @@ const Add = ({ product }) => {
                               filesOld={values.filesOld}
                               filesNew={values.filesNew}
                               setFieldValue={setFieldValue}
+                              setErrorFile={setErrorFile}
                            /> 
                         </Grid>
                      </Grid>
@@ -202,7 +209,7 @@ const Add = ({ product }) => {
    )
 }
 
-export default Add
+export default Edit
 
 export const getServerSideProps = async (req) => {
    const { id } = req.query

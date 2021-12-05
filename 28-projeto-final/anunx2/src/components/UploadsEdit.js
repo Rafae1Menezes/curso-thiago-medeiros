@@ -30,21 +30,29 @@ const Input = styled('input')({
    display: 'none',
 })
 
-const Uploads = ({ filesOld, filesNew, setFieldValue }) => {
+const Uploads = ({ filesOld, filesNew, setFieldValue, setErrorFile }) => {
 
    const handleAddFile = fileList => {
+
       const newFiles = filesNew
 
       for (const file of fileList) {
          newFiles.push(Object.assign(file, { preview: URL.createObjectURL(file) }))
       }
 
-      setFieldValue('files', [...newFiles])
+      
+      setFieldValue('filesNew', [...newFiles])
+      setErrorFile(false)
    }
 
    const handleDeletePreview = fileName => {
-      const newFiles = filesOld.filter(file => fileName !== file.name)
-      setFieldValue('filesOld', [...newFiles])
+      const newFilesOld = filesOld.filter(file => fileName !== file.name)
+      setFieldValue('filesOld', [...newFilesOld])
+   }
+
+   const handleDeletePreviewNew = fileName => {
+      const newFiles = filesNew.filter(file => fileName !== file.name)
+      setFieldValue('filesNew', [...newFiles])
    }
 
    return (
@@ -68,6 +76,27 @@ const Uploads = ({ filesOld, filesNew, setFieldValue }) => {
                   </Foto>
                </Grid>
             ))}
+
+            {filesNew.map((file, index) => (
+               <Grid item md={4} sm={4} xs={6} key={index}>
+                  <Foto>
+                     <Image
+                        name={file.name}
+                        src={file.preview}
+                        width="4"
+                        height="2"
+                        alt=""
+                        layout="responsive"
+                        objectFit="cover"
+                     />
+                     <div onClick={() => handleDeletePreviewNew(file.name)}>
+                        <DeleteForeverIcon />
+                     </div>
+                  </Foto>
+               </Grid>
+            ))}
+
+
          </Grid>
          <label htmlFor="contained-button-file">
             <Input

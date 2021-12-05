@@ -109,14 +109,20 @@ const put = async (req, res) => {
    })
 
    form.parse(req, async (error, fields, data) => {
-      if (error) {
-         return res.status(500).json({ success: false })
-      }
+      if (error) return res.status(500).json({ success: false })
 
-      const { _id, name, price, category, description, filesOld, userId } = fields  
+      const { _id, name, price, category, description, filesOld, userId } = fields
+
+      if (filesOld) await updateFiles(_id, JSON.parse(filesOld), form)
+
       
-      await updateFiles(_id, JSON.parse(filesOld), form)
-
+      const { filesNew } = data  
+      if(filesNew ){    
+         const filesToRename = filesNew instanceof Array ? filesNew : [filesNew]
+         const filesReady = renameFiles(filesToRename, form)
+         await ProductsModel.updateOne({ _id: _id}, { $push: { 'files': filesReady } }) 
+      }
+      
       await ProductsModel.updateOne(
          { _id: _id},
          { $set: { 
