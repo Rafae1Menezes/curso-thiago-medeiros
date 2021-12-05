@@ -1,9 +1,9 @@
-import { post } from '../../../src/controllers/products'
+import { put } from '../../../src/controllers/products'
 import nextConnect from 'next-connect'
 
 const route = nextConnect()
 
-route.post(post)
+route.put(put)
 
 export default route
 

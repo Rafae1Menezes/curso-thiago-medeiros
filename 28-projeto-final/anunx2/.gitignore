@@ -19,3 +19,6 @@ yarn-error.log*
 
 #Fotos
 /public/uploads
+
+#Eslint
+.eslintrc.json
