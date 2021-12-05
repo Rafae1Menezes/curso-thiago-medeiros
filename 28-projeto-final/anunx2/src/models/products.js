@@ -29,7 +29,7 @@ const schema = new mongoose.Schema(
       },
       userId: {
          type: String,
-         required: [true, 'o campo "descrição" é obrigatório'],
+         required: [true, 'o campo "userId" é obrigatório'],
       },
    },
    { versionKey: false }

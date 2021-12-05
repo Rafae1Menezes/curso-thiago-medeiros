@@ -32,13 +32,14 @@ const Input = styled('input')({
 
 const Uploads = ({ files, setFieldValue }) => {
    const handleAddFile = fileList => {
-      const newFiles = []
+      const newFiles = files
 
       for (const file of fileList) {
          newFiles.push(Object.assign(file, { preview: URL.createObjectURL(file) }))
       }
+      //console.log(newFiles)
 
-      setFieldValue('files', [...files, ...newFiles])
+      setFieldValue('files', [...newFiles])
    }
 
    const handleDeletePreview = fileName => {

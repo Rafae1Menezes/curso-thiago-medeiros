@@ -10,37 +10,62 @@ import {
    FormHelperText,
 } from '@mui/material'
 import Uploads from '../../src/components/Uploads'
-import { useState } from 'react'
 import { FormControl } from '@mui/material'
 import Paper from '../../src/components/Paper'
 
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './addFormValues'
-import { MapsHomeWork } from '@mui/icons-material'
+import axios from 'axios'
 
 const Add = () => {
 
    const handleFormSubmit = values => {
-      console.log(values)
+      
+
+      const formData = new FormData()
+
+      for (const field in values) {
+         if (field === 'files') {
+            values.files.forEach(file => {
+               formData.append('files', file)
+            })
+         } else {
+            formData.append(field, values[field])
+         }
+      }
+
+      formData.append('userId', "123abc")
+
+      axios
+         .post('/api/products/add', formData)
+         .then(handleSuccess)
+         .catch(handleError)  
+   }
+
+   const handleSuccess = () => {
+      console.log("deu bom")
+   }
+
+   const handleError = () => {
+      console.log("deu ruim")
    }
 
    return (
       <Formik
          initialValues={initialValues}
          validationSchema={validationSchema}
-         onSubmit={values => handleFormSubmit(values)}
+         onSubmit={handleFormSubmit}
       >
          {({
             values,
             errors,
             touched,
-            isSubmitting,
             handleChange,
             setFieldValue,
             handleSubmit,
          }) => {
             return (
-               <form onSubmit={handleSubmit}>
+               <form onSubmit={handleSubmit} type="POST">
                   <Paper variant="outlined" align="center">
                      <Typography variant="h4" gutterBottom align="center">
                         Cadastro do Produto
