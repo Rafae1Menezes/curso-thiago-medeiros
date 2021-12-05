@@ -3,8 +3,6 @@ import { Box, styled } from '@mui/material'
 import Image from 'next/image'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import Button from '@mui/material/Button'
-import { useState } from 'react'
-import { typography } from '@mui/system'
 
 const Foto = styled('div')(({ theme }) => ({
    position: 'relative',
@@ -18,7 +16,7 @@ const Foto = styled('div')(({ theme }) => ({
       display: 'none',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: theme.palette.primary.main + "bb",
+      backgroundColor: theme.palette.primary.main + 'bb',
       width: '100%',
       height: '100%',
       position: 'absolute',
@@ -32,28 +30,20 @@ const Input = styled('input')({
    display: 'none',
 })
 
-
-
-const Uploads = () => {
-   const [files, setFiles] = useState([])
-
+const Uploads = ({ files, setFieldValue }) => {
    const handleAddFile = fileList => {
       const newFiles = []
 
       for (const file of fileList) {
-         newFiles.push(
-            Object.assign(file, { preview: URL.createObjectURL(file) })
-         )
+         newFiles.push(Object.assign(file, { preview: URL.createObjectURL(file) }))
       }
 
-      setFiles([...files, ...newFiles])
+      setFieldValue('files', [...files, ...newFiles])
    }
 
-   const handleDeletePreview = (fileName) => {
-      
-      const newfiles = files.filter(file => fileName !== file.name)
-      //console.log(newfiles)
-      setFiles(newfiles)
+   const handleDeletePreview = fileName => {
+      const newFiles = files.filter(file => fileName !== file.name)
+      setFieldValue('files', [...newFiles])
    }
 
    return (
@@ -72,13 +62,11 @@ const Uploads = () => {
                         objectFit="cover"
                      />
                      <div onClick={() => handleDeletePreview(file.name)}>
-                        <DeleteForeverIcon /> 
+                        <DeleteForeverIcon />
                      </div>
                   </Foto>
                </Grid>
             ))}
-
-            
          </Grid>
          <label htmlFor="contained-button-file">
             <Input

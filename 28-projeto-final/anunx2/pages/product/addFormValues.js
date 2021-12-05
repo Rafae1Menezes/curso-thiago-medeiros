@@ -5,6 +5,7 @@ const initialValues = {
    price: '',
    category: '',
    description: '',
+   files: [],
 }
 
 const validationSchema = yup.object().shape({
@@ -20,6 +21,11 @@ const validationSchema = yup.object().shape({
    description: yup
       .string()
       .min(10, 'Escreva uma descrição maior.')
+      .required('Campo obrigatório.'),
+
+   files: yup
+      .array()
+      .min(1, 'Envie pelo menos uma foto')
       .required('Campo obrigatório.'),
 })
 
