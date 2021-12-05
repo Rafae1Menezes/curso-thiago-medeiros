@@ -69,8 +69,6 @@ const Publish = ({ userId, image }) => {
          }
       }
 
-      console.log(formData)
-
       axios
          .post('/api/products/add', formData)
          .then(handleSuccess)

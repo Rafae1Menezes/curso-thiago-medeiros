@@ -162,14 +162,14 @@ const Add = () => {
                               component="div"
                               variant="body1"
                               sx={{
-                                 borderBottom: `1px solid ${errors.files ? 'red' : '#888'}`,
+                                 borderBottom: `1px solid ${errors.files && touched.files ? 'red' : '#888'}`,
                                  marginBottom: '10px',
                               }}
-                              color={errors.files ? 'red' : 'text.secondary'}
+                              color={errors.files && touched.files ? 'red' : 'text.secondary'}
                            >
                               Fotos
                            </Typography>
-                           {errors.files && (<Typography component="div" variant="body2" color="red"> * Adicione pelo menos uma foto</Typography>)}
+                           {errors.files && touched.files && (<Typography component="div" variant="body2" color="red"> * Adicione pelo menos uma foto</Typography>)}
                            
 
                             <Uploads
