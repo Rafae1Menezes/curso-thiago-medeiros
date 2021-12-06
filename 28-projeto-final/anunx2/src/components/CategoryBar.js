@@ -1,32 +1,9 @@
-import { Box, Divider, styled, Grid, Button as ButtonMui } from '@mui/material'
-import {
-   fontWeight,
-   height,
-   FormControl,
-   InputLabel,
-   Select,
-   MenuItem,
-} from '@mui/material'
-import Link from './Link'
-import { useState } from 'react'
+import { Grid } from '@mui/material'
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material'
+
 import { Typography } from '@mui/material'
 
-const Item = styled(ButtonMui)({
-   padding: '8px 15px',
-
-   color: '#fff',
-   fontWeight: 'normal',
-   fontSize: 13,
-   width: '100%',
-})
-
-const CategoryBar = () => {
-   const [category, setCategory] = useState('Todas')
-
-   const handleChange = event => {
-      setCategory(event.target.value)
-   }
-
+const CategoryBar = ({ category, handleChange }) => {
    return (
       <Grid container sx={{ flexGrow: 1 }}>
          <Grid item md={9} sm={8} xs={12}>
@@ -47,24 +24,29 @@ const CategoryBar = () => {
                   id="demo-simple-select"
                   value={category}
                   label="Filtrar por Categoria"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e.target.value)}
                   sx={{ height: '45px' }}
                >
-                  <MenuItem value="Todas">
-                     Todas
-                  </MenuItem>
-                  
+                  <MenuItem value="Todas">Todas</MenuItem>
+
                   <MenuItem value="Agricultura">Agricultura</MenuItem>
                   <MenuItem value="Moda">Moda</MenuItem>
-                  <MenuItem value="Carros, Motos e Barcos">Carros, Motos e Barcos</MenuItem>
+                  <MenuItem value="Carros, Motos e Barcos">
+                     Carros, Motos e Barcos
+                  </MenuItem>
                   <MenuItem value="Serviços">Serviços</MenuItem>
-                  <MenuItem value="Moveis, Casa e Jardim">Moveis, Casa e Jardim</MenuItem>
+                  <MenuItem value="Moveis, Casa e Jardim">
+                     Moveis, Casa e Jardim
+                  </MenuItem>
                   <MenuItem value="Imóveis">Imóveis</MenuItem>
-                  <MenuItem value="Equipamentos e Ferramentas">Equipamentos e Ferramentas</MenuItem>
-                  <MenuItem value="Celulares e Tablets">Celulares e Tablets</MenuItem>
+                  <MenuItem value="Equipamentos e Ferramentas">
+                     Equipamentos e Ferramentas
+                  </MenuItem>
+                  <MenuItem value="Celulares e Tablets">
+                     Celulares e Tablets
+                  </MenuItem>
                   <MenuItem value="Tecnologia">Tecnologia</MenuItem>
                   <MenuItem value="Emprego">Emprego</MenuItem>
-                  
                </Select>
             </FormControl>
          </Grid>

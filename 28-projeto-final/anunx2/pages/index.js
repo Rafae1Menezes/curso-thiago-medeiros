@@ -1,21 +1,33 @@
 import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
 import Card from '../src/components/Card'
-import { styled } from '@mui/material/styles'
 import CategoryBar from '../src/components/CategoryBar'
 import dbConnect from '../src/utils/dbConnect'
 import ProductsModel from '../src/models/products'
+import { useState } from 'react'
 
-export default function Index({ products }) {
+export default function Index({ productsAll }) {
+   const [products, setProducts] = useState(productsAll)
+   const [category, setCategory] = useState('Todas')
+
+   const handleChangeCategory = newCategory => {
+      const filter = ''      
+
+      if (newCategory === 'Todas') filter = productsAll
+      else filter = productsAll.filter(product => newCategory === product.category)
+
+      setCategory(newCategory)
+      setProducts(filter)   
+   }
 
    return (
       <>
-
-      <CategoryBar />
-      <br />
-      <Grid container spacing={3} sx={{ flexGrow: 1 }}>
-         {
-            products.map(product => {
+         <CategoryBar
+            category={category}
+            handleChange={handleChangeCategory}
+         />
+         <br />
+         <Grid container spacing={3} sx={{ flexGrow: 1 }}>
+            {products.map(product => {
                return (
                   <Grid key={product._id} item lg={3} md={4} sm={6} xs={12}>
                      <Card
@@ -26,9 +38,8 @@ export default function Index({ products }) {
                      />
                   </Grid>
                )
-            })
-         }
-      </Grid>
+            })}
+         </Grid>
       </>
    )
 }
@@ -38,10 +49,9 @@ export async function getServerSideProps() {
 
    const products = await ProductsModel.find()
 
-
    return {
       props: {
-         products: JSON.parse(JSON.stringify(products)),
+         productsAll: JSON.parse(JSON.stringify(products)),
       },
    }
 }
