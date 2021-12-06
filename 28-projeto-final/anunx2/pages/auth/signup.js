@@ -15,13 +15,15 @@ import {
 } from '@mui/material'
 import Image from 'next/image'
 import { useState } from 'react'
-
+import { useRouter } from 'next/router'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './signupFormValues'
 import Paper from '../../src/components/Paper'
+import useToasty from '../../src/context/Toasty'
+import axios from 'axios'
 
 const Divider = styled(Box)(({ theme }) => ({
    display: 'flex',
@@ -39,12 +41,23 @@ const Divider = styled(Box)(({ theme }) => ({
 }))
 
 const Signup = () => {
+   const route = useRouter()
+   const { setToasty } = useToasty()
    const [showPasswords, setShowPassword] = useState(false)
    const handleClickShowPassword = () => setShowPassword(!showPasswords)
    const handleMouseDownPassword = event => event.preventDefault()
 
-   const handleFormSubmit = values => {
-      console.log(values)
+   const handleFormSubmit = async values => {
+      const response = await axios.post('/api/auth/users', values)
+
+      if ((response).data.success){
+         setToasty({
+            open: true,
+            severity: 'success',
+            text: 'Cadastro realizado com sucesso!'
+         })
+         route.push('/auth/signin')
+      }
    }
 
 
