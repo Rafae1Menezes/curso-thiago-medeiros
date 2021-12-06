@@ -112,6 +112,7 @@ export default function Dashboard({ productsAll }) {
                         image={`/uploads/${product.files[0].name}`}
                         title={product.name}
                         price={product.price}
+                        category={product.category}
                         actions={true}
                         handleClickOpenModal={handleClickOpenModal}
                         handleClickEdit={handleClickEdit}

@@ -26,6 +26,8 @@ export default function Index({ productsAll }) {
       setProducts(filter)   
    }
 
+
+   
    return (
       <>
          <CategoryBar
@@ -43,6 +45,7 @@ export default function Index({ productsAll }) {
                         image={`/uploads/${product.files[0].name}`}
                         title={product.name}
                         price={product.price}
+                        category={product.category}
                      />
                   </Grid>
                )

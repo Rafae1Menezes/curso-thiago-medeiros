@@ -7,6 +7,7 @@ import { Button } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { formatCurrency } from '../utils/currency'
 import Link from './Link'
+import slugify from 'slugify'
 
 const Title = styled(Typography)(({ theme }) => ({
    ...theme.typography.h6,
@@ -25,14 +26,16 @@ const Price = styled(Typography)(({ theme }) => ({
 }))
 
 
-const Card = ({  id, image, title, price, actions = false, handleClickOpenModal, handleClickEdit }) => {
+const Card = ({  id, image, title, price, category, actions = false, handleClickOpenModal, handleClickEdit }) => {
    const height = actions ? 320 : 300
 
-   
+
+   const categorySlug  = slugify(category).toLowerCase()
+   const titleSlug = slugify(title).toLowerCase()
 
    return (
       <CardMui sx={{ width: '100%', height: height, position: 'relative' }}>
-         <Link href={`/categoria/produto/${id}`} noLinkStyle>
+         <Link href={`/${categorySlug}/${titleSlug }/${id}`} noLinkStyle>
             <CardMedia
                component="img"
                height="180"
