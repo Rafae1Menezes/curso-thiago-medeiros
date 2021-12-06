@@ -3,7 +3,10 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 
 import { Typography } from '@mui/material'
 
-const CategoryBar = ({ category, handleChange }) => {
+const CategoryBar = ({ categories, category, handleChange }) => {
+
+   console.log(categories)
+
    return (
       <Grid container sx={{ flexGrow: 1 }}>
          <Grid item md={9} sm={8} xs={12}>
@@ -28,25 +31,12 @@ const CategoryBar = ({ category, handleChange }) => {
                   sx={{ height: '45px' }}
                >
                   <MenuItem value="Todas">Todas</MenuItem>
-
-                  <MenuItem value="Agricultura">Agricultura</MenuItem>
-                  <MenuItem value="Moda">Moda</MenuItem>
-                  <MenuItem value="Carros, Motos e Barcos">
-                     Carros, Motos e Barcos
-                  </MenuItem>
-                  <MenuItem value="Serviços">Serviços</MenuItem>
-                  <MenuItem value="Moveis, Casa e Jardim">
-                     Moveis, Casa e Jardim
-                  </MenuItem>
-                  <MenuItem value="Imóveis">Imóveis</MenuItem>
-                  <MenuItem value="Equipamentos e Ferramentas">
-                     Equipamentos e Ferramentas
-                  </MenuItem>
-                  <MenuItem value="Celulares e Tablets">
-                     Celulares e Tablets
-                  </MenuItem>
-                  <MenuItem value="Tecnologia">Tecnologia</MenuItem>
-                  <MenuItem value="Emprego">Emprego</MenuItem>
+                  {
+                     categories.map((cat, i)=>{return(
+                        <MenuItem key={i} value={cat}>{cat}</MenuItem>
+                     )})
+                  }
+                  
                </Select>
             </FormControl>
          </Grid>

@@ -9,6 +9,13 @@ export default function Index({ productsAll }) {
    const [products, setProducts] = useState(productsAll)
    const [category, setCategory] = useState('Todas')
 
+   const categories = []
+   
+   productsAll.forEach(product => {
+      if(!categories.includes(product.category)) 
+      categories.push(product.category)
+   });
+
    const handleChangeCategory = newCategory => {
       const filter = ''      
 
@@ -22,6 +29,7 @@ export default function Index({ productsAll }) {
    return (
       <>
          <CategoryBar
+            categories={categories}
             category={category}
             handleChange={handleChangeCategory}
          />
