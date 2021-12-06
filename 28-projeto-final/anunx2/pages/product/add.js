@@ -13,15 +13,17 @@ import { useRouter } from 'next/router'
 import Uploads from '../../src/components/Uploads'
 import { FormControl } from '@mui/material'
 import Paper from '../../src/components/Paper'
+import useToasty from '../../src/context/Toasty'
 
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './addFormValues'
 import axios from 'axios'
 
 const Add = () => {
+   const { setToasty } = useToasty()
    const router = useRouter()
-   const handleFormSubmit = values => {
-      
+
+   const handleFormSubmit = values => {     
 
       const formData = new FormData()
 
@@ -44,11 +46,21 @@ const Add = () => {
    }
 
    const handleSuccess = () => {
+      setToasty({
+         open: true,
+         text: 'Produto cadastrado com sucesso!',
+         severity: 'success',
+      })
+
       router.push('/user/dashboard')
    }
 
    const handleError = () => {
-      console.log("deu ruim")
+      setToasty({
+         open: true,
+         text: 'Aconteceu um erro ao tentar cadastrar o produto!',
+         severity: 'error',
+      })
    }
 
    return (

@@ -19,9 +19,10 @@ import { initialValues, validationSchema } from './editFormValues'
 import axios from 'axios'
 import ProductsModel from '../../src/models/products'
 import { useState } from 'react'
-
+import useToasty from '../../src/context/Toasty'
 
 const Edit = ({ product }) => {
+   const { setToasty } = useToasty()
    const router = useRouter()
    const [ errorFile, setErrorFile ] = useState(false)
 
@@ -55,11 +56,22 @@ const Edit = ({ product }) => {
    }
 
    const handleSuccess = () => {
+
+      setToasty({
+         open: true,
+         text: 'Alterações salvas com sucesso!',
+         severity: 'success',
+      })
+
       router.push('/user/dashboard')
    }
 
    const handleError = () => {
-      console.log("deu ruim")
+      setToasty({
+         open: true,
+         text: 'Aconteceu um erro ao tentar salvar as alterações!',
+         severity: 'error',
+      })
    }
 
      return (
@@ -190,6 +202,7 @@ const Edit = ({ product }) => {
                               setFieldValue={setFieldValue}
                               setErrorFile={setErrorFile}
                            /> 
+
                         </Grid>
                      </Grid>
                      <br />
@@ -206,6 +219,7 @@ const Edit = ({ product }) => {
                </form>
             )
          }}
+         
       </Formik>
    )
 }
