@@ -17,20 +17,20 @@ const Paper= styled(PaperMui)(({ theme }) => ({
 const SearchField = ({ sx }) => {
 
    const [search, setSearch] = useState()
-   const router = useRouter()
+   const route = useRouter()
 
    const handleSubmitSearch = () => {
-      router.push({
-         pathname: `/search/${search}`,
-      })
+      route.push(`/product/search?q=${search}`)
    }
 
    return (
       <Paper sx={sx} lg={0} md={0} sm={0} xs={0} >
          <InputBase
+            onBlur={()=> setSearch('')}
             onChange={e => setSearch(e.target.value)}
             onKeyPress={e => (e.key === 'Enter' ? handleSubmitSearch() : null)}
             placeholder="Busque aqui o seu produto"
+            value={search}
             fullWidth
          />
          <IconButton onClick={handleSubmitSearch}>

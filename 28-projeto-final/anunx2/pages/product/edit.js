@@ -237,7 +237,7 @@ const Edit = ({ product }) => {
 
 export default Edit
 
-export const getServerSideProps = async (req) => {
+export async function getServerSideProps(req)  {
    const { id } = req.query
 
    const product = await ProductsModel.findById(id)

@@ -4,6 +4,7 @@ import CategoryBar from '../src/components/CategoryBar'
 import dbConnect from '../src/utils/dbConnect'
 import ProductsModel from '../src/models/products'
 import { useState } from 'react'
+import { Typography } from '@mui/material'
 
 export default function Index({ productsAll }) {
    const [products, setProducts] = useState(productsAll)
@@ -36,6 +37,18 @@ export default function Index({ productsAll }) {
             handleChange={handleChangeCategory}
          />
          <br />
+
+         {!products.length ? (
+            <Typography
+               component="div"
+               variant="body1"
+               align="center"
+               sx={{ margin: '50px 0' }}
+            >
+               Nem produto cadastrado.
+            </Typography>
+         ) : null}
+
          <Grid container spacing={3} sx={{ flexGrow: 1 }}>
             {products.map(product => {
                return (

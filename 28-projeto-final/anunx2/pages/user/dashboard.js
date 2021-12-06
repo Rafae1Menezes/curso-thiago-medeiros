@@ -6,10 +6,9 @@ import {
    DialogContentText,
    DialogActions,
    Button,
+   Typography,
 } from '@mui/material'
-import Paper from '@mui/material/Paper'
 import Card from '../../src/components/Card'
-import { styled } from '@mui/material/styles'
 import CategoryBar from '../../src/components/CategoryBar'
 import { useState } from 'react'
 import dbConnect from '../../src/utils/dbConnect'
@@ -17,6 +16,8 @@ import ProductsModel from '../../src/models/products'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import useToasty from '../../src/context/Toasty'
+import Link from '../../src/components/Link'
+
 
 
 export default function Dashboard({ productsAll }) {
@@ -103,6 +104,24 @@ export default function Dashboard({ productsAll }) {
          />
          
          <br />
+         
+         {!products.length ? (
+            <Typography
+               component="div"
+               variant="body1"
+               align="center"
+               sx={{ margin: '50px 0' }}
+            >
+               Cadastre seu primero Produto
+               <br /><br />
+               <Link href="/product/add" noLinkStyle>
+                  <Button color="primary" variant="contained">
+                     Cadastrar Produto
+                  </Button>
+               </Link>
+            </Typography>
+         ) : null}
+
          <Grid container spacing={3} sx={{ flexGrow: 1 }}>
             {products.map(product => {
                return (
