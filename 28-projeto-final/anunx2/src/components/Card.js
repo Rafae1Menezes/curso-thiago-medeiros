@@ -24,16 +24,18 @@ const Price = styled(Typography)(({ theme }) => ({
 }))
 
 
-const Card = ({  image, title, price, actions = false, handleClickOpenModal }) => {
+const Card = ({  id, image, title, price, actions = false, handleClickOpenModal, handleClickEdit }) => {
    const height = actions ? 320 : 300
+
+   
 
    return (
       <CardMui sx={{ width: '100%', height: height, position: 'relative' }}>
-         <Link href="/categoria/produto/123456" noLinkStyle>
+         <Link href={`/categoria/produto/${id}`} noLinkStyle>
             <CardMedia
                component="img"
                height="180"
-               image="https://i.picsum.photos/id/649/200/200.jpg?hmac=tj148mYv7Me5ctSyCePc_TNjma4W3n3RwnqJcIogLoI"
+               image={image}
                alt="green iguana"
             />
             <CardContent>
@@ -45,7 +47,7 @@ const Card = ({  image, title, price, actions = false, handleClickOpenModal }) =
             <CardActions
                sx={{ paddingTop: 0, bottom: 0, position: 'absolute' }}
             >
-               <Button size="small" color="secondary">Editar</Button>
+               <Button size="small" color="secondary" onClick={()=>handleClickEdit(id)}>Editar</Button>
                <Button size="small" color="secondary" onClick={handleClickOpenModal}>Deletar</Button>
             </CardActions>
          ) : null}

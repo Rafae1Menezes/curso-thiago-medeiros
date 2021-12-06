@@ -9,6 +9,8 @@ import Button from '@mui/material/Button'
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import Avatar from '@mui/material/Avatar';
 
+
+
 import Rating from '@mui/material/Rating'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
@@ -16,6 +18,8 @@ import EmailIcon from '@mui/icons-material/Email';
 
 import Link from '../../../src/components/Link'
 import Gallery from '../../../src/components/Gallery'
+import ProductModel from '../../../src/models/products'
+import dbConnect from '../../../src/utils/dbConnect'
 
 const TitlePaper = styled(Typography)(({ theme }) => ({
    ...theme.typography.body2,
@@ -57,23 +61,22 @@ const Flex = styled(Box)(({ theme }) => ({
    alignItems: 'center'
 }))
 
-const ProductPage = ({ idProduct }) => {
+const ProductPage = ({ product }) => {
    const [value, setValue] = useState(3)
 
    return (
       <Grid container spacing={2}>
          <Grid item md={8} xs={12}>
             <Paper spaceBottom>
-               <Gallery />
+               <Gallery images={product.files}/>
             </Paper>
 
             <Paper spaceBottom>
                <TitlePaper>Publicado 16 junho de 2021</TitlePaper>
                <Description>
-                  Seminovo, maravilhoso. Sem detalhes. 30mil km rodados a
-                  penas.Não perca essa oportunidade incrível.
+                  {product.description}
                </Description>
-               <Chip label="Nome da catogoria" />
+               <Chip label={product.category} />
             </Paper>
          </Grid>
          <Grid item md={4} xs={12}>
@@ -89,8 +92,8 @@ const ProductPage = ({ idProduct }) => {
                   sx={{ marginBottom: '15px' }}
                />
 
-               <TitleProduct>Ford Ka 2018. Completo. Ótimio estado de conservação.</TitleProduct>
-               <Price>R$ 30.000,00</Price>
+               <TitleProduct>{product.name}</TitleProduct>
+               <Price>R$ {product.price}</Price>
                
                <Flex>                     
                   <Box><LocalShippingIcon /></Box>
@@ -124,14 +127,21 @@ const ProductPage = ({ idProduct }) => {
    )
 }
 
+
+export default ProductPage
+
+
 export async function getServerSideProps({ query }) {
    const { idProduct } = query
 
+   await dbConnect()
+   const product = await ProductModel.findById(idProduct)
+
+   
+
    return {
       props: {
-         idProduct: JSON.parse(JSON.stringify(idProduct)),
-      },
+         product: JSON.parse(JSON.stringify(product))
+      }
    }
 }
-
-export default ProductPage

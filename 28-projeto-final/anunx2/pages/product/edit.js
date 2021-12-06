@@ -9,6 +9,7 @@ import {
    Button,
    FormHelperText,
 } from '@mui/material'
+import { useRouter } from 'next/router'
 import UploadsEdit from '../../src/components/UploadsEdit'
 import { FormControl } from '@mui/material'
 import Paper from '../../src/components/Paper'
@@ -21,6 +22,7 @@ import { useState } from 'react'
 
 
 const Edit = ({ product }) => {
+   const router = useRouter()
    const [ errorFile, setErrorFile ] = useState(false)
 
    const handleFormSubmit = values => {
@@ -43,7 +45,6 @@ const Edit = ({ product }) => {
          }
       }      
 
-      console.log(values.filesNew)
 
       formData.append('userId', "123abc")
 
@@ -54,7 +55,7 @@ const Edit = ({ product }) => {
    }
 
    const handleSuccess = () => {
-      console.log("deu bom")
+      router.push('/user/dashboard')
    }
 
    const handleError = () => {

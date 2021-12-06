@@ -53,29 +53,18 @@ const CategoryBar = () => {
                   <MenuItem value="Todas">
                      Todas
                   </MenuItem>
-                  <MenuItem value="Bebê e Criança">Bebê e Criança</MenuItem>
+                  
                   <MenuItem value="Agricultura">Agricultura</MenuItem>
                   <MenuItem value="Moda">Moda</MenuItem>
-                  <MenuItem value="Carros, Motos e Barcos">
-                     Carros, Motos e Barcos
-                  </MenuItem>
+                  <MenuItem value="Carros, Motos e Barcos">Carros, Motos e Barcos</MenuItem>
                   <MenuItem value="Serviços">Serviços</MenuItem>
-                  <MenuItem value="Lazer">Lazer</MenuItem>
-                  <MenuItem value="Animais">Animais</MenuItem>
-                  <MenuItem value="Moveis, Casa e Jardim">
-                     Moveis, Casa e Jardim
-                  </MenuItem>
+                  <MenuItem value="Moveis, Casa e Jardim">Moveis, Casa e Jardim</MenuItem>
                   <MenuItem value="Imóveis">Imóveis</MenuItem>
-                  <MenuItem value="Equipamentos e Ferramentas">
-                     Equipamentos e Ferramentas
-                  </MenuItem>
-                  <MenuItem value="Celulares e Tablets">
-                     Celulares e Tablets
-                  </MenuItem>
-                  <MenuItem value="Esporte">Esporte</MenuItem>
+                  <MenuItem value="Equipamentos e Ferramentas">Equipamentos e Ferramentas</MenuItem>
+                  <MenuItem value="Celulares e Tablets">Celulares e Tablets</MenuItem>
                   <MenuItem value="Tecnologia">Tecnologia</MenuItem>
                   <MenuItem value="Emprego">Emprego</MenuItem>
-                  <MenuItem value="Outros">Outros</MenuItem>
+                  
                </Select>
             </FormControl>
          </Grid>

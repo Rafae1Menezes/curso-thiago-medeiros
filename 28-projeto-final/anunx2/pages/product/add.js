@@ -9,6 +9,7 @@ import {
    Button,
    FormHelperText,
 } from '@mui/material'
+import { useRouter } from 'next/router'
 import Uploads from '../../src/components/Uploads'
 import { FormControl } from '@mui/material'
 import Paper from '../../src/components/Paper'
@@ -18,7 +19,7 @@ import { initialValues, validationSchema } from './addFormValues'
 import axios from 'axios'
 
 const Add = () => {
-
+   const router = useRouter()
    const handleFormSubmit = values => {
       
 
@@ -43,7 +44,7 @@ const Add = () => {
    }
 
    const handleSuccess = () => {
-      console.log("deu bom")
+      router.push('/user/dashboard')
    }
 
    const handleError = () => {
@@ -120,9 +121,17 @@ const Add = () => {
                                     onChange={handleChange}
                                     label="category"
                                  >
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
+                                    <MenuItem value="Agricultura">Agricultura</MenuItem>
+                                    <MenuItem value="Moda">Moda</MenuItem>
+                                    <MenuItem value="Carros, Motos e Barcos">Carros, Motos e Barcos</MenuItem>
+                                    <MenuItem value="Serviços">Serviços</MenuItem>
+                                    <MenuItem value="Moveis, Casa e Jardim">Moveis, Casa e Jardim</MenuItem>
+                                    <MenuItem value="Imóveis">Imóveis</MenuItem>
+                                    <MenuItem value="Equipamentos e Ferramentas">Equipamentos e Ferramentas</MenuItem>
+                                    <MenuItem value="Celulares e Tablets">Celulares e Tablets</MenuItem>
+                                    <MenuItem value="Tecnologia">Tecnologia</MenuItem>
+                                    <MenuItem value="Emprego">Emprego</MenuItem>
+                                    
                                  </Select>
                                  <FormHelperText>
                                     {errors.category &&

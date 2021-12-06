@@ -4,9 +4,12 @@ import Card from '../../src/components/Card'
 import { styled } from '@mui/material/styles'
 import CategoryBar from '../../src/components/CategoryBar'
 import { useState } from 'react'
+import dbConnect from '../../src/utils/dbConnect'
+import ProductsModel from '../../src/models/products'
+import { useRouter } from 'next/router'
 
-
-export default function Dashboard() {
+export default function Dashboard({ products }) {
+   const route = useRouter()
    const [openModal, setOpenModal] = useState(false);
 
   const handleClickOpenModal = () => {
@@ -17,48 +20,34 @@ export default function Dashboard() {
     setOpenModal(false);
   };
 
+  const handleClickEdit = (id) => {
+   route.push(`/product/edit?id=${id}`)
+}
+
    return (
       <>
 
       <CategoryBar />
       <br />
       <Grid container spacing={3} sx={{ flexGrow: 1 }}>
-         <Grid item lg={3} md={4} sm={6} xs={12}>
-            <Card
-               image="https://i.picsum.photos/id/603/200/200.jpg?hmac=0BCtNqTfCvRnGEYZ9CJPnBJ8RjT9g0wRO3iDtLHWcnY"
-               title="Ford Ka 2018. Completo. Ótimio estado de conservação."
-               price="300,00"
-               actions={true}
-               handleClickOpenModal={handleClickOpenModal}
-            />
-         </Grid>
-         <Grid item lg={3} md={4} sm={6} xs={12}>
-            <Card
-               image="https://i.picsum.photos/id/603/200/200.jpg?hmac=0BCtNqTfCvRnGEYZ9CJPnBJ8RjT9g0wRO3iDtLHWcnY"
-               title="Ford Ka 2018. Completo. Ótimio estado de conservação."
-               price="300,00"
-               actions={true}
-               handleClickOpenModal={handleClickOpenModal}
-            />
-         </Grid>
-         <Grid item lg={3} md={4} sm={6} xs={12}>
-            <Card
-               image="https://i.picsum.photos/id/603/200/200.jpg?hmac=0BCtNqTfCvRnGEYZ9CJPnBJ8RjT9g0wRO3iDtLHWcnY"
-               title="Ford Ka 2018. Completo. Ótimio estado de conservação."
-               price="300,00"
-               actions={true}
-               handleClickOpenModal={handleClickOpenModal}
-            />
-         </Grid>
-         <Grid item lg={3} md={4} sm={6} xs={12}>
-            <Card
-               image="https://i.picsum.photos/id/603/200/200.jpg?hmac=0BCtNqTfCvRnGEYZ9CJPnBJ8RjT9g0wRO3iDtLHWcnY"
-               title="Ford Ka 2018. Completo. Ótimio estado de conservação."
-               price="300,00"
-               actions={true}
-               handleClickOpenModal={handleClickOpenModal}
-            />
-         </Grid>
+         {
+            products.map(product => {
+               return (
+                  <Grid key={product._id} item lg={3} md={4} sm={6} xs={12}>
+                     <Card
+                        id={product._id}
+                        image={`/uploads/${product.files[0].name}`}
+                        title={product.name}
+                        price={product.price}
+                        actions={true}
+                        handleClickOpenModal={handleClickOpenModal}
+                        handleClickEdit={handleClickEdit}
+                     />
+                  </Grid>
+               )
+            })
+         }
+         
       </Grid>
 
 
@@ -87,4 +76,17 @@ export default function Dashboard() {
 
       </>
    )
+}
+
+export async function getServerSideProps() {
+   await dbConnect()
+
+   const products = await ProductsModel.find()
+
+
+   return {
+      props: {
+         products: JSON.parse(JSON.stringify(products)),
+      },
+   }
 }
