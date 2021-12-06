@@ -8,6 +8,7 @@ import {
    MenuItem,
    Button,
    FormHelperText,
+   InputAdornment,
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import Uploads from '../../src/components/Uploads'
@@ -119,6 +120,9 @@ const Add = () => {
                                     errors.price
                                  }
                                  error={errors.price && touched.price}
+                                 InputProps={{
+                                    startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                                  }}
                               />
 
                               <FormControl

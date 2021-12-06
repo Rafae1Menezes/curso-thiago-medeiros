@@ -5,6 +5,7 @@ import { Card as CardMui } from '@mui/material/'
 import { CardActions } from '@mui/material'
 import { Button } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { formatCurrency } from '../utils/currency'
 import Link from './Link'
 
 const Title = styled(Typography)(({ theme }) => ({
@@ -40,7 +41,7 @@ const Card = ({  id, image, title, price, actions = false, handleClickOpenModal,
             />
             <CardContent>
                <Title>{title}</Title>
-               <Price>R$ {price}</Price>
+               <Price>{formatCurrency(price)}</Price>
             </CardContent>
          </Link>
          {actions ? (

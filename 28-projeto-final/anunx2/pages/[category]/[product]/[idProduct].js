@@ -20,6 +20,7 @@ import Link from '../../../src/components/Link'
 import Gallery from '../../../src/components/Gallery'
 import ProductModel from '../../../src/models/products'
 import dbConnect from '../../../src/utils/dbConnect'
+import { formatCurrency } from '../../../src/utils/currency'
 
 const TitlePaper = styled(Typography)(({ theme }) => ({
    ...theme.typography.body2,
@@ -93,7 +94,7 @@ const ProductPage = ({ product }) => {
                />
 
                <TitleProduct>{product.name}</TitleProduct>
-               <Price>R$ {product.price}</Price>
+               <Price>{formatCurrency(product.price)}</Price>
                
                <Flex>                     
                   <Box><LocalShippingIcon /></Box>
