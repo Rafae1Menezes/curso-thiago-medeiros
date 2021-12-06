@@ -3,8 +3,6 @@ import ProductsModel from '../models/products'
 import formidable from 'formidable-serverless'
 import path from 'path'
 import fs from 'fs'
-import { UploadFile } from '@mui/icons-material'
-import { Field } from 'formik'
 
 const renameFiles = (files, form) => {
    const filesRenamed = []
@@ -138,4 +136,21 @@ const put = async (req, res) => {
    res.status(201).json({ success: true })
 }
 
-export { post, put }
+const remove = async (req, res) => {
+   await dbConnect()
+   const id = req.body.id
+   const deleted = await ProductsModel.findOneAndDelete({ _id: id })
+
+   deleted.files.forEach(file=>{
+      const arquivo = path.join(__dirname, `../../../../../public/uploads/${file.name}`)   
+      fs.unlinkSync(arquivo)    
+   }) 
+
+   if (deleted) {
+      return res.status(200).json({ success: true })
+   }
+
+   return res.status(500).json({ success: false })
+}
+
+export { post, put, remove }

@@ -74,6 +74,10 @@ const Edit = ({ product }) => {
       })
    }
 
+   const handleCancel = () => {
+      router.push('/user/dashboard')
+   }
+
      return (
       <Formik
          initialValues={product}
@@ -215,7 +219,7 @@ const Edit = ({ product }) => {
                      <br />
                      <br />
                      <Stack direction="row" spacing={1} maxWidth="500px">
-                        <Button variant="contained" fullWidth>
+                        <Button variant="contained" fullWidth onClick={handleCancel}>
                            Cancelar
                         </Button>
                         <Button variant="contained" fullWidth type="submit">

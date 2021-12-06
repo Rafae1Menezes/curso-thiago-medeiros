@@ -15,15 +15,21 @@ import { useState } from 'react'
 import dbConnect from '../../src/utils/dbConnect'
 import ProductsModel from '../../src/models/products'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import useToasty from '../../src/context/Toasty'
+
 
 export default function Dashboard({ productsAll }) {
+   const { setToasty } = useToasty()
    const route = useRouter()
    const [openModal, setOpenModal] = useState(false)
    const [products, setProducts] = useState(productsAll)
    const [category, setCategory] = useState('Todas')
+   const [productId, setProductId] = useState()
 
-   const handleClickOpenModal = () => {
+   const handleClickOpenModal = (productId) => {
       setOpenModal(true)
+      setProductId(productId)
    }
 
    const handleCloseModal = () => {
@@ -45,6 +51,40 @@ export default function Dashboard({ productsAll }) {
 
       setCategory(newCategory)
       setProducts(filter)
+   }
+
+   const handleConfirmRemove = () => {
+      console.log(productId)
+      axios
+         .delete('/api/products/delete', {
+            data: {
+               id: productId,
+            },
+         })
+         .then(handleSuccess)
+         .catch(handleError)
+   }
+
+   const handleSuccess = () => {
+
+      const currentProducts = products.filter((product)=>product._id!==productId)
+      setProducts(currentProducts)
+
+      handleCloseModal()
+      setToasty({
+         open: true,
+         severity: 'success',
+         text: 'Anuncio removido com sucesso com sucesso!',
+      })
+   }
+
+   const handleError = () => {
+      handleCloseModal()
+      setToasty({
+         open: true,
+         severity: 'error',
+         text: 'Erro ao remover o anúncio.',
+      })
    }
 
    const categories = []
@@ -97,9 +137,7 @@ export default function Dashboard({ productsAll }) {
             </DialogContent>
             <DialogActions>
                <Button onClick={handleCloseModal}>Cancelar</Button>
-               <Button onClick={handleCloseModal} autoFocus>
-                  Deletar
-               </Button>
+               <Button onClick={handleConfirmRemove}>Deletar</Button>
             </DialogActions>
          </Dialog>
       </>

@@ -48,7 +48,7 @@ const Card = ({  id, image, title, price, actions = false, handleClickOpenModal,
                sx={{ paddingTop: 0, bottom: 0, position: 'absolute' }}
             >
                <Button size="small" color="secondary" onClick={()=>handleClickEdit(id)}>Editar</Button>
-               <Button size="small" color="secondary" onClick={handleClickOpenModal}>Deletar</Button>
+               <Button size="small" color="secondary" onClick={()=>handleClickOpenModal(id)}>Deletar</Button>
             </CardActions>
          ) : null}
       </CardMui>

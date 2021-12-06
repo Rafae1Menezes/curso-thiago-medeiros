@@ -5,7 +5,6 @@ import { Typography } from '@mui/material'
 
 const CategoryBar = ({ categories, category, handleChange }) => {
 
-   console.log(categories)
 
    return (
       <Grid container sx={{ flexGrow: 1 }}>
