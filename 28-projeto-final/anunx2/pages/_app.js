@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { SessionProvider } from "next-auth/react"
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
@@ -12,8 +12,12 @@ import { ToastyProvider }  from '../src/context/Toasty'
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
-export default function MyApp(props) {
-   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+export default function MyApp({
+   Component,
+   emotionCache = clientSideEmotionCache,
+   pageProps: { session, ...pageProps },
+ }) {
+
 
    return (
       <StyledEngineProvider injectFirst>
@@ -29,15 +33,17 @@ export default function MyApp(props) {
                   content="Site de vendas. Estudo de Next."
                ></meta>
             </Head>
-            <ThemeProvider theme={theme}>
-               {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-               <CssBaseline />
-               <Template>
-                  <ToastyProvider>
-                     <Component {...pageProps} />
-                  </ToastyProvider>
-               </Template>
-            </ThemeProvider>
+            <SessionProvider session={session}>
+               <ThemeProvider theme={theme}>
+                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                  <CssBaseline />
+                  <Template>
+                     <ToastyProvider>
+                        <Component {...pageProps} />
+                     </ToastyProvider>
+                  </Template>
+               </ThemeProvider>
+            </SessionProvider>
          </CacheProvider>
       </StyledEngineProvider>
    )

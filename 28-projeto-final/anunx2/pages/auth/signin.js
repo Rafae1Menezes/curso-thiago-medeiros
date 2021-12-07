@@ -22,6 +22,9 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './signinFormValues'
 import Paper from '../../src/components/Paper'
+import { signIn } from 'next-auth/react'
+import { Alert } from '@mui/material'
+import { boolean } from 'yup/lib/locale'
 
 const Divider = styled(Box)(({ theme }) => ({
    display: 'flex',
@@ -38,13 +41,17 @@ const Divider = styled(Box)(({ theme }) => ({
    },
 }))
 
-const Signin = () => {
+const Signin = ({ APP_URL, error }) => {
    const [showPasswords, setShowPassword] = useState(false)
    const handleClickShowPassword = () => setShowPassword(!showPasswords)
    const handleMouseDownPassword = event => event.preventDefault()
 
    const handleFormSubmit = values => {
-      console.log(values)
+      signIn('credentials', {
+         email: values.email,
+         password: values.password,
+         callbackUrl: `${APP_URL}/user/dashboard`,
+      })
    }
 
    return (
@@ -99,6 +106,17 @@ const Signin = () => {
                            >
                               Entre com sua conta
                            </Typography>
+
+                           {error ? (
+                              <Alert
+                                 severity="error"
+                                 sx={{ width: '100%' }}
+                                 elevation={0}
+                                 variant="outlined"
+                              >
+                                 Usuário ou senha incorreto.
+                              </Alert>
+                           ) : null}
 
                            <TextField
                               id="email"
@@ -183,3 +201,14 @@ const Signin = () => {
 }
 
 export default Signin
+
+export const getServerSideProps = ({ req }) => {
+   const error = req.body
+
+   return {
+      props: {
+         APP_URL: process.env.APP_URL,
+         error: error !== '',
+      },
+   }
+}
