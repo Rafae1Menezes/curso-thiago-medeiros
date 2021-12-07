@@ -19,8 +19,7 @@ import useToasty from '../../src/context/Toasty'
 import Link from '../../src/components/Link'
 
 
-
-export default function Dashboard({ productsAll }) {
+const Dashboard = ({ productsAll }) => {
    const { setToasty } = useToasty()
    const route = useRouter()
    const [openModal, setOpenModal] = useState(false)
@@ -164,7 +163,12 @@ export default function Dashboard({ productsAll }) {
    )
 }
 
-export async function getServerSideProps() {
+
+Dashboard.auth = true
+
+export default Dashboard
+
+export async function getServerSideProps(session) {
    await dbConnect()
 
    const products = await ProductsModel.find()

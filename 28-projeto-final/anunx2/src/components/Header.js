@@ -8,12 +8,16 @@ import Link from './Link'
 import SearchField from './SearchField'
 import Avatar from '@mui/material/Avatar'
 import { useState } from 'react'
+import { useSession } from 'next-auth/react'
 
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import PersonIcon from '@mui/icons-material/Person'
+import { signOut } from "next-auth/react"
+import { useEffect } from 'react'
 
 const Header = () => {
-   const auth = false
+   const { data: session, status } = useSession()
+   const auth = !!session
    const [anchorEl, setAnchorEl] = useState(null)
    const open = Boolean(anchorEl)
    const handleClick = event => {
@@ -21,6 +25,10 @@ const Header = () => {
    }
    const handleClose = () => {
       setAnchorEl(null)
+   }
+
+   const handleSair = () => {
+      signOut()
    }
 
    return (
@@ -57,8 +65,11 @@ const Header = () => {
                               },
                            }}
                            onClick={handleClick}
+                           src={session?.user.image}
                         />
+                        
                      </>
+                     
                   ) : (
                      <>
                         <Link href="/auth/signin" noLinkStyle>
@@ -116,7 +127,7 @@ const Header = () => {
                         <ListItemIcon>
                            <PersonIcon fontSize="small" />
                         </ListItemIcon>
-                        Perfil
+                        {session?.user.name}
                      </MenuItem>
                      <Divider />
                      <Link href="/user/dashboard" noLinkStyle>
@@ -125,7 +136,7 @@ const Header = () => {
                      <MenuItem>Minhas Compras</MenuItem>
                      <MenuItem>Minhas Vendas</MenuItem>
                      <Divider />
-                     <Link href="/" noLinkStyle>
+                     <Link href="/" noLinkStyle onClick={handleSair}>
                         <MenuItem>
                            <ListItemIcon>
                               <ExitToAppIcon fontSize="small" />

@@ -24,6 +24,7 @@ import { initialValues, validationSchema } from './signupFormValues'
 import Paper from '../../src/components/Paper'
 import useToasty from '../../src/context/Toasty'
 import axios from 'axios'
+import { signIn } from 'next-auth/react'
 
 const Divider = styled(Box)(({ theme }) => ({
    display: 'flex',
@@ -46,6 +47,13 @@ const Signup = () => {
    const [showPasswords, setShowPassword] = useState(false)
    const handleClickShowPassword = () => setShowPassword(!showPasswords)
    const handleMouseDownPassword = event => event.preventDefault()
+
+
+   const handleGoogleLogin = () => {
+      signIn('google', { 
+         callbackUrl: 'http://localhost:3000/user/dashboard' 
+      })
+   }
 
    const handleFormSubmit = async values => {
       const response = await axios.post('/api/auth/users', values)
@@ -89,6 +97,7 @@ const Signup = () => {
                               Criar uma conta
                            </Typography>
                            <Button
+                              onClick={handleGoogleLogin}
                               variant="contained"
                               color="background"
                               sx={{ width: 250 }}
@@ -186,7 +195,7 @@ const Signup = () => {
                                           onMouseDown={handleMouseDownPassword}
                                           edge="end"
                                        >
-                                          {showPasswords ? (
+                                          {!showPasswords ? (
                                              <VisibilityOff />
                                           ) : (
                                              <Visibility />
@@ -222,7 +231,7 @@ const Signup = () => {
                                           onMouseDown={handleMouseDownPassword}
                                           edge="end"
                                        >
-                                          {showPasswords ? (
+                                          {!showPasswords ? (
                                              <VisibilityOff />
                                           ) : (
                                              <Visibility />

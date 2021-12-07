@@ -1,9 +1,16 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import GoogleProvider from "next-auth/providers/google"
 import axios from 'axios'
 
 export default NextAuth({
    providers: [
+
+      GoogleProvider({
+         clientId: process.env.GOOGLE_CLIENT_ID,
+         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+       }),
+
       CredentialsProvider({
          name: 'Credentials',
          async authorize(credentials) {
@@ -28,7 +35,7 @@ export default NextAuth({
    pages: {
       signIn: '/auth/signin',
       signOut: '/auth/signout',
-      error: '/auth/signin', // Error code passed in query string as ?error=
+      error: '/auth/signin',
    },
 
    callbacks: {

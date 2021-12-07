@@ -22,7 +22,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './signinFormValues'
 import Paper from '../../src/components/Paper'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import { Alert } from '@mui/material'
 
 const Divider = styled(Box)(({ theme }) => ({
@@ -40,17 +40,20 @@ const Divider = styled(Box)(({ theme }) => ({
    },
 }))
 
-const Signin = ({ APP_URL, error }) => {
+const SigninPage = ({ APP_URL, error }) => {
    const [showPasswords, setShowPassword] = useState(false)
    const handleClickShowPassword = () => setShowPassword(!showPasswords)
    const handleMouseDownPassword = event => event.preventDefault()
-   const { data: session, status } = useSession()
-	const loading = status === 'loading'
+   
 
-   console.log("creu",session)
+   const handleGoogleLogin = async () => {
+      await signIn('google', { 
+         callbackUrl: 'http://localhost:3000/user/dashboard' 
+      })
+   }
 
    const handleFormSubmit = async values => {
-      signIn('credentials', {
+      await signIn('credentials', {
          email: values.email,
          password: values.password,
          callbackUrl: `${APP_URL}/user/dashboard`,
@@ -85,6 +88,7 @@ const Signin = ({ APP_URL, error }) => {
                               Entrar
                            </Typography>
                            <Button
+                              onClick={handleGoogleLogin}
                               variant="contained"
                               color="background"
                               sx={{ width: 250 }}
@@ -113,7 +117,7 @@ const Signin = ({ APP_URL, error }) => {
                            {error ? (
                               <Alert
                                  severity="error"
-                                 sx={{ width: '100%' }}
+                                 sx={{ width: '100%', marginBotom: '8px' }}
                                  elevation={0}
                                  variant="outlined"
                               >
@@ -203,9 +207,9 @@ const Signin = ({ APP_URL, error }) => {
    )
 }
 
-export default Signin
+export default SigninPage
 
-export const getServerSideProps = ( req ) => {
+export const getServerSideProps = req => {
    const { error } = req.query
 
    return {
