@@ -17,7 +17,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import useToasty from '../../src/context/Toasty'
 import Link from '../../src/components/Link'
-
+import { getSession } from 'next-auth/react'
 
 const Dashboard = ({ productsAll }) => {
    const { setToasty } = useToasty()
@@ -168,10 +168,13 @@ Dashboard.auth = true
 
 export default Dashboard
 
-export async function getServerSideProps(session) {
+export async function getServerSideProps({ req, res }) {
    await dbConnect()
+   const session = await getSession({ req })
 
-   const products = await ProductsModel.find()
+   console.log(session)
+
+   const products = await ProductsModel.find({ 'userId': session.user._id })
 
    return {
       props: {
@@ -179,3 +182,5 @@ export async function getServerSideProps(session) {
       },
    }
 }
+
+
