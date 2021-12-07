@@ -37,7 +37,6 @@ const Uploads = ({ files, setFieldValue }) => {
       for (const file of fileList) {
          newFiles.push(Object.assign(file, { preview: URL.createObjectURL(file) }))
       }
-      //console.log(newFiles)
 
       setFieldValue('files', [...newFiles])
    }

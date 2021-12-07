@@ -75,7 +75,6 @@ export async function getServerSideProps(req) {
       ],
    })
 
-   console.log(products)
 
    return {
       props: {

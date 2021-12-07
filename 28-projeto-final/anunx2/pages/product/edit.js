@@ -192,7 +192,6 @@ const Edit = ({ product }) => {
                         </Grid>
                         <Grid item md={4.6} sm={4.8} xs={12}>
                            <Typography
-                              onClick={() => console.log(typeof setFieldValue)} 
                               
                               component="div"
                               variant="body1"

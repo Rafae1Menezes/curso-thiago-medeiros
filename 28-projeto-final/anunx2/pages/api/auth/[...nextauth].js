@@ -31,11 +31,23 @@ export default NextAuth({
       error: '/auth/signin', // Error code passed in query string as ?error=
    },
 
-   
+   callbacks: {
 
-   secret: 'teste',
+      async jwt(token) { 
+         
+         if(token.user) token.token._id = token.user._id         
+         return token.token
+       },
+
+
+      async session(session) {
+
+         session.session.user._id = session.token._id
+         return session.session
+      }
+   },
+
+   secret: process.env.SECRET,
 
    database: process.env.MONGODB_URI,
-
-   debug: false,
 })

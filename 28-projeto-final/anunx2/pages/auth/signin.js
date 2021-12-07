@@ -22,9 +22,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './signinFormValues'
 import Paper from '../../src/components/Paper'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { Alert } from '@mui/material'
-import { boolean } from 'yup/lib/locale'
 
 const Divider = styled(Box)(({ theme }) => ({
    display: 'flex',
@@ -45,8 +44,12 @@ const Signin = ({ APP_URL, error }) => {
    const [showPasswords, setShowPassword] = useState(false)
    const handleClickShowPassword = () => setShowPassword(!showPasswords)
    const handleMouseDownPassword = event => event.preventDefault()
+   const { data: session, status } = useSession()
+	const loading = status === 'loading'
 
-   const handleFormSubmit = values => {
+   console.log("creu",session)
+
+   const handleFormSubmit = async values => {
       signIn('credentials', {
          email: values.email,
          password: values.password,
@@ -202,13 +205,13 @@ const Signin = ({ APP_URL, error }) => {
 
 export default Signin
 
-export const getServerSideProps = ({ req }) => {
-   const error = req.body
+export const getServerSideProps = ( req ) => {
+   const { error } = req.query
 
    return {
       props: {
          APP_URL: process.env.APP_URL,
-         error: error !== '',
+         error: !!error,
       },
    }
 }

@@ -55,7 +55,7 @@ export default function Dashboard({ productsAll }) {
    }
 
    const handleConfirmRemove = () => {
-      console.log(productId)
+      
       axios
          .delete('/api/products/delete', {
             data: {
