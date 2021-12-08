@@ -6,12 +6,9 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider } from '@emotion/react'
 import theme from '../src/theme'
 import createEmotionCache from '../src/createEmotionCache'
-import Template from '../src/components/Template'
+
 import { ToastyProvider } from '../src/context/Toasty'
 import Auth from '../src/components/Auth'
-
-
-
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -39,24 +36,18 @@ export default function MyApp({
                <ThemeProvider theme={theme}>
                   {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                   <CssBaseline />
-                  <Template>
-                     <ToastyProvider>
 
-
-                        <SessionProvider session={session}>
-                           {Component.auth ? (
-                              <Auth>
-                                 <Component {...pageProps} />
-                              </Auth>
-                           ) : (
+                  <ToastyProvider>
+                     <SessionProvider session={session}>
+                        {Component.auth ? (
+                           <Auth>
                               <Component {...pageProps} />
-                           )}
-                        </SessionProvider>
-
-
-
-                     </ToastyProvider>
-                  </Template>
+                           </Auth>
+                        ) : (
+                           <Component {...pageProps} />
+                        )}
+                     </SessionProvider>
+                  </ToastyProvider>
                </ThemeProvider>
             </SessionProvider>
          </CacheProvider>

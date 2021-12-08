@@ -5,6 +5,7 @@ import Card from '../../src/components/Card'
 import { styled } from '@mui/material/styles'
 import dbConnect from '../../src/utils/dbConnect'
 import ProductsModel from '../../src/models/products'
+import Template from '../../src/components/Template'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -16,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Search = ({ query, productsAll }) => {
    return (
-      <>
+      <Template>
          <Typography component="div" variant="h4">
             Resultado da busca
          </Typography>
@@ -59,7 +60,7 @@ const Search = ({ query, productsAll }) => {
                )
             })}
          </Grid>
-      </>
+      </Template>
    )
 }
 

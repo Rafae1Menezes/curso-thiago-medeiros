@@ -3,12 +3,20 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from "next-auth/providers/google"
 import axios from 'axios'
 
+
 export default NextAuth({
    providers: [
 
       GoogleProvider({
          clientId: process.env.GOOGLE_CLIENT_ID,
          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+         authorization: {
+            params: {
+              prompt: "consent",
+              access_type: "offline",
+              response_type: "code"
+            }
+          }
        }),
 
       CredentialsProvider({
@@ -24,13 +32,7 @@ export default NextAuth({
       }),
    ],
 
-   session: {
-      jwt: true,
-   },
-
-   jwt: {
-      secret: process.env.JWT_TOKEN,
-   },
+   
 
    pages: {
       signIn: '/auth/signin',

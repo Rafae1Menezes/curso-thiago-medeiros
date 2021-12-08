@@ -16,7 +16,7 @@ import { signOut } from "next-auth/react"
 import { useEffect } from 'react'
 
 const Header = () => {
-   const { data: session, status } = useSession()
+   const { data: session } = useSession()
    const auth = !!session
    const [anchorEl, setAnchorEl] = useState(null)
    const open = Boolean(anchorEl)

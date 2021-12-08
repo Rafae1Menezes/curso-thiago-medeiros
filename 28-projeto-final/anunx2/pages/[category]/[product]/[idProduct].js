@@ -6,16 +6,14 @@ import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Chip from '@mui/material/Chip'
 import Button from '@mui/material/Button'
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-import Avatar from '@mui/material/Avatar';
-
-
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore'
+import Avatar from '@mui/material/Avatar'
 
 import Rating from '@mui/material/Rating'
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import EmailIcon from '@mui/icons-material/Email';
-
+import LocalShippingIcon from '@mui/icons-material/LocalShipping'
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone'
+import EmailIcon from '@mui/icons-material/Email'
+import Template from '../../../src/components/Template'
 import Link from '../../../src/components/Link'
 import Gallery from '../../../src/components/Gallery'
 import ProductModel from '../../../src/models/products'
@@ -45,7 +43,6 @@ const Price = styled(Typography)(({ theme }) => ({
    marginBottom: '10px',
    fontWeight: 'bold',
    fontSize: '25px',
-   
 }))
 
 const Description = styled(Typography)(({ theme }) => ({
@@ -60,78 +57,102 @@ const Flex = styled(Box)(({ theme }) => ({
    color: theme.palette.text.secondary,
    display: 'flex',
    gap: '8px',
-   alignItems: 'center'
+   alignItems: 'center',
 }))
 
 const ProductPage = ({ product, user }) => {
    const [value, setValue] = useState(3)
 
    return (
-      <Grid container spacing={2}>
-         <Grid item md={8} xs={12}>
-            <Paper spaceBottom>
-               <Gallery images={product.files}/>
-            </Paper>
+      <Template>
+         <Grid container spacing={2}>
+            <Grid item md={8} xs={12}>
+               <Paper spaceBottom>
+                  <Gallery images={product.files} />
+               </Paper>
 
-            <Paper spaceBottom>
-               <TitlePaper>Publicado 16 junho de 2021</TitlePaper>
-               <Description>
-                  {product.description}
-               </Description>
-               <Chip label={product.category} />
-            </Paper>
+               <Paper spaceBottom>
+                  <TitlePaper>Publicado 16 junho de 2021</TitlePaper>
+                  <Description>{product.description}</Description>
+                  <Chip label={product.category} />
+               </Paper>
+            </Grid>
+            <Grid item md={4} xs={12}>
+               <Paper spaceBottom>
+                  <TitlePaper>Novo | 20 unidades disponíveis</TitlePaper>
+
+                  <Rating
+                     name="simple-controlled"
+                     value={value}
+                     onChange={(event, newValue) => {
+                        setValue(newValue)
+                     }}
+                     sx={{ marginBottom: '15px' }}
+                  />
+
+                  <TitleProduct>{product.name}</TitleProduct>
+                  <Price>{formatCurrency(product.price)}</Price>
+
+                  <Flex>
+                     <Box>
+                        <LocalShippingIcon />
+                     </Box>
+                     <Box>
+                        <Link href="#" noLinkStyle>
+                           Ver mais formas de entrega
+                        </Link>
+                     </Box>
+                  </Flex>
+
+                  <Button
+                     variant="contained"
+                     startIcon={<LocalGroceryStoreIcon />}
+                     fullWidth
+                  >
+                     Colocar no Carrinho
+                  </Button>
+               </Paper>
+               <Paper>
+                  <TitlePaper>Informações sobre o vendedor</TitlePaper>
+
+                  <Flex sx={{ marginBottom: '20px' }}>
+                     <Box>
+                        <Avatar />
+                     </Box>
+                     <Box>
+                        <Typography
+                           variant="span"
+                           component="span"
+                           sx={{ fontWeight: 'bold' }}
+                        >
+                           {' '}
+                           {user.name}{' '}
+                        </Typography>
+                        <br /> {user.city}
+                     </Box>
+                  </Flex>
+
+                  <Flex>
+                     <Box>
+                        <LocalPhoneIcon />
+                     </Box>
+                     <Box>{user.phone}</Box>
+                  </Flex>
+
+                  <Flex>
+                     <Box>
+                        <EmailIcon />
+                     </Box>
+                     <Box>{user.email}</Box>
+                  </Flex>
+               </Paper>
+            </Grid>
          </Grid>
-         <Grid item md={4} xs={12}>
-            <Paper spaceBottom>
-               <TitlePaper>Novo | 20 unidades disponíveis</TitlePaper>
-
-               <Rating
-                  name="simple-controlled"
-                  value={value}
-                  onChange={(event, newValue) => {
-                     setValue(newValue)
-                  }}
-                  sx={{ marginBottom: '15px' }}
-               />
-
-               <TitleProduct>{product.name}</TitleProduct>
-               <Price>{formatCurrency(product.price)}</Price>
-               
-               <Flex>                     
-                  <Box><LocalShippingIcon /></Box>
-                  <Box><Link href="#"  noLinkStyle>Ver mais formas de entrega</Link></Box>
-               </Flex>
-
-               <Button variant="contained" startIcon={<LocalGroceryStoreIcon />}  fullWidth>Colocar no Carrinho</Button>
-            </Paper>
-            <Paper>
-               <TitlePaper>Informações sobre o vendedor</TitlePaper>
-
-               <Flex sx={{marginBottom: '20px'}}>                     
-                  <Box><Avatar  /></Box>
-                  <Box>
-                     <Typography   variant="span" component="span" sx={{fontWeight: 'bold'}}> {user.name} </Typography> 
-                     <br/> {user.city}</Box>
-               </Flex>
-               
-               <Flex>                     
-                  <Box><LocalPhoneIcon /></Box>
-                  <Box>{user.phone}</Box>
-               </Flex>
-
-               <Flex>                     
-                  <Box><EmailIcon /></Box>
-                  <Box>{user.email}</Box>
-               </Flex>
-            </Paper>
-         </Grid>
-      </Grid>
+      </Template>
    )
 }
 
-
 export default ProductPage
-
 
 export async function getServerSideProps({ query }) {
    const { idProduct } = query
@@ -143,7 +164,7 @@ export async function getServerSideProps({ query }) {
    return {
       props: {
          product: JSON.parse(JSON.stringify(product)),
-         user: JSON.parse(JSON.stringify(user))
-      }
+         user: JSON.parse(JSON.stringify(user)),
+      },
    }
 }

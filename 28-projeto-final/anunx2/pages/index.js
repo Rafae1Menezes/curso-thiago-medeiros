@@ -5,32 +5,34 @@ import dbConnect from '../src/utils/dbConnect'
 import ProductsModel from '../src/models/products'
 import { useState } from 'react'
 import { Typography } from '@mui/material'
+import Template from '../src/components/Template'
 
 export default function Index({ productsAll }) {
    const [products, setProducts] = useState(productsAll)
    const [category, setCategory] = useState('Todas')
 
    const categories = []
-   
+
    productsAll.forEach(product => {
-      if(!categories.includes(product.category)) 
-      categories.push(product.category)
-   });
+      if (!categories.includes(product.category))
+         categories.push(product.category)
+   })
 
    const handleChangeCategory = newCategory => {
-      const filter = ''      
+      const filter = ''
 
       if (newCategory === 'Todas') filter = productsAll
-      else filter = productsAll.filter(product => newCategory === product.category)
+      else
+         filter = productsAll.filter(
+            product => newCategory === product.category
+         )
 
       setCategory(newCategory)
-      setProducts(filter)   
+      setProducts(filter)
    }
 
-
-   
    return (
-      <>
+      <Template>
          <CategoryBar
             categories={categories}
             category={category}
@@ -64,7 +66,7 @@ export default function Index({ productsAll }) {
                )
             })}
          </Grid>
-      </>
+      </Template>
    )
 }
 

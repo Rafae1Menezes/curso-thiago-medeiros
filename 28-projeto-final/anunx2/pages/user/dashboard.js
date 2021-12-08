@@ -18,6 +18,7 @@ import axios from 'axios'
 import useToasty from '../../src/context/Toasty'
 import Link from '../../src/components/Link'
 import { getSession } from 'next-auth/react'
+import Template from '../../src/components/Template'
 
 const Dashboard = ({ productsAll }) => {
    const { setToasty } = useToasty()
@@ -95,7 +96,7 @@ const Dashboard = ({ productsAll }) => {
    });
 
    return (
-      <>
+      <Template>
          <CategoryBar
             categories={categories}
             category={category}
@@ -159,7 +160,7 @@ const Dashboard = ({ productsAll }) => {
                <Button onClick={handleConfirmRemove}>Deletar</Button>
             </DialogActions>
          </Dialog>
-      </>
+      </Template>
    )
 }
 
@@ -172,7 +173,7 @@ export async function getServerSideProps({ req, res }) {
    await dbConnect()
    const session = await getSession({ req })
 
-   const products = await ProductsModel.find({ 'userId': session.user._id })
+   const products = await ProductsModel.find({ 'userId': session?.user._id })
 
    return {
       props: {
