@@ -16,7 +16,7 @@ const Paper= styled(PaperMui)(({ theme }) => ({
 
 const SearchField = ({ sx }) => {
 
-   const [search, setSearch] = useState()
+   const [search, setSearch] = useState('')
    const route = useRouter()
 
    const handleSubmitSearch = () => {

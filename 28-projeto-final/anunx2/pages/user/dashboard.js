@@ -172,8 +172,6 @@ export async function getServerSideProps({ req, res }) {
    await dbConnect()
    const session = await getSession({ req })
 
-   console.log(session)
-
    const products = await ProductsModel.find({ 'userId': session.user._id })
 
    return {

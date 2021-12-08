@@ -19,6 +19,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import Link from '../../../src/components/Link'
 import Gallery from '../../../src/components/Gallery'
 import ProductModel from '../../../src/models/products'
+import UserModel from '../../../src/models/users'
 import dbConnect from '../../../src/utils/dbConnect'
 import { formatCurrency } from '../../../src/utils/currency'
 
@@ -62,7 +63,7 @@ const Flex = styled(Box)(({ theme }) => ({
    alignItems: 'center'
 }))
 
-const ProductPage = ({ product }) => {
+const ProductPage = ({ product, user }) => {
    const [value, setValue] = useState(3)
 
    return (
@@ -109,18 +110,18 @@ const ProductPage = ({ product }) => {
                <Flex sx={{marginBottom: '20px'}}>                     
                   <Box><Avatar  /></Box>
                   <Box>
-                     <Typography   variant="span" component="span" sx={{fontWeight: 'bold'}}> Rafael Menezes </Typography> 
-                     <br/> Mahuaçu-MG</Box>
+                     <Typography   variant="span" component="span" sx={{fontWeight: 'bold'}}> {user.name} </Typography> 
+                     <br/> {user.city}</Box>
                </Flex>
                
                <Flex>                     
                   <Box><LocalPhoneIcon /></Box>
-                  <Box>(33) 98547-85415</Box>
+                  <Box>{user.phone}</Box>
                </Flex>
 
                <Flex>                     
                   <Box><EmailIcon /></Box>
-                  <Box>menezes@gmail.com</Box>
+                  <Box>{user.email}</Box>
                </Flex>
             </Paper>
          </Grid>
@@ -137,12 +138,12 @@ export async function getServerSideProps({ query }) {
 
    await dbConnect()
    const product = await ProductModel.findById(idProduct)
-
-   
+   const user = await UserModel.findById(product.userId)
 
    return {
       props: {
-         product: JSON.parse(JSON.stringify(product))
+         product: JSON.parse(JSON.stringify(product)),
+         user: JSON.parse(JSON.stringify(user))
       }
    }
 }

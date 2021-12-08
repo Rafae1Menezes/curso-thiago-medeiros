@@ -15,14 +15,18 @@ import Uploads from '../../src/components/Uploads'
 import { FormControl } from '@mui/material'
 import Paper from '../../src/components/Paper'
 import useToasty from '../../src/context/Toasty'
+import { getSession } from 'next-auth/react'
 
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './addFormValues'
 import axios from 'axios'
 
-const Add = () => {
+
+
+const Add =  ({ userId }) => {
    const { setToasty } = useToasty()
    const router = useRouter()
+  
 
    const handleFormSubmit = values => {     
 
@@ -38,7 +42,7 @@ const Add = () => {
          }
       }
 
-      formData.append('userId', "123abc")
+      formData.append('userId', userId)
 
       axios
          .post('/api/products/add', formData)
@@ -225,5 +229,13 @@ const Add = () => {
 }
 
 Add.auth = true
+
+Add.getInitialProps = async ({ req, res }) => {
+   const session = await getSession({ req })
+
+
+   return { userId: session.user._id }
+ }
+
 
 export default Add
