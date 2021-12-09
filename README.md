@@ -274,3 +274,4 @@
 - [x] Utilizando Puppeteer para acesar o Olx e extrair informções dos produtos como Nome, preço e foto.
 
 ### 30 - Bônus Extensão para Chrome
+- [x] Inseção de um botão na página do Hotmart, capaz de incluir e excluir tag e estilos na página.
