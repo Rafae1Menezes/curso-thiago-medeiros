@@ -1,0 +1,19 @@
+{
+   "name": "FFSJS - Extensão do Curso",
+   "description": "Esta extensão adiciona um botão para expandir o player do Hotmart Club",
+   "version": "1.0",
+   "manifest_version": 3,
+   "icons": {
+      "16":"/ffsjs.png",
+      "32":"/ffsjs.png",
+      "48":"/ffsjs.png",
+      "128":"/ffsjs.png"
+   },
+   "content_scripts": [
+      {
+         "matches": ["https://formacaofullstackjavascript.club.hotmart.com/*"],
+         "js": ["script.js"],
+         "css": ["styles.css"]
+      }
+   ]
+ }

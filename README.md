@@ -231,16 +231,46 @@
 - [x] Edição de cadastro;
 - [x] Implemanando Snckbar / Toasty.
 
-### 25 - React.JS - Intermediário
+### 26 - React.JS - Avançao
 - [x] Estilizando através de "CSS Modules";
 - [x] Estilizando usando "Styled Components";
 - [x] Estado global: Context API;
 - [x] Estado Global: Redux.
 
-### 26 - Next.JS
+### 27 - Next.JS
 - [x] Vantagens e desvantagens de utilizar SSR;
 - [x] Instalaçao e estrutura inicial;
 - [x] Usando rotas estáticas;
 - [x] Usando rotas dinâmicas;
 - [x] Customizando os arquivos _document e _app;
 - [x] Pasta API, criação de rotas de comunicação com o back-end.
+
+### 28 - Projeto Final
+- [x] Iniciando o projeto com next integrado com Material.ui;
+- [x] Estruturando Template;
+- [x] Criação do Dashboard com Card;
+- [x] Fomulário de cadastro de produto utilizando Formik para fazer controle dos campos e validação;
+- [x] Formulári de edição e maniputação de arquivos upados e não upados;
+- [x] Upload de imagens utlizando Formidable
+- [x] Deleção de imagens;
+- [x] Estilização do TextField;
+- [x] Abstração do Card;
+- [x] Criação da Home utlizando o mesmo Card do Dashboard;
+- [x] Criação do Menu supenso;
+- [x] Criação do footer;
+- [x] Implementando página do produto;
+- [x] Utilizando Carrossel e criando um componente de galeria;
+- [x] Página de Sign Up;
+- [x] Configuração do Banco de dados MongoDB utilizando Mongoose;
+- [x] Integração da API para produtos e usuários utilizando Next Connect;
+- [x] Utilizando Next Auth para autenticar atraveis de credenciais;
+- [x] Utilizando Next Auth para autenticar atraveis do provedor Google
+- [x] Protegendo as rotas restritas ao usuários logados;
+- [x] Integração da home e dashboard com API;
+- [x] Implementação da formulário e página de busca.
+
+
+### 29 - Bônus Bot Web Crawler
+- [x] Utilizando Puppeteer para acesar o Olx e extrair informções dos produtos como Nome, preço e foto.
+
+### 30 - Bônus Extensão para Chrome
