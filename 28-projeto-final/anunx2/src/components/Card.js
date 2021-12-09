@@ -16,6 +16,7 @@ const Title = styled(Typography)(({ theme }) => ({
    maxHeight: '45px',
    overflow: 'hidden',
    marginBottom: '8px',
+   height: '44px'
 }))
 
 const Price = styled(Typography)(({ theme }) => ({

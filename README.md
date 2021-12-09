@@ -157,8 +157,8 @@
 ### 19 - Exercícios de Javascript Avançado
 - [x] Exercício 1: Mapear um array de objetos em um array com strings concatenadas; 
 - [x] Exercício 2: Filtrar, em um array de alunos, aqueles que ficaram acima da média;
-- [x] Exercício 3: Utilizar o reduce para somar as notas de um array de um objeto e então apresentar uma mensagem com a média do aluno;
-- [x] Exercício 4: Um formulário para buscar uma lista de alunos que obtiveram uma nota específica, através de um filtro.
+- [x] Exercício 3: Utilizar o reduce para somar as notas de um array de um objeto e então; apresentar uma mensagem com a média do aluno;
+- [x] Exercício 4: Um formulário para buscar uma lista de alunos que obtiveram uma nota específica, através de um filtro;
 - [x] Exercício 5: Uma função que retorna um promise que demora 10s para responder no console
 - [x] Exercício 6: Uma promise de um formulário que demora 10 segundos para ser enviado, mostrando um gif de loading.
 
@@ -170,50 +170,77 @@
 - [x] Aula 5: Criando um servidor com o módulo http, respondendo com uma página html.
 
 ### 21 - Node.JS - Express.js
-- [x] Iniciando o servidor pelo express
-- [x] Criando rotas com express
-- [x] Configurando o servidor para servir arquivos estáticos e públicos
-- [x] Definindo o template engine EJS
-- [x] Criação de Partials
-- [x] Loops e condicionais em EJS
-- [x] Requisição POST por fomulários
+- [x] Iniciando o servidor pelo express;
+- [x] Criando rotas com express;
+- [x] Configurando o servidor para servir arquivos estáticos e públicos;
+- [x] Definindo o template engine EJS;
+- [x] Criação de Partials;
+- [x] Loops e condicionais em EJS;
+- [x] Requisição POST por fomulários.
 
 ### 22 - Node.JS - MongoDB - MVC
-- [x] Criação de banco, collection e dados pelo MongoDB Compass
-- [x] Instalando as bibliotecas express e mongoose
-- [x] Oraganização da estrutura inicial do projeto
-- [x] Conectando com o MongoDB
-- [x] Difinindo a estrutura das Rotas
-- [x] Schema da colletion
-- [x] Criação de controllers
-- [x] Criptografando a senha bcrypt
+- [x] Criação de banco, collection e dados pelo MongoDB Compass;
+- [x] Instalando as bibliotecas express e mongoose;
+- [x] Oraganização da estrutura inicial do projeto;
+- [x] Conectando com o MongoDB;
+- [x] Difinindo a estrutura das Rotas;
+- [x] Schema da colletion;
+- [x] Criação de controllers;
+- [x] Criptografando a senha bcrypt;
 - [x] Listar, editar e excluir.
 
 ### 23 - Node.JS - API RESTFul
-- [x] Introdução as regras REST / RESTFul
-- [x] Verbos HTTP
-- [x] Ulizando os versbos HTTP no Postman
-- [x] Criação do Models e Controllers
-- [x] Criação dos GET, POST, PUT e DELETE
-- [x] Autorizando o CORS
-- [x] Criação do frontend separado do backend
+- [x] Introdução as regras REST / RESTFul;
+- [x] Verbos HTTP;
+- [x] Ulizando os versbos HTTP no Postman;
+- [x] Criação do Models e Controllers;
+- [x] Criação dos GET, POST, PUT e DELETE;
+- [x] Autorizando o CORS;
+- [x] Criação do frontend separado do backend.
 
 ### 24 - React.JS - Básico
-- [x] hello-world-react
-  - [x] Instando react e inicializando uma aplicação
-  - [x] Criando componentes com propriedades
-  - [x] Adicionando css aos componetes
-  - [x] Propriedade children
-  - [x] Reutilização de componetes
-- [x] react-counter
-  - [x] useState
-  - [x] useEffect
-  - [x] Navegação de simples
-  - [x] Consumindo dados de uma API
-  - [x] Abstração de componentes
-  - [x] Organização de pastas
+- [x] hello-world-react.
+  - [x] Instando react e inicializando uma aplicação;
+  - [x] Criando componentes com propriedades;
+  - [x] Adicionando css aos componetes;
+  - [x] Propriedade children;
+  - [x] Reutilização de componetes;
+- [x] react-counter.
+  - [x] useState;
+  - [x] useEffect;
+  - [x] Navegação de simples;
+  - [x] Consumindo dados de uma API;
+  - [x] Abstração de componentes;
+  - [x] Organização de pastas.
 
-  ### 25 - React.JS - Intermediário
-- [x] react-router: Criação de routeas com a biblioteca Router
-- [x] react-material: Instação e experimentação de componetes
-  
+### 25 - React.JS - Intermediário
+- [x] react-router: Criação de routeas com a biblioteca Router;
+- [x] react-material: Instação e experimentação de componetes;
+- [x] Criação e organização da estrutura inicial;
+- [x] Criando um header com Appbar;
+- [x] Customização e configuração dos estilos do Material.ui;
+- [x] Aplicação de tem template padrão;
+- [x] Loop de Cards com informações dos usuários;
+- [x] Criando layout responsivo com Gird;
+- [x] Abstração de componentes;
+- [x] Configuração do ESLint;
+- [x] Criano um menu drawer;
+- [x] Criação de modal de exclusão;
+- [x] Integração com api: deletar usuário;
+- [x] Formulário de cadastro;
+- [x] Edição de cadastro;
+- [x] Implemanando Snckbar / Toasty.
+
+### 25 - React.JS - Intermediário
+- [x] Estilizando através de "CSS Modules";
+- [x] Estilizando usando "Styled Components";
+- [x] Estado global: Context API;
+- [x] Estado Global: Redux.
+
+### 26 - Next.JS
+- [x] Vantagens e desvantagens de utilizar SSR;
+- [x] Instalaçao e estrutura inicial;
+- [x] Usando rotas estáticas;
+- [x] Usando rotas dinâmicas;
+- [x] Customizando os arquivos _document e _app;
+- [x] Pasta API, criação de rotas de comunicação com o back-end.

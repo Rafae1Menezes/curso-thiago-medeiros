@@ -128,7 +128,7 @@ const ProductPage = ({ product, user }) => {
                            {' '}
                            {user.name}{' '}
                         </Typography>
-                        <br /> {user.city}
+                        <br /> {(user.city)?user.city: "Manhuaçu-MG"}
                      </Box>
                   </Flex>
 
@@ -136,7 +136,7 @@ const ProductPage = ({ product, user }) => {
                      <Box>
                         <LocalPhoneIcon />
                      </Box>
-                     <Box>{user.phone}</Box>
+                     <Box>{(user.phone)?user.phone:"(33 93333-3333)"}</Box>
                   </Flex>
 
                   <Flex>

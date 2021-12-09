@@ -68,11 +68,11 @@ const Uploads = ({ files, setFieldValue }) => {
                </Grid>
             ))}
          </Grid>
-         <label htmlFor="contained-button-file">
+         <label htmlFor="files">
             <Input
                name="files"
                accept="image/*"
-               id="contained-button-file"
+               id="files"
                multiple
                type="file"
                onChange={e => handleAddFile(e.target.files)}
