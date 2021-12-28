@@ -21,3 +21,11 @@
 - [x] Protegendo as rotas restritas ao usuários logados;
 - [x] Integração da home e dashboard com API;
 - [x] Implementação da formulário e página de busca.
+
+![image](https://user-images.githubusercontent.com/89926211/147609911-d75611b6-8af3-4e5a-8ea5-3f0795487a50.png)
+![image](https://user-images.githubusercontent.com/89926211/147610025-3ff6cde4-4d4b-41ed-9fd8-1f42f553f2d4.png)
+![image](https://user-images.githubusercontent.com/89926211/147610079-d3b37b8a-8000-4b38-b635-bfea75e8b683.png)
+![image](https://user-images.githubusercontent.com/89926211/147609945-6c5a8a21-9037-4bc1-875c-39f68fe94cbb.png)
+![image](https://user-images.githubusercontent.com/89926211/147609968-6275eccb-e124-4651-8e7e-3ca81e9d621e.png)
+
+
