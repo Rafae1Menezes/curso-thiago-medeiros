@@ -1,0 +1,17 @@
+# React.JS - Intermediário
+- [x] react-router: Criação de routeas com a biblioteca Router;
+- [x] react-material: Instação e experimentação de componetes;
+- [x] Criação e organização da estrutura inicial;
+- [x] Criando um header com Appbar;
+- [x] Customização e configuração dos estilos do Material.ui;
+- [x] Aplicação de tem template padrão;
+- [x] Loop de Cards com informações dos usuários;
+- [x] Criando layout responsivo com Gird;
+- [x] Abstração de componentes;
+- [x] Configuração do ESLint;
+- [x] Criano um menu drawer;
+- [x] Criação de modal de exclusão;
+- [x] Integração com api: deletar usuário;
+- [x] Formulário de cadastro;
+- [x] Edição de cadastro;
+- [x] Implemanando Snckbar / Toasty.
