@@ -5,16 +5,7 @@
   - [x] Adicionando css aos componetes;
   - [x] Propriedade children;
   - [x] Reutilização de componetes;
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+    
 - [x] react-counter.
   - [x] useState;
   - [x] useEffect;
