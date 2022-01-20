@@ -1,0 +1,16 @@
+#18 - Javascript Avançado
+- [x] Aula 1: Scope, variáveis locais e globais;
+- [x] Aula 2: Hoisting;
+- [x] Aula 3: Arrow functions;
+- [x] Aula 4: Map;
+- [x] Aula 5: Filter;
+- [x] Aula 6: Reduce;
+- [x] Aula 7: JSON;
+- [x] Aula 8: Local Storege;
+- [x] Aula 9: Sincrono vs Assíncrono;
+- [x] Aula 10: Ajax;
+- [x] Aula 11: Callbacks;
+- [x] Aula 12: Promise;
+- [x] Aula 13: Fetch API;
+- [x] Aula 14: Async / Await;
+- [x] Aula 15: Desestructuring Assignment.

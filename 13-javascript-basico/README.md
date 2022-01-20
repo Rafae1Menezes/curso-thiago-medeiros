@@ -1,0 +1,17 @@
+# Javascript Básico
+- [x] Aula 1: DOM, alert, console.log, console.error, document.write, querySelector;
+- [x] Aula 2: Evento onClick alterando o src de uma imagem;
+- [x] Aula 3: Script externo;
+- [x] Aula 4: Statements;
+- [x] Aula 5: var, let, const;
+- [x] Aula 6: Tipos de dados;
+- [x] Aula 7: Operadores aritiméticos e de atribuição;
+- [x] Aula 8: Operadores comparativos;
+- [x] Aula 9: Condicionais;
+- [x] Aula 10: Operadores Lógicos;
+- [x] Aula 11: Switch;
+- [x] Aula 12: For;
+- [x] Aula 13: For of;
+- [x] Aula 14: While;
+- [x] Aula 15: Function;
+- [x] Aula 16: Return.
