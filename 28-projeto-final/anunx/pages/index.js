@@ -1,78 +1,83 @@
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core'
-
-import TemplateDefault from '../src/templates/Default'
+import Grid from '@mui/material/Grid'
 import Card from '../src/components/Card'
-import SearchField from '../src/components/SearchField'
-import { getSession } from 'next-auth/client'
+import CategoryBar from '../src/components/CategoryBar'
 import dbConnect from '../src/utils/dbConnect'
 import ProductsModel from '../src/models/products'
-import { formatCurrency } from '../src/utils/currency'
+import { useState } from 'react'
+import { Typography } from '@mui/material'
+import Template from '../src/components/Template'
 
-const useStyles = makeStyles(theme => ({
-   cardMedia: {
-      paddingTop: '56%',
-   },
-}))
+export default function Index({ productsAll }) {
+   const [products, setProducts] = useState(productsAll)
+   const [category, setCategory] = useState('Todas')
 
-const Home = ({ products }) => {
-   const classes = useStyles()
+   const categories = []
+
+   productsAll.forEach(product => {
+      if (!categories.includes(product.category))
+         categories.push(product.category)
+   })
+
+   const handleChangeCategory = newCategory => {
+      const filter = ''
+
+      if (newCategory === 'Todas') filter = productsAll
+      else
+         filter = productsAll.filter(
+            product => newCategory === product.category
+         )
+
+      setCategory(newCategory)
+      setProducts(filter)
+   }
 
    return (
-      <TemplateDefault>
-         <Container maxWidth="md">
-            <Typography
-               component="h1"
-               variant="h3"
-               align="center"
-               color="textPrimary"
-            >
-               O que deseja encontrar?
-            </Typography>
+      <Template>
+         <CategoryBar
+            categories={categories}
+            category={category}
+            handleChange={handleChangeCategory}
+         />
+         <br />
 
-            <SearchField />
-         </Container>
-
-         <Container maxWidth="lg" className={classes.cardGrid}>
+         {!products.length ? (
             <Typography
-               component="h2"
-               variant="h4"
+               component="div"
+               variant="body1"
                align="center"
-               color="textPrimary"
+               sx={{ margin: '50px 0' }}
             >
-               Destaques
+               Nem produto cadastrado.
             </Typography>
-            <br />
-            <Grid container spacing={4}>
-               {products.map(product => {
-                  return (
-                     <Grid key={product._id} item xs={12} sm={6} md={4}>
-                        <Card
-                           id={product._id}
-                           category={product.category}
-                           image={`/uploads/${product.files[0].name}`}
-                           title={product.title}
-                           subtitle={formatCurrency(product.price)}
-                        />
-                     </Grid>
-                  )
-               })}
-            </Grid>
-         </Container>
-      </TemplateDefault>
+         ) : null}
+
+         <Grid container spacing={3} sx={{ flexGrow: 1 }}>
+            {products.map(product => {
+               return (
+                  <Grid key={product._id} item lg={3} md={4} sm={6} xs={12}>
+                     <Card
+                        id={product._id}
+                        image={`/uploads/${product.files[0].name}`}
+                        title={product.name}
+                        price={product.price}
+                        category={product.category}
+                     />
+                  </Grid>
+               )
+            })}
+         </Grid>
+      </Template>
    )
 }
 
-export default Home
-
-export async function getServerSideProps({ req }) {
-   const session = await getSession({ req })
+export async function getServerSideProps() {
    await dbConnect()
 
    const products = await ProductsModel.find()
 
    return {
       props: {
-         products: JSON.parse(JSON.stringify(products)),
+         productsAll: JSON.parse(JSON.stringify(products)),
       },
    }
 }

@@ -5,6 +5,14 @@ const schema = new mongoose.Schema({
       type: String,
       required: [true, 'o campo "nome" é obrigatório'],
    },
+   city: {
+      type: String,
+      required: [true, 'o campo "cidade" é obrigatório'],
+   },
+   phone: {
+      type: String,
+      required: [true, 'o campo "telefone" é obrigatório'],
+   },
    email: {
       type: String,
       required: [true, 'o campo "e-mail" é obrigatório'],

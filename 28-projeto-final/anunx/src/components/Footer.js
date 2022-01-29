@@ -1,62 +1,43 @@
-import MyLink from './MyLink'
-import { Box, Container, Grid, Typography } from "@material-ui/core"
-import { makeStyles, ThemeProvider } from "@material-ui/styles"
-
-const useStyles = makeStyles( theme => ({
-   footer: {
-      borderTop: `1px solid ${theme.palette.divider}`,      
-      paddingTop: theme.spacing(3),
-      paddingBottom: theme.spacing(3),
-      [theme.breakpoints.up('sm')]:{
-         paddingTop: theme.spacing(6),
-         paddingBottom: theme.spacing(6),
-      }
-   }
-}))
+import Container from '@mui/material/Container'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Link from './Link'
 
 const Footer = () => {
-   const classes = useStyles()
-
    return (
-      <Container maxwidth="lg" component="footer" className={classes.footer}>
-         <Grid container spacing={3}>
-            <Grid item xs={6} sm={3}>
-               <Box textAlign="center">
-                  <MyLink href="#" passHref>
-                     <Typography color="textSecondary" variant="subtitle1">
+      <Container maxwidth="lg" component="footer">
+         <Box sx={{ borderTop: '1px solid #999999', padding: '30px 0' }}>
+            <Grid container spacing={3}>
+               <Grid item xs={6} sm={3}>
+                  <Box textAlign="center">
+                     <Link href="#" noLinkStyle>
                         Ajuda e Contato
-                     </Typography>
-                  </MyLink>
-               </Box>
-            </Grid>
-            <Grid item xs={6} sm={3}>
-               <Box textAlign="center">
-                  <MyLink href="#" passHref>
-                     <Typography color="textSecondary" variant="subtitle1">
+                     </Link>
+                  </Box>
+               </Grid>
+               <Grid item xs={6} sm={3}>
+                  <Box textAlign="center">
+                     <Link href="#" noLinkStyle>
                         Dicas de Segurança
-                     </Typography>
-                  </MyLink>
-               </Box>
-            </Grid>
-            <Grid item xs={6} sm={3}>
-               <Box textAlign="center">
-                  <MyLink href="#" passHref>
-                     <Typography color="textSecondary" variant="subtitle1">
+                     </Link>
+                  </Box>
+               </Grid>
+               <Grid item xs={6} sm={3}>
+                  <Box textAlign="center">
+                     <Link href="#" noLinkStyle>
                         Anunciar e Vender
-                     </Typography>
-                  </MyLink>
-               </Box>
-            </Grid>
-            <Grid item xs={6} sm={3}>
-               <Box textAlign="center">
-                  <MyLink href="#" passHref>
-                     <Typography color="textSecondary" variant="subtitle1">
+                     </Link>
+                  </Box>
+               </Grid>
+               <Grid item xs={6} sm={3}>
+                  <Box textAlign="center">
+                     <Link href="#" noLinkStyle>
                         Plano profissional
-                     </Typography>
-                  </MyLink>
-               </Box>
+                     </Link>
+                  </Box>
+               </Grid>
             </Grid>
-         </Grid>
+         </Box>
       </Container>
    )
 }

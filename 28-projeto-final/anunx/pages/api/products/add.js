@@ -1,5 +1,5 @@
-import nextConnect from 'next-connect'
 import { post } from '../../../src/controllers/products'
+import nextConnect from 'next-connect'
 
 const route = nextConnect()
 

@@ -1,51 +1,61 @@
 import {
-   Button,
+   Grid,
    Dialog,
-   DialogActions,
+   DialogTitle,
    DialogContent,
    DialogContentText,
-   DialogTitle,
-   Container,
-   Grid,
+   DialogActions,
+   Button,
    Typography,
-} from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-import TemplateDefault from '../../src/templates/Default'
+} from '@mui/material'
 import Card from '../../src/components/Card'
-import { getSession } from 'next-auth/client'
-import ProductsModel from '../../src/models/products'
-import dbConnect from '../../src/utils/dbConnect'
-import { formatCurrency } from '../../src/utils/currency'
+import CategoryBar from '../../src/components/CategoryBar'
 import { useState } from 'react'
-import axios from 'axios'
-import useToasty from '../../src/contexts/Toasty'
-
-import MyLink from '../../src/components/MyLink'
+import dbConnect from '../../src/utils/dbConnect'
+import ProductsModel from '../../src/models/products'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import useToasty from '../../src/context/Toasty'
+import Link from '../../src/components/Link'
+import { getSession } from 'next-auth/react'
+import Template from '../../src/components/Template'
 
-const useStyles = makeStyles(theme => ({
-   buttonAdd: {
-      margin: '30px auto',
-      display: 'block',
-   },
-}))
-
-const Dashboard = ({ products }) => {
-   const route = useRouter()
-   const [productId, setProductId] = useState()
-   const [openConfimModal, setOpenConfimModal] = useState(false)
-   const [removedProducts, setRemovedProducts] = useState([])
-
-   const classes = useStyles()
+const Dashboard = ({ productsAll }) => {
    const { setToasty } = useToasty()
+   const route = useRouter()
+   const [openModal, setOpenModal] = useState(false)
+   const [products, setProducts] = useState(productsAll)
+   const [category, setCategory] = useState('Todas')
+   const [productId, setProductId] = useState()
 
-   const handleCloseModal = () => setOpenConfimModal(false)
-   const handleOpenModal = productId => {
-      setOpenConfimModal(true)
+   const handleClickOpenModal = (productId) => {
+      setOpenModal(true)
       setProductId(productId)
    }
 
+   const handleCloseModal = () => {
+      setOpenModal(false)
+   }
+
+   const handleClickEdit = id => {
+      route.push(`/product/edit?id=${id}`)
+   }
+
+   const handleChangeCategory = newCategory => {
+      const filter = ''
+
+      if (newCategory === 'Todas') filter = productsAll
+      else
+         filter = productsAll.filter(
+            product => newCategory === product.category
+         )
+
+      setCategory(newCategory)
+      setProducts(filter)
+   }
+
    const handleConfirmRemove = () => {
+      
       axios
          .delete('/api/products/delete', {
             data: {
@@ -57,7 +67,10 @@ const Dashboard = ({ products }) => {
    }
 
    const handleSuccess = () => {
-      setRemovedProducts([...removedProducts, productId])
+
+      const currentProducts = products.filter((product)=>product._id!==productId)
+      setProducts(currentProducts)
+
       handleCloseModal()
       setToasty({
          open: true,
@@ -75,106 +88,98 @@ const Dashboard = ({ products }) => {
       })
    }
 
-   const handleEdit = (id) => {
-      route.push(`/user/edit/${id}`)
-   }
+   const categories = []
+   
+   productsAll.forEach(product => {
+      if(!categories.includes(product.category)) 
+      categories.push(product.category)
+   });
 
    return (
-      <TemplateDefault>
-         <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center">
-               Meus Anúncios
+      <Template>
+         <CategoryBar
+            categories={categories}
+            category={category}
+            handleChange={handleChangeCategory}
+         />
+         
+         <br />
+         
+         {!products.length ? (
+            <Typography
+               component="div"
+               variant="body1"
+               align="center"
+               sx={{ margin: '50px 0' }}
+            >
+               Cadastre seu primero Produto
+               <br /><br />
+               <Link href="/product/add" noLinkStyle>
+                  <Button color="primary" variant="contained">
+                     Cadastrar Produto
+                  </Button>
+               </Link>
             </Typography>
-            <MyLink href="/user/publish">
-               <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.buttonAdd}
-               >
-                  Públicar novo anúncio
-               </Button>
-            </MyLink>
-         </Container>
-         <Container maxWidth="lg">
-            {products.length === removedProducts.length && (
-               <Typography
-                  component="div"
-                  variant="body1"
-                  align="center"
-                  color="textPrimary"
-                  gutterBottom
-               >
-                  Nenhum anúncio púlicado
-               </Typography>
-            )}
-            <Grid container spacing={4}>
-               {products.map(product => {
-                  if (removedProducts.includes(product._id)) return null
-                  
+         ) : null}
 
-                  return (
-                     <Grid key={product._id} item xs={12} sm={6} md={4}>
-                        <Card
-                           id={product._id}
-                           category={product.category}
-                           image={`/uploads/${product.files[0].name}`}
-                           title={product.title}
-                           subtitle={formatCurrency(product.price)}
-                           actions={
-                              <>
-                                 <Button size="small" color="primary" onClick={() => handleEdit(product._id)}>
-                                    Editar
-                                 </Button>
-                                 <Button
-                                    size="small"
-                                    color="primary"
-                                    onClick={() => handleOpenModal(product._id)}
-                                 >
-                                    Remover
-                                 </Button>
-                              </>
-                           }
-                        />
+         <Grid container spacing={3} sx={{ flexGrow: 1 }}>
+            {products.map(product => {
+               return (
+                  <Grid key={product._id} item lg={3} md={4} sm={6} xs={12}>
+                     <Card
+                        id={product._id}
+                        image={`/uploads/${product.files[0].name}`}
+                        title={product.name}
+                        price={product.price}
+                        category={product.category}
+                        actions={true}
+                        handleClickOpenModal={handleClickOpenModal}
+                        handleClickEdit={handleClickEdit}
+                     />
+                  </Grid>
+               )
+            })}
+         </Grid>
 
-                     </Grid>
-                  )
-               })}
-            </Grid>
-         </Container>
-
-         <Dialog open={openConfimModal} onClose={handleCloseModal}>
-            <DialogTitle>Deseja realmnte remover este anúcio?</DialogTitle>
+         <Dialog
+            open={openModal}
+            onClose={handleCloseModal}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+         >
+            <DialogTitle id="alert-dialog-title">
+               {'Tem certeza que deseja deletar esse produto?'}
+            </DialogTitle>
             <DialogContent>
                <DialogContentText id="alert-dialog-description">
-                  Ao confirmar a operação, não sera possível reverter a ação.
+                  Essa ação não poderá ser desfeita.
                </DialogContentText>
             </DialogContent>
             <DialogActions>
-               <Button onClick={handleCloseModal} color="primary">
-                  Cancelar
-               </Button>
-               <Button onClick={handleConfirmRemove} color="primary" autoFocus>
-                  Remover
-               </Button>
+               <Button onClick={handleCloseModal}>Cancelar</Button>
+               <Button onClick={handleConfirmRemove}>Deletar</Button>
             </DialogActions>
          </Dialog>
-      </TemplateDefault>
+      </Template>
    )
 }
 
-Dashboard.requireAuth = true
+
+Dashboard.auth = true
 
 export default Dashboard
 
-export async function getServerSideProps({ req }) {
-   const session = await getSession({ req })
+export async function getServerSideProps({ req, res }) {
    await dbConnect()
+   const session = await getSession({ req })
 
-   const products = await ProductsModel.find({ 'user.id': session?.userId })
+   const products = await ProductsModel.find({ 'userId': session?.user._id })
 
    return {
       props: {
-         products: JSON.parse(JSON.stringify(products)),
+         productsAll: JSON.parse(JSON.stringify(products)),
       },
    }
 }
+
+

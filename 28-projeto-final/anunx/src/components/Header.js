@@ -1,120 +1,163 @@
-import Link from 'next/link'
-import { signOut, useSession } from 'next-auth/client'
-
-import {
-   makeStyles,
-   AppBar,
-   Toolbar,
-   Typography,
-   Button,
-   IconButton,
-   Container,
-   Avatar,
-   Menu,
-   MenuItem,
-   Divider,
-} from '@material-ui/core'
-
-import { AccountCircle } from '@material-ui/icons'
+import { Toolbar, Menu, MenuItem, Divider, ListItemIcon } from '@mui/material'
+import AppBar from '@mui/material/AppBar'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import Box from '@mui/material/Box'
+import Link from './Link'
+import SearchField from './SearchField'
+import Avatar from '@mui/material/Avatar'
 import { useState } from 'react'
+import { useSession } from 'next-auth/react'
 
-const useStyles = makeStyles(theme => ({
-   menuButton: {
-      marginRight: theme.spacing(2),
-   },
-   title: {
-      flexGrow: 1,
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import PersonIcon from '@mui/icons-material/Person'
+import { signOut } from "next-auth/react"
+import { useEffect } from 'react'
 
-      '&:hover': {
-         cursor: "pointer",
-      },
-   },
-   userName: {
-      marginLeft: 8,
-   },
-   devider: {
-      margin: '8px 0',
-   },
-   menu: {
-      display: 'contents',
-   },
-   headButton: {
-      marginRight: '10px',
+const Header = () => {
+   const { data: session } = useSession()
+   const auth = !!session
+   const [anchorEl, setAnchorEl] = useState(null)
+   const open = Boolean(anchorEl)
+   const handleClick = event => {
+      setAnchorEl(event.currentTarget)
    }
-}))
+   const handleClose = () => {
+      setAnchorEl(null)
+   }
 
-
-export default function ButtonAppBar() {  
-   const [session] = useSession()
-   const classes = useStyles()
-   
-
-   const [anchorUserMenu, setAnchorUserMenu] = useState(false)
-
-   const openUserMenu = Boolean(anchorUserMenu) 
+   const handleSair = () => {
+      signOut()
+   }
 
    return (
       <>
-         <AppBar position="static" elevation={3}>
+         <AppBar position="static" spacing="3">
             <Container maxWidth="lg">
                <Toolbar>
-                  <Link href="/" passHref>                  
-                     <Typography variant="h6" className={classes.title}>
-                        AnuX
-                     </Typography>
-                  </Link>
-                  <Link href={session ? "/user/publish" : "/auth/signin"} className={classes.headButton} passHref>
-                     <Button color="inherit" variant="outlined">
-                        Anunciar e Vender
-                     </Button>
-                  </Link>
-                  
-                  {
-                     session
-                        ? (
-                           <IconButton color="secondary" onClick={(e) => { setAnchorUserMenu(e.currentTarget)}}>
-                              {
-                                 session.user?.image
-                                 ? <Avatar src={session.user.image} />
-                                 : <AccountCircle />
-                              }
+                  <Typography variant="h6" component="div" sx={{ flexGrow: 5 }}>
+                     <Link href="/" noLinkStyle>
+                        AnunX
+                     </Link>
+                  </Typography>
 
-                              <Typography variant="subtitle2" color="secondary" className={classes.userName}>
-                                 {session.user.name}
-                              </Typography>
-                           </IconButton>
-                        ) : null
-                  }
-                  
-
-                  <Menu 
-                     anchorEl={anchorUserMenu}
-                     open={openUserMenu}
-                     onClose={() => setAnchorUserMenu(null)}
-                     anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                     }}
-                     getContentAnchorEl={null}
-                     
+                  <Box
+                     sm={0}
+                     display={{ xs: 'none', sm: 'none', md: 'block' }}
+                     sx={{ flexGrow: 3 }}
                   >
-                     <div>
-                        <Link href="/user/dashboard" passHref className={classes.menu}>
-                           <MenuItem>Meus anúncios</MenuItem>
-                        </Link>
-                        <Link href="/user/publish" passHref className={classes.menu}>
-                           <MenuItem>Pùblicar novo anúncio</MenuItem>
-                        </Link>
-                        <Divider className={classes.devider} />
-                        <Link href="/user/dashboard" passHref className={classes.menu}>
-                           <MenuItem onClick={()=> signOut({ callbackUrl: '/'})}>Sair</MenuItem>
-                        </Link>
-                     </div>
-                  </Menu>
+                     <SearchField />
+                  </Box>
 
+                  {auth ? (
+                     <>
+                        <Link href="/product/add" noLinkStyle>
+                           <Button color="inherit" variant="outlined">
+                              Anunciar e Vender
+                           </Button>
+                        </Link>
+                        <Avatar
+                           sx={{
+                              marginLeft: '10px',
+                              '&:hover': {
+                                 cursor: 'pointer',
+                              },
+                           }}
+                           onClick={handleClick}
+                           src={session?.user.image}
+                        />
+                        
+                     </>
+                     
+                  ) : (
+                     <>
+                        <Link href="/auth/signin" noLinkStyle>
+                           <Button
+                              color="inherit"
+                              variant="outlined"
+                              sx={{ marginRight: '15px' }}
+                           >
+                              SingIn
+                           </Button>
+                        </Link>
+                        <Link href="/auth/signup" noLinkStyle>
+                           <Button color="inherit" variant="outlined">
+                              SingUp
+                           </Button>
+                        </Link>
+                     </>
+                  )}
+
+                  <Menu
+                     anchorEl={anchorEl}
+                     open={open}
+                     onClose={handleClose}
+                     onClick={handleClose}
+                     PaperProps={{
+                        elevation: 0,
+                        sx: {
+                           overflow: 'visible',
+                           filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                           mt: 1.5,
+                           '& .MuiAvatar-root': {
+                              width: 32,
+                              height: 32,
+                              ml: -0.5,
+                              mr: 1,
+                           },
+                           '&:before': {
+                              content: '""',
+                              display: 'block',
+                              position: 'absolute',
+                              top: 0,
+                              right: 14,
+                              width: 10,
+                              height: 10,
+                              bgcolor: 'background.paper',
+                              transform: 'translateY(-50%) rotate(45deg)',
+                              zIndex: 0,
+                           },
+                        },
+                     }}
+                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                  >
+                     <MenuItem>
+                        <ListItemIcon>
+                           <PersonIcon fontSize="small" />
+                        </ListItemIcon>
+                        {session?.user.name}
+                     </MenuItem>
+                     <Divider />
+                     <Link href="/user/dashboard" noLinkStyle>
+                        <MenuItem>Anúncios</MenuItem>
+                     </Link>
+                     <MenuItem>Minhas Compras</MenuItem>
+                     <MenuItem>Minhas Vendas</MenuItem>
+                     <Divider />
+                     <Link href="/" noLinkStyle onClick={handleSair}>
+                        <MenuItem>
+                           <ListItemIcon>
+                              <ExitToAppIcon fontSize="small" />
+                           </ListItemIcon>
+                           Sair
+                        </MenuItem>
+                     </Link>
+                  </Menu>
                </Toolbar>
             </Container>
          </AppBar>
+         <Container maxWidth="lg">
+            <Box
+               display={{ xs: 'block', sm: 'block', md: 'none' }}
+               sx={{ flexGrow: 1, marginTop: '20px' }}
+            >
+               <SearchField />
+            </Box>
+         </Container>
       </>
    )
 }
+
+export default Header

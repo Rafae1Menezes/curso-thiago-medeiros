@@ -1,34 +1,36 @@
-import { IconButton, InputBase, Paper, makeStyles } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/search'
+import { IconButton, InputBase, Paper as PaperMui, makeStyles } from '@mui/material/'
+import SearchIcon from '@mui/icons-material/search'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { styled } from '@mui/material/styles'
 
-const useStyles = makeStyles(theme => ({
-   searchBox: {
+const Paper= styled(PaperMui)(({ theme }) => ({
+
       display: 'flex',
       justifyContent: 'center',
-      padding: theme.spacing(0, 2),
-      margin: theme.spacing(3, 0, 6),
-   }
+      padding: theme.spacing(0, 1),
+      marginRight: theme.spacing(2),
+      height: '35px'
+
 }))
 
-const SearchField = () => {
-   const classes = useStyles()
-   const [search, setSearch] = useState()
-   const router = useRouter()
+const SearchField = ({ sx }) => {
+
+   const [search, setSearch] = useState('')
+   const route = useRouter()
 
    const handleSubmitSearch = () => {
-      router.push({
-         pathname: `/search/${search}`,
-      })
+      route.push(`/product/search?q=${search}`)
    }
 
    return (
-      <Paper className={classes.searchBox}>
+      <Paper sx={sx} lg={0} md={0} sm={0} xs={0} >
          <InputBase
+            onBlur={()=> setSearch('')}
             onChange={e => setSearch(e.target.value)}
             onKeyPress={e => (e.key === 'Enter' ? handleSubmitSearch() : null)}
-            placeholder="Ex.: iPhone 12 com garantia"
+            placeholder="Busque aqui o seu produto"
+            value={search}
             fullWidth
          />
          <IconButton onClick={handleSubmitSearch}>

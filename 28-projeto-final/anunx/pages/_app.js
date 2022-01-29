@@ -1,51 +1,62 @@
-import Head from 'next/head'
-import { ThemeProvider } from '@material-ui/styles'
-import { CssBaseline } from '@material-ui/core'
+import { SessionProvider } from 'next-auth/react'
 import PropTypes from 'prop-types'
-import { Provider } from "next-auth/client"
-
-import { ToastyProvider }  from '../src/contexts/Toasty'
+import Head from 'next/head'
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import { CacheProvider } from '@emotion/react'
 import theme from '../src/theme'
+import createEmotionCache from '../src/createEmotionCache'
 
-import CheckAuth from '../src/components/CheckAuth'
+import { ToastyProvider } from '../src/context/Toasty'
+import Auth from '../src/components/Auth'
 
-export default function MyApp(props) {
-   const { Component, pageProps } = props
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache()
 
-   /* useEffect(() => {
-      //Remove the server-side injected css;
-      const jssStyles = document.querySelector('#jss-server-side')
-      if (jssStyles) {
-         jssStyles.parentElement.removeChild(jssStyles)
-      }
-   }, []) */
-
+export default function MyApp({
+   Component,
+   emotionCache = clientSideEmotionCache,
+   pageProps: { session, ...pageProps },
+}) {
    return (
-      <>
-         <Head>
-            <title>AnunX</title>
-            <meta
-               name="viewport"
-               content="minimum-scale=1, initial-scale=1, width=device-width"
-            />
-         </Head>
-         <Provider session={pageProps.session}>
-            <ThemeProvider theme={theme}>
-               <ToastyProvider>
+      <StyledEngineProvider injectFirst>
+         <CacheProvider value={emotionCache}>
+            <Head>
+               <title>Anunx</title>
+               <meta
+                  name="viewport"
+                  content="initial-scale=1, width=device-width"
+               />
+               <meta
+                  name="description"
+                  content="Site de vendas. Estudo de Next."
+               ></meta>
+            </Head>
+            <SessionProvider session={session}>
+               <ThemeProvider theme={theme}>
+                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                   <CssBaseline />
-                  {
-                     Component.requireAuth
-                     ? <CheckAuth Component={Component} pageProps={pageProps} />
-                     : <Component {...pageProps} />
-                  }                  
-               </ToastyProvider>
-            </ThemeProvider>
-         </Provider>
-      </>
+
+                  <ToastyProvider>
+                     <SessionProvider session={session}>
+                        {Component.auth ? (
+                           <Auth>
+                              <Component {...pageProps} />
+                           </Auth>
+                        ) : (
+                           <Component {...pageProps} />
+                        )}
+                     </SessionProvider>
+                  </ToastyProvider>
+               </ThemeProvider>
+            </SessionProvider>
+         </CacheProvider>
+      </StyledEngineProvider>
    )
 }
 
 MyApp.propTypes = {
    Component: PropTypes.elementType.isRequired,
+   emotionCache: PropTypes.object,
    pageProps: PropTypes.object.isRequired,
 }

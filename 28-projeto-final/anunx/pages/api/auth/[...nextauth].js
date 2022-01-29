@@ -1,58 +1,65 @@
 import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
+import CredentialsProvider from 'next-auth/providers/credentials'
+import GoogleProvider from 'next-auth/providers/google'
 import axios from 'axios'
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
+import clientPromise from '/lib/mongodb'
 
 export default NextAuth({
    providers: [
-
-      
-      Providers.Google({
+      GoogleProvider({
          clientId: process.env.GOOGLE_CLIENT_ID,
-         clientSecret: process.env.GOOGLE_CLIENT_SECRET
-       }),
+         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      }),
 
-
-      Providers.Credentials({
+      CredentialsProvider({
          name: 'Credentials',
          async authorize(credentials) {
-            try{
-               const res = await axios.post(`${process.env.APP_URL}/api/auth/signin`, credentials) 
-               const user = res.data
-               return user
-            } catch {
-               throw '/auth/signin?i=1'
-            }
+            const res = await axios.post(
+               `${process.env.APP_URL}/api/auth/signin`,
+               credentials
+            )
+            const user = res.data
+
+            if (user) return user
+
+            return null
          },
       }),
-      
    ],
 
-   session: {
-      jwt: true,
-   },
-
-   jwt: {
-      secret: process.env.JWT_TOKEN
-   },
-
    callbacks: {
-      async jwt (token, user) {
+      async jwt( token ) {
+         // Persist the OAuth access_token to the token right after signin
 
-         if(user){
-            user.id && (token.uid = user.id)
-            user._id && (token.uid = user._id)
-         }
+         if(token.user?._id) token.token._id = token.user._id
+         if(token.token?.sub) token.token._id = token.token.sub
+         
 
-         return Promise.resolve(token)
+         return token.token
       },
 
-      async session(session, user) {
-         session.userId = user.uid
-         
-         return session
-      }
+      async session(session) {
+
+
+         session.session.user._id = session.token._id
+         return session.session
+      },
    },
 
+   adapter: MongoDBAdapter(clientPromise),
+
+   session: { strategy: 'jwt' },
+
+   jwt: { secret: process.env.JWT_TOKEN },
+
+   pages: {
+      signIn: '/auth/signin',
+      signOut: '/auth/signout',
+      error: '/auth/signin',
+   },
+
+   secret: process.env.SECRET,
 
    database: process.env.MONGODB_URI,
 })

@@ -7,9 +7,13 @@ const filesSchema = new mongoose.Schema({
 
 const schema = new mongoose.Schema(
    {
-      title: {
+      name: {
          type: String,
          required: [true, 'o campo "título do anúncio" é obrigatório'],
+      },
+      price: {
+         type: Number,
+         required: [true, 'o campo "preço" é obrigatório'],
       },
       category: {
          type: String,
@@ -18,21 +22,14 @@ const schema = new mongoose.Schema(
       description: {
          type: String,
          required: [true, 'o campo "descrição" é obrigatório'],
-      },
-      price: {
-         type: Number,
-         required: [true, 'o campo "preço" é obrigatório'],
-      },
-      user: {
-         id: String,
-         name: String,
-         email: String,
-         phone: String,
-         image: String,
-      },
+      },      
       files: {
          type: [filesSchema],
          default: undefined,
+      },
+      userId: {
+         type: String,
+         required: [true, 'o campo "userId" é obrigatório'],
       },
    },
    { versionKey: false }

@@ -9,7 +9,7 @@ const get = async (req, res) => {
 }
 
 const post = async (req, res) => {
-   const { name, email, password } = req.body
+   const { name, city, phone, email, password } = req.body
 
    await dbConnect()
 
@@ -17,6 +17,8 @@ const post = async (req, res) => {
 
    const user = new UsersModel({
       name,
+      city,
+      phone,
       email,
       password: passwordCrypto,
    })
