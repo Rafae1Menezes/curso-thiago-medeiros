@@ -1,5 +1,5 @@
 import { IconButton, InputBase, Paper as PaperMui, makeStyles } from '@mui/material/'
-import SearchIcon from '@mui/icons-material/search'
+import SearchIcon from '@mui/icons-material/Search'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { styled } from '@mui/material/styles'
