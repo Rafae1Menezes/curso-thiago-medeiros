@@ -56,10 +56,10 @@ const Add = ({ userId }) => {
       router.push('/user/dashboard')
    }
 
-   const handleError = () => {
+   const handleError = (e) => {
       setToasty({
          open: true,
-         text: 'Aconteceu um erro ao tentar cadastrar o produto!',
+         text: 'Aconteceu um erro ao tentar cadastrar o produto! '+ e,
          severity: 'error',
       })
    }

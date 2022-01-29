@@ -18,7 +18,7 @@ yarn-error.log*
 /.next
 
 #Fotos
-/public/uploads
+/public/uploads-antigo
 
 #Eslint
 .eslintrc.json
