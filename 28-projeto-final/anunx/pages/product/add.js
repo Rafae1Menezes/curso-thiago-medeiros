@@ -18,7 +18,7 @@ import useToasty from '../../src/context/Toasty'
 import { getSession } from 'next-auth/react'
 import Template from '../../src/components/Template'
 import { Formik } from 'formik'
-import { initialValues, validationSchema } from './addFormValues'
+import { initialValues, validationSchema } from '../api/products/addFormValues'
 import axios from 'axios'
 
 const Add = ({ userId }) => {

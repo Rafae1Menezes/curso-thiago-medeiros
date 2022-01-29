@@ -18,4 +18,4 @@ const validationSchema = yup.object().shape({
       .required('Campo obrigatório.'),
 })
 
-export { initialValues, validationSchema }
+export  { initialValues, validationSchema }
